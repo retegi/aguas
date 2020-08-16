@@ -4,11 +4,7 @@ import os
 from unipath import Path
 from django.urls import reverse_lazy
 from django.db import models
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-#BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-#BASE_DIR = os.path.join(os.path.dirname(__file__) ,'../templates').replace('\\','/')
+
 BASE_DIR = Path(__file__).ancestor(3)
 
 # Quick-start development settings - unsuitable for production
@@ -27,11 +23,6 @@ def get_secret(secret_name, secrets=secret):
         raise ImproperlyConfigured(msg)
 
 SECRET_KEY = get_secret('SECRET_KEY')
-
-
-SECRET_KEY = 'dgwlzo31n6i+9gmh!=qnq5rnf6)r%9t#emv8x6p#9pj==3-%jx'
-
-
 
 # Application definition
 
