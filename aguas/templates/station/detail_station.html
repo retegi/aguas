@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-primary m-3" role="alert">     
+        <h3 class="text-primary">Detalle Estación</h3>
+        <h1>{{ station }}</h1>
+       
+            <table class="table table-sm table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--<tr>
+                    <th scope="row">Autor</th>
+                    <td>{{ station.author }}</td>
+                  </tr>-->
+                  <tr>
+                    <th scope="row">Codigo</th>
+                    <td>{{ station.code_station }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Nombre</th>
+                    <td>{{ station.name_station }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Coordenadas</th>
+                    <td><a href="https://maps.google.com/?q={{ station.latitude_station }},{{ station.longitude_station }}" target="_blank">{{ station.latitude_station }},{{ station.longitude_station }}</a></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Instalación</th>
+                    <td>{{ station.get_position_comunication_installation_display }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Observaciones</th>
+                    <td>{{ station.observations_station }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Area</th>
+                    <td>{{ station.get_area_station_display }}</td>
+                  </tr>
+                </tbody>
+              </table>
+</div>            
+
+
+{% endblock %}

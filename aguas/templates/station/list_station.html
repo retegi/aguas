@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Aguas - Estaciones</title>
+{% endblock %}
+{% block header %}
+
+{% endblock %}
+
+{% block slider %}
+
+  {% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-11">
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      <a class="navbar-brand" href="#">Estaciones</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'stations_app:station_add' %}">Crear</a>
+          </li>
+        </ul>
+  </div>
+  <div class="col-sm-1">
+        <form class="form-inline my-2 my-md-0"action="{% url 'stations_app:station_list' %}" method="get">{% csrf_token %}
+          <input class="form-control" type="text" id="kword" name="kword" placeholder="Buscar">
+        </form>
+      
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+
+<table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Código</th>
+        <th scope="col">Acrónimo</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Funcionamiento</th>
+        <th scope="col">Tipo Estación</th>
+        <th scope="col">Area</th>
+        <th scope="col">Depósito origen</th>
+        <th scope="col">Localización</th>
+        <th scope="col">Ver</th>
+        <th scope="col">Edición</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for station in object_list %}
+      <tr>
+        <th scope="row">{{ station.code_station }}</th>
+        <td><button name="area" class="btn btn-sm" name="area">{{ station.type_station.acronym }}</button></td> 
+        <td><a href="{% url 'stations_app:detalle_estacion' station.id %}">{{ station.name_station }}</a></td>
+        
+        
+        
+        <td><a href="{% url 'stations_app:detalle_estacion' station.id %}">{{ incidencia.id }}</a></td>
+        <td>{{ station.type_station.name }}</td>
+      <td><button style="background-color:{{ station.area_station.color_html_background }}" name="area" class="btn btn-sm" name="area">{{ station.area_station.name }}</button></td>
+      <td><button name="area" class="btn btn-sm" name="area">{{ station.origin_watertank.name_station }}</button></td>
+      
+        
+        <td><a target="blank" href="https://maps.google.com/?q={{ station.latitude_station }},{{ station.longitude_station }}">
+          <svg class="bi bi-geo-alt" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+        </svg></a></td>
+
+        <td>
+
+          <a target="blank" href="#"><svg height="1em" viewBox="0 0 512 512" width="1em" xmlns="http://www.w3.org/2000/svg"><g><path d="m416 8h-320a8 8 0 0 0 -8 8v24a8 8 0 0 0 8 8h8v408a8 8 0 0 0 8 8v32a8 8 0 0 0 8 8h272a8 8 0 0 0 8-8v-32a8 8 0 0 0 8-8v-408h8a8 8 0 0 0 8-8v-24a8 8 0 0 0 -8-8zm-32 480h-256v-24h256zm-264-40v-400h128v400zm272 0h-128v-400h128zm16-416h-304v-8h304z"/><path d="m232 224a8 8 0 0 0 -8 8v48a8 8 0 0 0 16 0v-48a8 8 0 0 0 -8-8z"/><path d="m280 288a8 8 0 0 0 8-8v-48a8 8 0 0 0 -16 0v48a8 8 0 0 0 8 8z"/></g></svg></a>
+        
+          <a target="blank" href="#"><svg id="Capa_1" enable-background="new 0 0 510.157 510.157" height="1em" viewBox="0 0 510.157 510.157" width="1em" xmlns="http://www.w3.org/2000/svg"><g><path d="m286.543 167.38c-19.54 0-35.438 15.897-35.438 35.437s15.897 35.437 35.438 35.437c19.54 0 35.436-15.897 35.436-35.437s-15.896-35.437-35.436-35.437zm0 55.874c-11.27 0-20.438-9.168-20.438-20.437s9.168-20.437 20.438-20.437c11.268 0 20.436 9.168 20.436 20.437s-9.168 20.437-20.436 20.437z"/><path d="m372.326 202.817c0-47.301-38.483-85.783-85.783-85.783-47.301 0-85.783 38.482-85.783 85.783s38.482 85.783 85.783 85.783 85.783-38.482 85.783-85.783zm-85.783 70.783c-39.03 0-70.783-31.753-70.783-70.783s31.753-70.783 70.783-70.783 70.783 31.753 70.783 70.783-31.753 70.783-70.783 70.783z"/><path d="m398.129 225.317c-4.143 0-7.5 3.358-7.5 7.5v82.109h-24.986c-15.06 0-27.312 12.252-27.312 27.312v3.796c0 15.06 12.252 27.312 27.312 27.312h24.986v42.243h-24.986c-15.06 0-27.312 12.252-27.312 27.312v3.796c0 15.06 12.252 27.312 27.312 27.312h24.986v18.212c0 1.619-1.317 2.936-2.936 2.936h-265.229c-1.619 0-2.936-1.317-2.936-2.936v-18.212h24.985c15.061 0 27.313-12.252 27.313-27.312v-3.796c0-15.06-12.252-27.312-27.313-27.312h-24.985v-131.153c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v207.785c0 9.89 8.046 17.936 17.936 17.936h265.229c9.891 0 17.936-8.046 17.936-17.936v-259.404c0-4.142-3.357-7.5-7.5-7.5zm-253.615 205.272c6.789 0 12.313 5.523 12.313 12.312v3.796c0 6.789-5.523 12.312-12.313 12.312h-24.985v-28.42zm221.129-72.243c-6.789 0-12.312-5.523-12.312-12.312v-3.796c0-6.789 5.522-12.312 12.312-12.312h24.986v28.42zm0 100.663c-6.789 0-12.312-5.523-12.312-12.312v-3.796c0-6.789 5.522-12.312 12.312-12.312h24.986v28.42z"/><path d="m388.982 80.498h-102.315v-17.923c0-9.397-7.645-17.042-17.042-17.042h-7.047v-38.033c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v38.033h-7.047c-9.397 0-17.042 7.645-17.042 17.042v17.922h-102.315c-9.179 0-16.646 7.467-16.646 16.646v157.293c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-62.579h24.985c15.061 0 27.313-12.252 27.313-27.312v-3.796c0-15.06-12.252-27.312-27.313-27.312h-24.985v-36.294c0-.907.738-1.646 1.646-1.646h267.809c.908 0 1.647.738 1.647 1.646v105.674c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-105.674c-.001-9.178-7.469-16.645-16.648-16.645zm-244.468 67.94c6.789 0 12.313 5.523 12.313 12.312v3.796c0 6.789-5.523 12.312-12.313 12.312h-24.985v-28.42zm93.975-67.94v-17.923c0-1.126.916-2.042 2.042-2.042h29.094c1.126 0 2.042.916 2.042 2.042v17.922h-33.178z"/><path d="m179.577 247.371h-23.47c-7.064 0-12.812 5.747-12.812 12.811v103.259c0 18.769 15.271 34.039 34.04 34.039h102.57c11.648 0 21.126-9.477 21.126-21.125v-47.054c0-7.255-5.902-13.158-13.157-13.158h-14.416c-39.858 0-74.712-25.532-86.732-63.534-.984-3.118-3.878-5.238-7.149-5.238zm93.882 83.773h12.573v45.211c0 3.377-2.748 6.125-6.126 6.125h-102.57c-10.499 0-19.04-8.541-19.04-19.039v-101.07h15.936c15.451 41.361 54.653 68.773 99.227 68.773z"/><path d="m196.324 437.299c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h118.155c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5z"/></g></svg></a>
+        
+          <a target="blank" href="#"><svg id="Layer_1" enable-background="new 0 0 512 512" height="1em" viewBox="0 0 512 512" width="1em" xmlns="http://www.w3.org/2000/svg"><g><path d="m354 512h-196c-25.364 0-46-20.636-46-46v-356c0-25.364 20.636-46 46-46h196c25.364 0 46 20.636 46 46v356c0 25.364-20.636 46-46 46zm-196-416c-7.72 0-14 6.28-14 14v356c0 7.72 6.28 14 14 14h196c7.72 0 14-6.28 14-14v-356c0-7.72-6.28-14-14-14z"/><path d="m320 96h-128c-8.837 0-16-7.164-16-16v-44c0-19.851 16.149-36 36-36h88c19.851 0 36 16.149 36 36v44c0 8.836-7.163 16-16 16zm-112-32h96v-28c0-2.206-1.794-4-4-4h-88c-2.206 0-4 1.794-4 4z"/><path d="m320 456h-128c-8.837 0-16-7.164-16-16s7.163-16 16-16h128c8.837 0 16 7.164 16 16s-7.163 16-16 16z"/><path d="m320 392h-128c-8.837 0-16-7.164-16-16s7.163-16 16-16h128c8.837 0 16 7.164 16 16s-7.163 16-16 16z"/><path d="m320 328h-128c-8.837 0-16-7.164-16-16s7.163-16 16-16h128c8.837 0 16 7.164 16 16s-7.163 16-16 16z"/></g></svg></a>
+        
+        </td>
+        <td>
+          <a target="blank" href="{% url 'stations_app:detalle_estacion' station.id %}">
+            <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z" clip-rule="evenodd"/>
+            </svg>
+            </a>
+            <a target="blank" href="{% url 'stations_app:station_update' station.id %}"><svg class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 011.414 0l2 2a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-3 1a1 1 0 01-1.266-1.265l1-3a1 1 0 01.242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" clip-rule="evenodd"/>
+    <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 00.5.5H4v.5a.5.5 0 00.5.5H5v.5a.5.5 0 00.5.5H6v-1.5a.5.5 0 00-.5-.5H5v-.5a.5.5 0 00-.5-.5H3z" clip-rule="evenodd"/>
+  </svg></a>
+            <a target="blank" href="{% url 'stations_app:eliminar_estacion' station.id %}"><svg class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"/>
+              <path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd"/>
+            </svg></a>
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% endblock %}

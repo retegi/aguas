@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-white m-3" role="alert">
+  <div class="row">
+    <div class="col-lg-4 text-center">
+      
+        <img style="width:75%;margin:5%" src="{{ consumable.type_consumable.imagen_typeConsumable.image_imageConsumable.url }}">
+    </div>
+    <div class="col-lg-8">
+        <h3 class="text-secondary">Detalle Consumible</h3>
+        <h1>{{ consumable.brand_consumable }} - {{ consumable.model_consumable }}</h1>
+            <table class="table table-sm table-hover">
+                <thead>
+                  <h3>Datos genéricos del tipo de consumible</h3>
+                  <tr>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Tipo de consumible</th>
+                    <td>{{ consumable.type_consumable.get_type_typeConsumable_display }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Marca</th>
+                    <td>{{ consumable.type_consumable.brand_typeConsumable }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Modelo</th>
+                    <td>{{ consumable.type_consumable.model_typeConsumable }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Salida voltaje</th>
+                    <td>{{ consumable.type_consumable.get_voltage_ouput_typeConsumable_display }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Observaciones genéricas</th>
+                    <td>{{ consumable.type_consumable.observations_typeConsumable }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Fecha colocación</th>
+                    <td>{{ consumable.datetime_placemente_consumable }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Serial</th>
+                    <td><b>{{ consumable.serial_num_consumable }}</b></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Dispositivo padre</th>
+                    <td>{{ consumable.parent_device_consumable.type_device.name }} {{ consumable.parent_device_consumable.brand_device }} {{ consumable.parent_device_consumable.model_device }} Serial: {{ consumable.parent_device_consumable.serial_device }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Situación</th>
+                    <td>{{ consumable.get_status_consumable_display }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Instalación</th>
+                    <td>{{ consumable.parent_device_consumable.installation_device.type_installation.name }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Estación</th>
+                    <td>{{ consumable.parent_device_consumable.installation_device.station_installation.type_station.acronym }} {{ consumable.parent_device_consumable.installation_device.station_installation.name_station }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tipo estación</th>
+                    <td>{{ consumable.parent_device_consumable.installation_device.station_installation.type_station.name }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Área</th>
+                    <td>{{ consumable.parent_device_consumable.installation_device.station_installation.area_station.name }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Localizar</th>
+                    <td><a target="blank" href="https://maps.google.com/?q={{ consumable.parent_device_consumable.installation_device.station_installation.latitude_station }},{{ consumable.parent_device_consumable.installation_device.station_installation.longitude_station }}"><svg class="bi bi-geo-alt" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                    </svg></a></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Observaciones</th>
+                    <td>{{ consumable.observations_consumable }}</td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -58,11 +58,11 @@
     {% block head %}
     {% endblock %}
   </head>
-  
+
   <body class="p-0"  style="background-image: url('{% static '' %}'); background-repeat: no-repeat, repeat; background-size:cover;">
     
     <nav class="navbar navbar-expand-md navbar-dark">
-  <a class="navbar-brand" href="#"><img width="80px" src="{% static 'img/logo_ayunta_blanco.png' %}"></a>
+  <a class="navbar-brand" href="#"><img height="45px" src="{% static 'img/retegi.jpg' %}"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -70,7 +70,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="">Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'stations_app:station_list' %}">Inicio <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="">Gráficos</a>
@@ -79,17 +79,17 @@
         <a class="nav-link" href="">Mapa</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Estaciones</a>
+        <a class="nav-link" href="{% url 'stations_app:station_list' %}">Estaciones</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Instalacion</a>
+        <a class="nav-link" href="{% url 'installations_app:list_installation' %}">Instalacion</a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link" href="">Dispositivos</a>
+        <a class="nav-link" href="{% url 'devices_app:device_list' %}">Dispositivos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Consumibles</a>
+        <a class="nav-link" href="{% url 'consumables_app:list_consumable' %}">Consumibles</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="">Incidencias</a>
@@ -102,6 +102,13 @@
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>-->
+    <ul class="navbar-nav text-right">
+      <li class="nav-link">
+        <a style="text-transform:uppercase; color:white" class="" href="#">{{user}}</a>
+        <a style="text-transform:uppercase; color:black" href="{% url 'users_app:user-logout' %}"><button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button></a>
+        
+      </li>
+    </ul>
   </div>
 </nav>
 
@@ -123,6 +130,7 @@
 </main><!-- /.container -->
 
 <footer class="mastfoot mt-auto bg-dark p-2">
+ 
   <div class="row">
     <div class="col-4"></div>
     <div class="col-4 text-center text-light">
@@ -137,7 +145,7 @@
     </div>
   <div class="row">
   <div class="col-4"></div>
-  <div class="col-4 text-center text-light">www.Donostia.eus</div>
+  <div class="col-4 text-center text-light">asdfasdfasdf{{ home.web_address }}</div>
   <div class="col-4"></div>
   </div>
 </footer>
@@ -145,7 +153,7 @@
       <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
 
 
-
+      
     </body>
     {% block scripts %}
     {% endblock %}

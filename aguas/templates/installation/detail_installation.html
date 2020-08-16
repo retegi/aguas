@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-primary m-3" role="alert">
+       
+        <h3 class="text-primary">Detalle Instalación</h3>
+        <h1>{{ installation }}</h1>
+        <form class="" method="POST">{% csrf_token %}
+
+            <table class="table table-sm table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Tipo instalación</th>
+                    <td>{{ installation.type_installation.name }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Estación</th>
+                    <td>{{ installation.station_installation.name_station }}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+
+            
+
+        </form>
+</div>
+{% endblock %}
