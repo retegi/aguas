@@ -13,7 +13,9 @@ from django.views.generic.edit import (
 )
 from .forms import (
     UserRegisterForm, 
-    LoginForm
+    LoginForm,
+    UpdatePasswordForm,
+    VerificationForm
 )
 from .models import User
 from applications.station.models import Station
@@ -42,7 +44,7 @@ class UserRegisterView(FormView):
 class LoginUser(FormView):
     template_name = 'users/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('stations_app:station_list')
+    success_url = reverse_lazy('stations_app:list_station')
 
     def form_valid(self, form):
         user = authenticate(

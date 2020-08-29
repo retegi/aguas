@@ -11,4 +11,9 @@ class UserAdmin(admin.ModelAdmin):
         'last_name',
         'gender'
     )
+
+    def save_model(self, request, obj, form, change):
+        obj.set_password(obj.password) 
+        super().save_model(request, obj, form, change)
+
 admin.site.register(User,UserAdmin)

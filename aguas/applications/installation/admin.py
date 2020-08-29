@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Installation
 from .models import TypeInstallation
-
+from .models import ImageInstallation
 
 
 class InstallationAdmin(admin.ModelAdmin):
@@ -17,3 +17,9 @@ class TypeInstallationAdmin(admin.ModelAdmin):
         'name',
     )
 admin.site.register(TypeInstallation,TypeInstallationAdmin)
+
+class ImageInstallationAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+    )
+admin.site.register(ImageInstallation,ImageInstallationAdmin)

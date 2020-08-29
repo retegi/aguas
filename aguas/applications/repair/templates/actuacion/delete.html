@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-danger m-3" role="alert">
+        <h3 class="text-primary">Eliminar</h3>
+
+        <form class="" method="POST">{% csrf_token %}
+
+            <p>Confirme que desea eliminar {{ actuacions.id }}</p>
+
+            <button class="form-control btn-danger mb-5" type="submit">Confirmar</button>
+
+        </form>
+    </div>
+{% endblock %}

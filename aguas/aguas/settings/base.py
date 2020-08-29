@@ -42,6 +42,9 @@ LOCAL_APPS = (
     'applications.installation',
     'applications.device',
     'applications.consumable',
+    'applications.incidence',
+    'applications.repair',
+    'applications.map',
 )
 
 THIRD_PARTY_APPS = ()

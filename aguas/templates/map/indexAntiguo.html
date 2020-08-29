@@ -1,0 +1,435 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Aguas - Index</title>
+{% endblock %}
+{% block head %}
+<title>Aguas</title>
+
+<!-- LEAFLET CSS-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+
+   <!--LEAFLET JS-->
+<div>
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+    integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+    crossorigin=""></script>
+  <script src="{% static 'js/L.Path.DashFlow.js' %}"></script>
+  <script src="{% static 'js/route.js' %}"></script>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- MAP SIZE CONF-->
+<style>
+    #map { height: 95vh; width: 100%; }
+</style>
+
+
+
+
+
+<!--PRUEBAS-->
+<script>
+  $(document).ready(function(){
+    $(".btn1").click(function(){
+      $("p").hide();
+    });
+    $(".btn2").click(function(){
+      $("p").show();
+    });
+  });
+  </script>
+
+<!--MARC SIMBOLS-->
+<script>
+
+  var waterTankIcon = new L.Icon({
+    iconUrl: '{% static 'img/water-tank.png' %}',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var controlIcon = new L.Icon({
+    iconUrl: '{% static 'img/control-station.webp' %}',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var antenaIcon = new L.Icon({
+    iconUrl: '{% static 'img/antena.png' %}',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var greenIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var orangeIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var yellowIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var blueIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var redIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var blackIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var goldIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var geyIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  
+  var violetIcon = new L.Icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+  </script>
+
+{% endblock %}
+
+
+{% block content %}
+
+  <!--LEFT MENÚ-->
+<div class="row">
+
+  <div style="background-color:#072530;" class="col-1 p-0 text-left p-1">
+      
+    <h5 class="text-secondary mt-1">Estaciones</h5>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="abastecimiento">
+      <label class="form-check-label text-white" for="defaultCheck1">
+        Abastecimiento
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="saneamiento">
+      <label class="form-check-label text-white" for="defaultCheck1">
+        Saneamiento
+      </label>
+    </div>
+
+          <h5 class="text-secondary mt-1">Comunicaciones</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="radioSaneamiento">
+            <label class="form-check-label text-white" for="defaultCheck1">
+              R.Saneamiento
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label text-white" for="defaultCheck1">
+              Sectorización
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label text-white" for="defaultCheck1">
+              Depósitos
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label text-white" for="defaultCheck1">
+              Antenas
+            </label>
+          </div>
+   
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label text-white" for="defaultCheck1">
+              Pluviómetros
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label text-white" for="defaultCheck1">
+              Radio
+            </label>
+          </div>
+  </div>
+  <!--/LEFT MENÚ-->
+
+  <!--MAP-->
+  <div class="col-11 p-0 text-center">     
+    <div id="map">
+    
+    </div>
+    
+    <button id="radioSaneamiento" class="btn btn-info btn-sm m-1">RADIOSANEAMIENTO</button><button id="saneamiento" class="btn btn-info btn-sm m-1">SANEAMIENTO</button><button id="abastecimiento" class="btn btn-info btn-sm m-1">ABASTECIMIENTO</button><button class="btn btn-info btn-sm m-1">SECTORIZACIÓN</button><button class="btn btn-info btn-sm m-1">CUENTAS</button><button class="btn btn-info btn-sm m-1">ALIVIOS</button><button class="btn btn-info btn-sm m-1">OTROS</button>
+    <button id="control" class="btn btn-info btn-sm m-1">CONTROL</button><button id="deposito" class="btn btn-info btn-sm m-1">DEPOSITO</button>
+  </div>
+  <!--/MAP-->
+
+
+</div>
+
+
+<!--CONF MAP-->
+<script>
+
+  {% for map in map %}
+  let map = L.map('map').setView([{{ map.longitude_conf_map }}, {{ map.latitude_conf_map }}],{{ map.zoom_conf_map }})
+  {% endfor %}
+  var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+  /*     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+	attribution: '',
+	subdomains: 'abcd',
+	maxZoom: 19*/
+}).addTo(map);
+</script>
+
+  
+  <p>This is a paragraph.</p>
+  
+  <button class="btn1">Hide</button>
+  <button class="btn2">Show</button>
+
+
+
+
+  <!--//MARCS STATIONS-->
+<script>
+{% for station in station0 %}
+var saneamiento = L.marker([{{ station.latitude_station }},{{ station.longitude_station }}],{icon: orangeIcon}).addTo(map).bindPopup("<a href='{% url "stations_app:detail_station" station.id %}'><b>{{ station.name }}</b></a><br>{{ station.get_area_display }}").openPopup();
+{% endfor %}
+document.getElementById('saneamiento').addEventListener('click', function() {
+  saneamiento[this.checked ? 'addTo' : 'removeFrom'](map)
+});
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+{% for station in stations1 %}
+var marker = L.marker([{{ station.latitud }},{{ station.longitud }}],{icon: blueIcon}).addTo(map).bindPopup("<a href='{% url "detalle_estacion" station.id %}'><b>{{ station.name }}</b></a><br>{{ station.get_area_display }}").openPopup();
+{% endfor %}
+document.getElementById('abastecimiento').addEventListener('click', function() {
+  abastecimiento[this.checked ? 'addTo' : 'removeFrom'](map)
+});
+
+{% for station in stations2 %}
+var marker = L.marker([{{ station.latitud }},{{ station.longitud }}],{icon: yellowIcon}).addTo(map).bindPopup("<a href='{% url "detalle_estacion" station.id %}'><b>{{ station.name }}</b></a><br>{{ station.get_area_display }}").openPopup();
+{% endfor %}
+
+{% for station in stations3 %}
+var marker = L.marker([{{ station.latitud }},{{ station.longitud }}],{icon: greenIcon}).addTo(map).bindPopup("<a href='{% url "detalle_estacion" station.id %}'><b>{{ station.name }}</b></a><br>{{ station.get_area_display }}").openPopup();
+{% endfor %}
+
+{% for station in stations4 %}
+var marker = L.marker([{{ station.latitud }},{{ station.longitud }}],{icon: redIcon}).addTo(map).bindPopup("<a href='{% url "detalle_estacion" station.id %}'><b>{{ station.name }}</b></a><br>{{ station.get_area_display }}").openPopup();
+{% endfor %}
+</script>
+
+<!--ANOTHER MARCS-->
+<script>
+/*INCIDENCIAS*/
+{% for incidencia in incidencias %}          
+    var incidencia = L.marker([{{ incidencia.estacion.latitud }},{{ incidencia.estacion.longitud }}],{icon: redIcon}).addTo(map).bindPopup("<a href='{% url "detalle_estacion" incidencia.estacion.id %}'><b>{{ incidencia.estacion.name }}</b></a><br>Incidencia desde:<br>{{ incidencia.fecha_incidencia }}<br><b style='color:red;'>{{ incidencia.get_tipo_incidencia_display }}</b><br>{{ incidencia.get_solucionado_display }}").openPopup();
+{% endfor %} 
+//DEPOSITOS
+{% for deposito in depositos %}          
+    var mdeposito = L.marker([{{ deposito.latitud }},{{ deposito.longitud }}],{icon: waterTankIcon}).addTo(map).bindPopup("<a href='{% url "detalle_estacion" deposito.id %}'><b>{{ deposito.name }}</b></a><br>{{ deposito.get_area_display }}<br>{{ deposito.get_concepto_display }}").openPopup("");
+{% endfor %}
+//CONTROLES
+{% for control in controls %}          
+    var control = L.marker([{{ control.latitud }},{{ control.longitud }}],{icon: controlIcon}).addTo(map).bindPopup("<a href='{% url "detalle_estacion" control.id %}'><b>{{ control.name }}</b></a><br>{{ control.get_area_display }}<br>{{ control.get_concepto_display }}").openPopup("");
+{% endfor %}
+//REPETIDOR
+{% for repetidor in repetidors %}          
+    var repetidor = L.marker([{{ repetidor.latitud }},{{ repetidor.longitud }}],{icon: antenaIcon}).addTo(map).bindPopup("<a href='{% url "detalle_estacion" repetidor.id %}'><b>{{ repetidor.name }}</b></a><br>{{ repetidor.get_area_display }}<br>{{ repetidor.get_concepto_display }}").openPopup("");
+{% endfor %}
+</script>
+
+<!--DINAMICS-->
+<script>
+{% for station in stations0 %}
+/*var var1="{{ station.latitud }}";
+var var2="{{ station.longitud }}";
+var var3="{{ station.punto_comunicacion.latitud }}";
+var var4="{{ station.punto_comunicacion.longitud }}";
+if(var4){
+  latlngs = [];
+    latlngs.push(new L.LatLng(var1,var2));
+    latlngs.push(new L.LatLng(var3,var4));
+
+  var radioSaneamiento = L.polyline(latlngs, {
+    color: "#fe8d22",
+    opacity: "0.1",
+    dashArray: "10,30",
+    dashSpeed: -10
+  });
+  document.getElementById('radioSaneamiento').addEventListener('click', function() {
+  radioSaneamiento[this.checked ? 'addTo' : 'removeFrom'](map)
+});
+
+  map.fitBounds(L.latLngBounds(latlngs));
+  map.addLayer(radioSaneamiento);
+}*/
+{% endfor %}
+
+//DINAMICO SECTORIZACIÓN con STATION 1:
+{% for station in stations1 %}
+/*var var1="{{ station.latitud }}";
+var var2="{{ station.longitud }}";
+var var3="{{ station.punto_comunicacion.latitud }}";
+var var4="{{ station.punto_comunicacion.longitud }}";
+if(var4){
+  latlngs = [];
+    latlngs.push(new L.LatLng(var1,var2));
+    latlngs.push(new L.LatLng(var3,var4));
+
+
+  var path = L.polyline(latlngs, {
+    color: "#00FF00",
+    opacity: "0.1",
+    dashArray: "10,30",
+    dashSpeed: -10
+  });
+
+  map.fitBounds(L.latLngBounds(latlngs));
+  map.addLayer(path);
+}*/
+{% endfor %}
+
+//DINAMICO SECTORIZACIÓN con STATION 2:
+{% for station in stations2 %}
+/*var var1="{{ station.latitud }}";
+var var2="{{ station.longitud }}";
+var var3="{{ station.punto_comunicacion.latitud }}";
+var var4="{{ station.punto_comunicacion.longitud }}";
+if(var4){
+  latlngs = [];
+    latlngs.push(new L.LatLng(var1,var2));
+    latlngs.push(new L.LatLng(var3,var4));
+
+  var path = L.polyline(latlngs, {
+    opacity: "0.1",
+    dashArray: "10,30",
+    dashSpeed: -10
+  });
+
+  map.fitBounds(L.latLngBounds(latlngs));
+  map.addLayer(path);
+}*/
+{% endfor %}
+
+//DINAMICO SECTORIZACIÓN con STATION 3:
+{% for station in stations3 %}
+/*var var1="{{ station.latitud }}";
+var var2="{{ station.longitud }}";
+var var3="{{ station.punto_comunicacion.latitud }}";
+var var4="{{ station.punto_comunicacion.longitud }}";
+if(var4){
+  latlngs = [];
+    latlngs.push(new L.LatLng(var1,var2));
+    latlngs.push(new L.LatLng(var3,var4));
+
+  var path = L.polyline(latlngs, {
+    opacity: "0.1",
+    dashArray: "10,30",
+    dashSpeed: -10
+  });
+
+  map.fitBounds(L.latLngBounds(latlngs));
+  map.addLayer(path);
+}*/
+{% endfor %}
+</script>
+
+
+
+<script>
+  //Saneamiento
+  document.getElementById("saneamiento").onclick = function() {myFunction()};
+     function myFunction() {
+      $("#saneamiento").click(function(event) {
+      event.preventDefault();
+      if(map.hasLayer(saneamiento)) {
+          $(this).removeClass('selected');
+          map.removeLayer(saneamiento);
+      } else {
+          map.addLayer(saneamiento);        
+          $(this).addClass('selected');
+     }
+  });
+     }
+</script>
+
+{% endblock %}

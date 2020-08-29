@@ -2,6 +2,7 @@ from django import forms
 from .models import Consumable
 from .models import TypeConsumable
 from .models import ImageConsumable
+from .models import StatusConsumable
 
 class AddConsumableForm(forms.ModelForm):
     class Meta:

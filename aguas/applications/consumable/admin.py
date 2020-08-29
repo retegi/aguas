@@ -3,6 +3,7 @@ from .models import Consumable
 from applications.device.models import Device
 from .models import ImageConsumable
 from .models import TypeConsumable
+from .models import StatusConsumable
 
 class ImageConsumableAdmin(admin.ModelAdmin):
     list_display = (
@@ -33,4 +34,11 @@ class ConsumableAdmin(admin.ModelAdmin):
         'observations_consumable',
     )
 admin.site.register(Consumable,ConsumableAdmin)
+
+class StatusConsumableAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'color_html_background',
+    )
+admin.site.register(StatusConsumable,StatusConsumableAdmin)
 

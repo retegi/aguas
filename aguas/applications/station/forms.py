@@ -16,6 +16,7 @@ class CrearEstacionForm(forms.ModelForm):
         self.fields['area_station'].widget.attrs.update({'class': 'form-control'})
         self.fields['type_station'].widget.attrs.update({'class': 'form-control'})
         self.fields['comunication_point'].widget.attrs.update({'class': 'form-control'})
+        self.fields['image_station'].widget.attrs.update({'class': 'form-control'})
 
         
 

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-white m-3" role="alert">
+  <div class="row">
+    <div class="col-lg-4 text-center">
+      
+        <img style="width:75%;margin:5%" src="">
+    </div>
+    <div class="col-lg-8">
+        <h3 class="text-secondary">Detalle Reparación</h3>
+        <h1>{{ repair.typeFailure_repair.name }} - {{ repair.typeRepair_repair.name }}</h1>
+            <table class="table table-sm table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Código</th>
+                    <td>{{ repair.id }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Fecha</th>
+                    <td>{{ repair.datetime_repair|date:'d/m/Y' }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Dispositivo afectado</th>
+                    <td>{{ repair.affectedDevice_repair }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tipo incidencia</th>
+                    <td>{{ repair.typeFailure_repair.name }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tipo de reparación</th>
+                    <td>{{ repair.typeRepair_repair.name }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Estado tras reparar</th>
+                    <td><button class="btn btn-sm" style="background-color:">{{ repair.statusAfterRepair_repair.name }}</button></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Dispositivo retirado</th>
+                    <td>{{ repair.removedDevice_repair }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Dispositivo colocado</th>
+                    <td>{{ repair.placedDevice_repair }}</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Consumible retirado</th>
+                    <td>{{ repair.removedConsumable_repair.type_consumable.get_type_typeConsumable_display }} {{ repair.removedConsumable_repair.type_consumable.brand_typeConsumable }} {{ repair.removedConsumable_repair.type_consumable.model_typeConsumable }} <b>Serial Nº:{{ repair.removedConsumable_repair.serial_num_consumable }}</b></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Consumible colocado</th>
+                    <td>{{ repair.placedConsumable_repair.type_consumable.get_type_typeConsumable_display }} {{ repair.placedConsumable_repair.type_consumable.brand_typeConsumable }} {{ repair.placedConsumable_repair.type_consumable.model_typeConsumable }} <b>Serial Nº:{{ repair.placedConsumable_repair.serial_num_consumable }}</b></td>
+                  </tr>
+                 
+                  
+                  <tr>
+                    <th scope="row">Localizar</th>
+                    <td><a target="_blank" href="https://maps.google.com/?q={{ repair.affectedDevice_repair.installation_device.station_installation.latitude_station }},{{ repair.affectedDevice_repair.installation_device.station_installation.longitude_station }}"><svg class="bi bi-geo-alt" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                    </svg></a></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Resumen</th>
+                    <td>{{ repair.summary_repair }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Detalles</th>
+                    <td>{{ repair.detail_repair }}</td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

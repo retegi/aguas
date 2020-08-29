@@ -29,6 +29,21 @@ urlpatterns = [
         views.ConsumableDeleteView.as_view(),
         name='delete_consumable'
     ),
+    path(
+        'list_consumables_by_station/<pk>/',
+        views.ConsumableListByStationView.as_view(),
+        name='list_consumables_by_station'
+    ),
+    path(
+        'list_consumables_by_installation/<pk>/',
+        views.ConsumableListByInstallationView.as_view(),
+        name='list_consumables_by_installation'
+    ),
+    path(
+        'list_consumables_by_device/<pk>/',
+        views.ConsumableListByDeviceView.as_view(),
+        name='list_consumables_by_device'
+    ),
 
 
 ]

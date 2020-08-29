@@ -70,32 +70,32 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'stations_app:station_list' %}">Inicio <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'stations_app:list_station' %}">Inicio <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a class="nav-link" href="">Gráficos</a>
+      </li>-->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'maps_app:home_map' %}">Mapa</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Mapa</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'stations_app:station_list' %}">Estaciones</a>
+        <a class="nav-link" href="{% url 'stations_app:list_station' %}">Estaciones</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'installations_app:list_installation' %}">Instalacion</a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'devices_app:device_list' %}">Dispositivos</a>
+        <a class="nav-link" href="{% url 'devices_app:list_device' %}">Dispositivos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'consumables_app:list_consumable' %}">Consumibles</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Incidencias</a>
+        <a class="nav-link" href="{% url 'incidences_app:list_incidence' %}">Incidencias</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Actuaciones</a>
+        <a class="nav-link" href="{% url 'repairs_app:list_repair' %}">Reparaciones</a>
       </li>
     </ul>
     <!--<form class="form-inline my-2 my-lg-0">
@@ -145,7 +145,7 @@
     </div>
   <div class="row">
   <div class="col-4"></div>
-  <div class="col-4 text-center text-light">asdfasdfasdf{{ home.web_address }}</div>
+  <div class="col-4 text-center text-light">{{ home.web_address }}</div>
   <div class="col-4"></div>
   </div>
 </footer>

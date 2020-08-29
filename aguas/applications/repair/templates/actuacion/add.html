@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-success m-3" role="alert">
+
+<h3>Nueva Actuación</h3>
+<form method="POST">{% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Guardar</button>
+</form>
+
+</div>
+
+{% endblock %}

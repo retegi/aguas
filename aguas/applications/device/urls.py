@@ -6,25 +6,37 @@ app_name = 'devices_app'
 urlpatterns = [
     path('',
         views.DeviceListView.as_view(),
-        name='device_list'
+        name='list_device'
     ),
-    path('device_add',
+    path('add_device',
         views.DeviceAddView.as_view(),
-        name='device_add'
+        name='add_device'
     ),
     path(
-        'device_update/<pk>/',
+        'update_device/<pk>/',
         views.DeviceUpdateView.as_view(),
-        name='device_update'
+        name='update_device'
     ),
     path(
-        'device_detail/<pk>/',
+        'detail_device/<pk>/',
         views.DeviceDetailView.as_view(),
-        name='device_detail'
+        name='detail_device'
     ),
     path(
-        'device_delete/<pk>/',
+        'delete_device/<pk>/',
         views.DeviceDeleteView.as_view(),
-        name='device_delete'
+        name='delete_device'
     ),
+
+    #Listar device según station
+    path(
+        'list_devices_by_station/<pk>/',
+        views.DeviceListByStationView.as_view(),
+        name='list_devices_by_station'
+    ),
+    path(
+        'list_devices_by_installation/<pk>/',
+        views.DeviceListByInstallationView.as_view(),
+        name='list_devices_by_installation'
+    )
 ]

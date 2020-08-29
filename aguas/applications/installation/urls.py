@@ -5,26 +5,31 @@ app_name = 'installations_app'
 
 urlpatterns = [
     path('',
-        views.InstalacionList.as_view(),
+        views.InstallationListView.as_view(),
         name='list_installation'
     ),
     path('add_installation',
-        views.InstalacionAdd.as_view(),
+        views.InstallationAddView.as_view(),
         name='add_installation'
     ),
     path(
         'update_installation/<pk>/',
-        views.InstalacionUpdateView.as_view(),
+        views.InstallationUpdateView.as_view(),
         name='update_installation'
     ),
     path(
         'detail_installation/<pk>/',
-        views.InstalacionDetailView.as_view(),
+        views.InstallationDetailView.as_view(),
         name='detail_installation'
     ),
     path(
         'delete_installation/<pk>/',
-        views.InstalacionDeleteView.as_view(),
+        views.InstallationDeleteView.as_view(),
         name='delete_installation'
+    ),
+    path(
+        'list_installations_by_station/<pk>/',
+        views.InstallationListByStationView.as_view(),
+        name='list_installations_by_station'
     ),
 ]

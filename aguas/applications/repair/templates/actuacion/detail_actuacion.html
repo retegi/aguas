@@ -1,0 +1,93 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-primary m-3" role="alert">
+       
+        <h3 class="text-primary">Detalle Actuación</h3>
+        <h1></h1>
+        <form class="" method="POST">{% csrf_token %}
+
+            <table class="table table-sm table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Nº Actuacion</th>
+                    <td>{{ actuacion.id }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Nº Incidencia</th>
+                    <td>{{ actuacion.incidencia }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Estación</th>
+                    <td>{{ actuacion.incidencia.estacion.name }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Dispositivo afectado</th>
+                    <td>{{ actuacion.dispositivo_afectado }} </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Fecha actuación</th>
+                    <td>{{ actuacion.fecha_actuacion }}</td>
+                  </tr>
+                  
+                  <tr>
+                    <th scope="row">Fallo</th>
+                    <td>{{ actuacion.get_fallo_display }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tipo actuación</th>
+                    <td>{{ actuacion.get_actuacion_display }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Dispositivo retirado</th>
+                    <td>{{ actuacion.dispositivo_retirado }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Dispositivo colocado</th>
+                    <td>{{ actuacion.dispositivo_colocado }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Consumible afectado</th>
+                    <td>{{ actuacion.consumible_afectado }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Consumible retirado</th>
+                    <td>{{ actuacion.consumible_retirado }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Consumible colocado</th>
+                    <td>{{ actuacion.consumible_colocado }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">¿Solucionado?</th>
+                    <td>{{ actuacion.get_solucionado_display }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Resumen actuación</th>
+                    <td>{{ actuacion.resumen_actuacion }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Detalle actuación</th>
+                    <td>{{ actuacion.detalle_actuacion }}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            
+
+        </form>
+</div>
+{% endblock %}

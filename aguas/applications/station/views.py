@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.utils import timezone
-#from dispositivo.models import Dispositivo
 from .models import Station
-#from incidencia.models import Incidencia
+from .models import ImageStation
+from .models import AreaStation
+#from .models import TypeStation
 from django.views.generic import (
     ListView,
     CreateView,
@@ -12,9 +13,12 @@ from django.views.generic import (
 )
 from .forms import CrearEstacionForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse
 
-class StationList(LoginRequiredMixin,ListView):
+
+
+class StationListView(LoginRequiredMixin,ListView):
     model = Station
     template_name = 'station/list_station.html'
     def get_queryset(self):
@@ -27,7 +31,8 @@ class StationList(LoginRequiredMixin,ListView):
     login_url = reverse_lazy('users_app:user-login')
 
 
-class StationAdd(LoginRequiredMixin,CreateView):
+class StationAddView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'station.add_station'
     template_name = 'station/add_station.html'
     model = Station
     form_class = CrearEstacionForm
@@ -35,7 +40,8 @@ class StationAdd(LoginRequiredMixin,CreateView):
     login_url = reverse_lazy('users_app:user-login')
 
 
-class StationUpdateView(LoginRequiredMixin,UpdateView):
+class StationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'station.update_station'
     template_name = "station/update_station.html"
     model = Station
     fields = [
@@ -47,7 +53,8 @@ class StationUpdateView(LoginRequiredMixin,UpdateView):
             'longitude_station',
             'origin_watertank',
             'comunication_point',
-            'type_station'
+            'type_station',
+            'status_station'
             ]
     success_url = '/station/'
     login_url = reverse_lazy('users_app:user-login')
@@ -59,7 +66,8 @@ class StationDetailView(LoginRequiredMixin,DetailView):
 
         
 
-class StationDeleteView(LoginRequiredMixin,DeleteView):
+class StationDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'station.delete_station'
     model = Station
     template_name = "station/delete_station.html"
     success_url = '/station/'

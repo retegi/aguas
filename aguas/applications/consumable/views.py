@@ -12,26 +12,58 @@ from django.views.generic import (
 )
 from .forms import AddConsumableForm
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.urls import reverse_lazy, reverse
 
-class ConsumableListView(ListView):
+class ConsumableListView(LoginRequiredMixin,ListView):
     model = Consumable
     template_name = 'consumable/list_consumable.html'
     def get_queryset(self):
         name = self.request.GET.get('kword', '')
         if name:
-            object_list = self.model.objects.filter(Q(parent_device_consumable__installation_device__station_installation__name_station__icontains = name) | Q(cons_numserie__icontains = name))
+            object_list = self.model.objects.filter(Q(parent_device_consumable__installation_device__station_installation__name_station__icontains = name)|Q(serial_num_consumable__icontains = name)|Q(type_consumable__brand_typeConsumable__icontains = name)|Q(type_consumable__model_typeConsumable__icontains = name))
         else:
             object_list = self.model.objects.all()
         return object_list
+    login_url = reverse_lazy('users_app:user-login')
 
 
-class ConsumableAddView(CreateView):
+class ConsumableListByStationView(LoginRequiredMixin,ListView):
+    template_name = 'consumable/list_consumable.html'
+    def get_queryset(self):
+        identifier = self.kwargs['pk']
+        object_list = Consumable.objects.filter(parent_device_consumable__installation_device__station_installation__id = identifier)
+        return object_list
+    login_url = reverse_lazy('users_app:user-login')
+
+class ConsumableListByInstallationView(LoginRequiredMixin,ListView):
+    template_name = 'consumable/list_consumable.html'
+    def get_queryset(self):
+        identifier = self.kwargs['pk']
+        object_list = Consumable.objects.filter(parent_device_consumable__installation_device__id = identifier)
+        return object_list
+    login_url = reverse_lazy('users_app:user-login')
+
+class ConsumableListByDeviceView(LoginRequiredMixin,ListView):
+    template_name = 'consumable/list_consumable.html'
+    def get_queryset(self):
+        identifier = self.kwargs['pk']
+        object_list = Consumable.objects.filter(parent_device_consumable__id = identifier)
+        return object_list
+    login_url = reverse_lazy('users_app:user-login')
+
+
+class ConsumableAddView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
+    permission_required = 'consumable.add_consumable'
     template_name = 'consumable/add_consumable.html'
     model = Consumable
     form_class = AddConsumableForm
-    success_url = '/'
+    success_url = '/consumable/'
+    login_url = reverse_lazy('users_app:user-login')
 
-class ConsumableUpdateView(UpdateView):
+class ConsumableUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'consumable.update_consumable'
     template_name = "consumable/update_consumable.html"
     model = Consumable
     fields = ['datetime_placemente_consumable',
@@ -42,13 +74,17 @@ class ConsumableUpdateView(UpdateView):
             'observations_consumable',
             ]
     success_url = '/consumable/'
+    login_url = reverse_lazy('users_app:user-login')
 
-class ConsumableDetailView(DetailView):
+class ConsumableDetailView(LoginRequiredMixin,DetailView):
     model = Consumable
     template_name = "consumable/detail_consumable.html"
+    login_url = reverse_lazy('users_app:user-login')
 
-class ConsumableDeleteView(DeleteView):
+class ConsumableDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
+    permission_required = 'consumable.delete_consumable'
     model = Consumable
     template_name = "consumable/delete_consumable.html"
     success_url = '/consumable/'
+    login_url = reverse_lazy('users_app:user-login')
 

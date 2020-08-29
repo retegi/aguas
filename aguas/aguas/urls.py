@@ -11,4 +11,7 @@ urlpatterns = [
     re_path('installation/', include('applications.installation.urls')),
     re_path('device/', include('applications.device.urls')),
     re_path('consumable/', include('applications.consumable.urls')),
+    re_path('incidence/', include('applications.incidence.urls')),
+    re_path('repair/', include('applications.repair.urls')),
+    re_path('map/', include('applications.map.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

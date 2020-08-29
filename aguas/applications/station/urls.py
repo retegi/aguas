@@ -4,34 +4,31 @@ from . import views
 app_name = 'stations_app'
 
 urlpatterns = [
-    path('',
-        views.StationList.as_view(),
-        name='station_list',
+    path(
+        '',
+        views.StationListView.as_view(),
+        name='list_station',
     ),
 
-    path('station_add',
-        views.StationAdd.as_view(),
-        name='station_add'
+    path('add_station',
+        views.StationAddView.as_view(),
+        name='add_station'
     ),
     path(
         'update_station/<pk>/',
         views.StationUpdateView.as_view(),
-        name='station_update'
+        name='update_station'
     ),
     path(
         'detail_station/<pk>/',
         views.StationDetailView.as_view(),
-        name='detalle_estacion'
+        name='detail_station'
     ),
     path(
         'delete_station/<pk>/',
         views.StationDeleteView.as_view(),
-        name='eliminar_estacion'
+        name='delete_station'
     ),
-    #path('',
-    #    views.StationList,
-    #    name='station_list',
-    #)"""
 ]
 
 

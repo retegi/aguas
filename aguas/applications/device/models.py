@@ -42,15 +42,6 @@ class CommunicationDevice(models.Model):
 class Device(models.Model):
     #fecha_actuacion = models.DateTimeField ('Fecha edición',null=True, blank=True)
     type_device = models.ForeignKey(TypeDevice, on_delete=models.CASCADE)
-    """DEVICE_COM_CHOICE = (
-        ('0','Radio Analógica'),
-        ('1','Radio Digital'),
-        ('2','Fibra Óptica'),
-        ('3','FTP-Añarbe-CSV'),
-        ('4','GSM'),
-        ('5','SMS'),
-        ('6','GPRS'),
-    )"""
     communication_device = models.ForeignKey(CommunicationDevice, max_length=1,on_delete=models.CASCADE,null=True, blank=True)
     brand_device = models.CharField('Marca',max_length=50,null=True, blank=True)
     model_device = models.CharField('Modelo',max_length=50,null=True, blank=True)
@@ -63,9 +54,8 @@ class Device(models.Model):
     tel_short_device = models.CharField('Tel CORTO',max_length=100,null=True, blank=True)
     parent_device =  models.ForeignKey ('self', null=True, on_delete=models.CASCADE, blank=True)
     installation_device = models.ForeignKey(Installation, on_delete=models.CASCADE,null=False, blank=False)
-    #estacion = models.ForeignKey(Station, on_delete=models.CASCADE,null=True, blank=True)
     observations_device = models.TextField('Observaciones',null=True, blank=True)
-    image_device = models.ForeignKey(ImageDevice, on_delete=models.CASCADE,null=False, blank=False)
+    image_device = models.ForeignKey(ImageDevice, on_delete=models.CASCADE,null=True, blank=True)
     #history = HistoricalRecords()
 
     class Meta:
@@ -74,4 +64,4 @@ class Device(models.Model):
         ordering = ['installation_device']
 
     def __str__(self):
-        return self.brand_device + ' - ' + self.model_device + ' - ' + 'Serial: ' + str(self.serial_device)
+        return str(self.brand_device) + ' - ' + str(self.model_device) + ' - ' + 'Serial: ' + str(self.serial_device) + ' - ' + str(self.installation_device.type_installation.name) + ' - ' + str(self.installation_device.station_installation.name_station)
