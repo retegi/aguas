@@ -16,7 +16,7 @@
     <!--DETAIL INFORMATION-->
     <div class="col-lg-8">
       <h3 class="text-secondary">Detalle Estación</h3>
-      <h1>{{ station.type_station.acronym }} {{ station.name_station }}</h1>
+      <h1>{{ station.get_type_station_display }} {{ station.name_station }}</h1>
             <table class="table table-sm table-hover">
                 <thead>
                   <tr>
@@ -31,11 +31,36 @@
                   </tr>
                   <tr>
                     <th scope="row">Nombre</th>
-                    <td>{{ station.type_station.acronym }} {{ station.name_station }}</td>
+                    <td>{{ station.get_type_station_display }} {{ station.name_station }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Area</th>
                     <td><button style="background-color:{{ station.area_station.color_html_background }}" name="area" class="btn btn-sm" name="area">{{ station.area_station.name }}</button></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Comunica con estación:</th>
+                    <td>{{ station.comunication_point }}</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Tecnología de comunicación:</th>
+                    <td>{{ station.get_communication_technology_station_display }}</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Ventana de comunicación:</th>
+                    <td>{{ station.communication_windows_station }}</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Estado actual:</th>
+                    <td><button class="btn btn-sm" style="background-color:{{ station.status_station.color_html_background }};">{{ station.status_station.name }}</button></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Depósito agua de origen:</th>
+                    <td>{{ station.origin_watertank }}</td>
                   </tr>
                  
                   <tr>
@@ -44,16 +69,19 @@
                       <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
                     </svg></a></td>
                   </tr>
-                  <tr>
-                    <th scope="row">Observaciones</th>
-                    <td></td>
-                  </tr>
+                  
                   <tr>
                     <th scope="row">Simulación 3D</th>
                     <td>
                     <button type="button" class="btn btn-white btn-sm btn-dark" data-toggle="modal" data-target="#myModal">Ver simulación</button>
                     </td>
                   </tr>
+
+                  <tr>
+                    <th scope="row">Observaciones</th>
+                    <td></td>
+                  </tr>
+
                 </tbody>
               </table>
     </div>
@@ -69,6 +97,8 @@
   <div class="row">
     <div class="col-lg-2 text-center">
     </div>
+
+    
     <!--IMAGES CARROUSEL-->
     <div class="col-lg-8 text-center">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -96,6 +126,9 @@
       </div>
     </div>
     <!--/IMAGES CARROUSEL-->
+
+
+
     <div class="col-lg-2 text-center">
     </div>
   </div>

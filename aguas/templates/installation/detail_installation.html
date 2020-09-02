@@ -16,7 +16,7 @@
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
       <h3 class="text-secondary">Detalle Instalación</h3>
-      <h1>{{ installation.type_installation.name }} de {{ installation.station_installation.type_station.acronym }} {{ installation.station_installation.name_station }}</h1>
+      <h1>{{ installation.type_installation.name }} de {{ installation.station_installation.get_type_station_display }} {{ installation.station_installation.name_station }}</h1>
             <table class="table table-sm table-hover">
                 <thead>
                   <tr>

@@ -73,12 +73,21 @@ class Station(models.Model):
         ('11','OTROS'),
     ]
     type_station = models.CharField(max_length=2,choices=TYPE_STATION_CHOICES,default=0,null=True,blank=True)
+    COMMUNICATION_TECHNOLOGY_CHOICES = [
+        ('0','RADIOFRECUENCIA'),
+        ('1','SMS'),
+        ('2','GSM'),
+        ('3','FIBRA ÓPTICA'),
+        ('4','OTROS'),
+    ]
+    communication_technology_station = models.CharField(max_length=2,choices=COMMUNICATION_TECHNOLOGY_CHOICES,default=0,null=True,blank=True)
     #timestamp_station = models.DateTimeField ('Fecha edición',null=True, blank=True)
     code_station = models.CharField('Código',max_length=50,null=True, blank=True)
     name_station = models.CharField('Nombre',max_length=50,null=True, blank=True)
     latitude_station = models.CharField('Latitud',max_length=50,null=True, blank=True)
     longitude_station = models.CharField('Longitud',max_length=50,null=True, blank=True)
     observations_station = models.TextField('Observaciones',null=True, blank=True)
+    communication_windows_station = models.TextField('ventana de comunicación',null=True, blank=True)
     area_station = models.ForeignKey(AreaStation, on_delete=models.CASCADE,null=True, blank=True)
     origin_watertank = models.ForeignKey ('self', null=True, on_delete=models.CASCADE, blank=True, related_name="origins_wt")
     #type_station = models.ForeignKey(TypeStation, on_delete=models.CASCADE,null=True, blank=True)

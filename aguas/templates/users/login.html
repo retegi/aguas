@@ -19,12 +19,12 @@
     <link href="{% static 'css/signin.css' %}" rel="stylesheet">
   </head>
 
-  <body class="text-center">
+  <body class="text-center" style=" background-image: url('{% static "img/water-bg-image.jpg" %}'); background-size:cover;">
     
       
 
-      <form class="form-signin" method="POST">{% csrf_token %}
-        <img class="mb-4" src="{% static 'img/retegi.jpg' %}" alt="" width="72" height="72">
+      <form style="background-color:rgba(255, 255, 255, 0.8);" class="form-signin" method="POST">{% csrf_token %}
+        <!--<img class="mb-4" src="{% static 'img/retegi.jpg' %}" alt="" width="72" height="72">-->
         <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>
         {{ form.as_p}}
   
@@ -38,12 +38,12 @@
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>-->
       <div class="checkbox mb-3">
-        <label>
+        <!--<label>
           <input type="checkbox" value="remember-me"> Remember me
-        </label>
+        </label>-->
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+      <button class="btn btn-sm btn-dark btn-block" type="submit">Aceptar</button>
+      <!--<p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>-->
     </form>
 
 

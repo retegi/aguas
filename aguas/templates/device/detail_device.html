@@ -16,7 +16,7 @@
     </div>
     <div class="col-lg-8">
         <h3 class="text-secondary">Detalle Dispositivo</h3>
-        <h1>{{ device.brand_device }} - {{ device.model_device }}</h1>
+        <h1>{{ device.brand_device }} - {{ device.model_device }} ( {{ device.installation_device.type_installation.name }} de {{ device.installation_device.station_installation.get_type_station_display }} {{ device.installation_device.station_installation.name_station }} )</h1>
             <table class="table table-sm table-hover">
                 <thead>
                   <tr>
@@ -76,7 +76,7 @@
                   </tr>
                   <tr>
                     <th scope="row">Estación</th>
-                    <td>{{ device.installation_device.station_installation.name_station }}</td>
+                    <td>{{ device.installation_device.station_installation.get_type_station_display }} {{ device.installation_device.station_installation.name_station }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Área</th>
