@@ -1,4 +1,5 @@
 {% load static %}
+{% load home_tags %}
 
 <!doctype html>
 <html lang="es">
@@ -126,8 +127,7 @@
       {% block content %}
       {% endblock %}
 
-      <!--LOAD SIMPLE TAGS-->
-      
+
    
 </main><!-- /.container -->
 
@@ -142,7 +142,7 @@
     </div>
   <div class="row">
     <div class="col-4"></div>
-    <div class="col-4 text-center text-light"></div>
+    <div class="col-4 text-center text-light">{% info %}</div>
     <div class="col-4"></div>
     </div>
   <div class="row">
