@@ -7,10 +7,7 @@ class AddDeviceForm(forms.ModelForm):
         fields = ('__all__')
     def __init__(self, *args, **kwargs):
         super(AddDeviceForm, self).__init__(*args, **kwargs)
-        self.fields['type_device'].widget.attrs.update({'class': 'form-control','id':'type_device'})
-        self.fields['communication_device'].widget.attrs.update({'class': 'form-control','id':'communications_device'})
-        self.fields['brand_device'].widget.attrs.update({'class': 'form-control','id':'brand_device'})
-        self.fields['model_device'].widget.attrs.update({'class': 'form-control','id':'model_device'})
+        self.fields['product_model_device'].widget.attrs.update({'class': 'form-control','id':'type_device'})
         self.fields['serial_device'].widget.attrs.update({'class': 'form-control','id':'serial_device'})
         self.fields['ip_device'].widget.attrs.update({'class': 'form-control','id':'ip_device'})
         self.fields['pin_device'].widget.attrs.update({'class': 'form-control','id':'marca','id':'pin_device'})
@@ -22,4 +19,7 @@ class AddDeviceForm(forms.ModelForm):
         self.fields['installation_device'].widget.attrs.update({'class': 'form-control','id':'installation_device'})
         #self.fields['estacion'].widget.attrs.update({'class': 'form-control','id':'estacion'})
         self.fields['observations_device'].widget.attrs.update({'class': 'form-control','id':'observations_device'})
+
+
+ 
      

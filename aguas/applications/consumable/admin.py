@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Consumable
 from applications.device.models import Device
 from .models import ImageConsumable
+from .models import TypeModelConsumable
 from .models import TypeConsumable
 from .models import StatusConsumable
 
@@ -12,22 +13,25 @@ class ImageConsumableAdmin(admin.ModelAdmin):
     )
 admin.site.register(ImageConsumable,ImageConsumableAdmin)
 
-class TypeConsumableAdmin(admin.ModelAdmin):
+class TypeModelConsumableAdmin(admin.ModelAdmin):
     list_display = (
-        'type_typeConsumable',
+        'type_consumable_typeConsumable',
         'brand_typeConsumable',
         'model_typeConsumable',
-        'voltage_ouput_typeConsumable',
-        'imagen_typeConsumable',
+        'VoltageOutput_typeConsumable',
         'observations_typeConsumable',
     )
-admin.site.register(TypeConsumable,TypeConsumableAdmin)
+admin.site.register(TypeModelConsumable,TypeModelConsumableAdmin)
 
+class TypeConsumableAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+    )
+admin.site.register(TypeConsumable,TypeConsumableAdmin)
 
 class ConsumableAdmin(admin.ModelAdmin):
     list_display = (
         'datetime_placemente_consumable',
-        'type_consumable',
         'serial_num_consumable',
         'parent_device_consumable',
         'status_consumable',

@@ -27,7 +27,18 @@ class StatusIncidence(models.Model):
     def __str__(self):
         return str(self.name)
 
+class UrgencyLevelIncidence(models.Model):
+    name = models.CharField('Nivel de urgencia', max_length=50)
+    color_html_background = models.CharField('Color fondo html incluir #', max_length=20)
+    meaning = models.CharField('Significado', max_length=50,null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'Nivel de urgencia'
+        verbose_name_plural = 'Niveles de urgencia'
+        ordering = ['name']
+
+    def __str__(self):
+        return str(self.name)
 
 
 # Create your models here.
@@ -37,6 +48,7 @@ class Incidence(models.Model):
     observations_incidence = models.TextField('Observaciones',null=True, blank=True)
     typeIncidence_incidence = models.ForeignKey(TypeIncidence, on_delete=models.CASCADE,null=True, blank=True)
     statusIncidence_incidence = models.ForeignKey(StatusIncidence, on_delete=models.CASCADE,null=True, blank=True)
+    urgencyLevel_incidence = models.ForeignKey(UrgencyLevelIncidence, on_delete=models.CASCADE,null=True, blank=True)
     
 
     class Meta:

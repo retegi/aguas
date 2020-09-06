@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Device
 from applications.station.models import Station
+from .models import Device
 from .models import ImageDevice
 from .models import TypeDevice
+from .models import FileDevice
+from .models import CommunicationDevice
+from .models import ProductModelDevice
 from django.views.generic import (
     ListView,
     CreateView,
@@ -11,6 +14,7 @@ from django.views.generic import (
     DetailView,
     DeleteView,
 )
+
 from .forms import AddDeviceForm
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -65,9 +69,6 @@ class DeviceUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     model = Device
     fields = [
             'type_device',
-            'communication_device',
-            'brand_device',
-            'model_device',
             'serial_device',
             'ip_device',
             'pin_device',
@@ -77,8 +78,6 @@ class DeviceUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
             'tel_short_device',
             'parent_device',
             'installation_device',
-            #'estacion',
-            'image_device',
             'observations_device',
             ]
     success_url = '/device/'

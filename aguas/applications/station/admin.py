@@ -1,17 +1,11 @@
 from django.contrib import admin
 from .models import Station
-#from .models import TypeStation
 from .models import AreaStation
 from .models import ImageStation
 from .models import StatusStation
 from .models import Simulator3DStation
-
-class Simulator3DStationAdmin(admin.ModelAdmin):
-    list_display = (
-        'name',
-        'url',
-    )
-admin.site.register(Simulator3DStation,Simulator3DStationAdmin)
+from .models import TypeStation
+from .models import CommunicationTechnologyStation
 
 class StationAdmin(admin.ModelAdmin):
     list_display = (
@@ -22,15 +16,6 @@ class StationAdmin(admin.ModelAdmin):
         'observations_station',
     )
 admin.site.register(Station,StationAdmin)
-
-
-"""class TypeStationAdmin(admin.ModelAdmin):
-    list_display = (
-        'id',
-        'name',
-        'acronym',
-    )
-admin.site.register(TypeStation,TypeStationAdmin)"""
 
 class AreaStationAdmin(admin.ModelAdmin):
     list_display = (
@@ -53,4 +38,26 @@ class StatusStationAdmin(admin.ModelAdmin):
     )
 admin.site.register(StatusStation,StatusStationAdmin)
 
+class Simulator3DStationAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'url',
+    )
+admin.site.register(Simulator3DStation,Simulator3DStationAdmin)
 
+
+class TypeStationAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'acronym',
+    )
+admin.site.register(TypeStation,TypeStationAdmin)
+
+
+class CommunicationTechnologyStationAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'acronym',
+        'url',
+    )
+admin.site.register(CommunicationTechnologyStation,CommunicationTechnologyStationAdmin)

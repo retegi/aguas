@@ -11,7 +11,7 @@ from django.views.generic import (
     DetailView,
     DeleteView,
 )
-from .forms import CrearEstacionForm
+from .forms import AddStationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse
@@ -35,7 +35,7 @@ class StationAddView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     permission_required = 'station.add_station'
     template_name = 'station/add_station.html'
     model = Station
-    form_class = CrearEstacionForm
+    form_class = AddStationForm
     success_url = '/station/'
     login_url = reverse_lazy('users_app:user-login')
 

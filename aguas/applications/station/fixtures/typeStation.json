@@ -1,0 +1,12 @@
+[{"model": "station.typestation", "pk": 1, "fields": {"name": "Estación de bombeo de agua residual", "acronym": "EBAR"}},
+{"model": "station.typestation", "pk": 2, "fields": {"name": "Estación de bombeo de agua pluvial", "acronym": "EBAP"}},
+{"model": "station.typestation", "pk": 3, "fields": {"name": "Reductor de agua potable", "acronym": "RDAP"}},
+{"model": "station.typestation", "pk": 4, "fields": {"name": "Estación sobrepresor de agua potable", "acronym": "ESAP"}},
+{"model": "station.typestation", "pk": 5, "fields": {"name": "Depósito de retención de agua pluvial", "acronym": "DRAP"}},
+{"model": "station.typestation", "pk": 6, "fields": {"name": "Depósito de retención de agua residual", "acronym": "DRAR"}},
+{"model": "station.typestation", "pk": 7, "fields": {"name": "Estación caudal de saneamiento", "acronym": "ECS"}},
+{"model": "station.typestation", "pk": 8, "fields": {"name": "Estación depuradora de agua", "acronym": "EDAR"}},
+{"model": "station.typestation", "pk": 9, "fields": {"name": "Depósito de agua potable", "acronym": "DDAP"}},
+{"model": "station.typestation", "pk": 10, "fields": {"name": "Pluviómetro", "acronym": "PLVM"}},
+{"model": "station.typestation", "pk": 11, "fields": {"name": "Estación de control y monitorización", "acronym": "ECYM"}},
+{"model": "station.typestation", "pk": 12, "fields": {"name": "Estación de repetidor", "acronym": "EREP"}}]

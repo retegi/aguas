@@ -10,3 +10,4 @@ class AddInstallationForm(forms.ModelForm):
         self.fields['type_installation'].widget.attrs.update({'class': 'form-control','id':'type_installation'})
         self.fields['station_installation'].widget.attrs.update({'class': 'form-control','id':'type_installation'})
         self.fields['observations_installation'].widget.attrs.update({'class': 'form-control','id':'type_installation'})
+        self.fields['image_installation'].widget.attrs.update({'class': 'form-control','id':'type_installation'})

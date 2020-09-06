@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Repair
+from .models import Incidence
 from django.views.generic import (
     ListView,
     CreateView,
@@ -19,16 +20,25 @@ class RepairListView(ListView):
     def get_queryset(self):
         name = self.request.GET.get('kword', '')
         if name:
-            object_list = self.model.objects.filter(Q(affectedDevice_repair__installation_device__station_installation__station_name__icontains = name) | Q(repair__id__icontains = name))
+            object_list = self.model.objects.filter(Q(id__icontains = name))
         else:
             object_list = self.model.objects.all()
         return object_list
+
+"""class RepairListByIncidenceView(LoginRequiredMixin,ListView):
+    template_name = 'repair/list_repair.html'
+    def get_queryset(self):
+        identifier = self.kwargs['pk']
+        object_list = Repair.objects.filter(id = identifier)
+        return object_list
+    login_url = reverse_lazy('users_app:user-login')"""
 
 class RepairListByIncidenceView(LoginRequiredMixin,ListView):
     template_name = 'repair/list_repair.html'
     def get_queryset(self):
         identifier = self.kwargs['pk']
-        object_list = Repair.objects.filter(id = identifier)
+        object_list = Repair.objects.filter(incidence_repair_id = identifier)
+        ordering = ['datetime_repair']
         return object_list
     login_url = reverse_lazy('users_app:user-login')
 

@@ -29,6 +29,7 @@ class TypeFailure(models.Model):
 
 class StatusAfterRepair(models.Model):
     name = models.CharField('Nombre',max_length=50)
+    color_html_background = models.CharField('Color HTML', max_length=7,null=True, blank=True)
 
     class Meta:
         verbose_name = 'Nuevo estado'

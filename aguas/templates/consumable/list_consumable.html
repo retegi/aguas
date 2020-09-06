@@ -80,12 +80,12 @@
     <tbody>
     {% for consumable in object_list %}
       <tr>
-        <td scope="row"><a href="{% url 'consumables_app:detail_consumable' consumable.id %}">{{ consumable.type_consumable.brand_typeConsumable }} {{ consumable.type_consumable.model_typeConsumable }}</a></td>
-        <td scope="row"><a target="blank" href="{% url 'consumables_app:detail_consumable' consumable.id %}"><img style="height:30px" src="{{ consumable.type_consumable.imagen_typeConsumable.image_imageConsumable.url }}"></a></td>
-        <td scope="row">{{ consumable.type_consumable.get_type_typeConsumable_display }}</td>
-        <td>{{ consumable.type_consumable.brand_typeConsumable }}</td>
-        <td>{{ consumable.type_consumable.model_typeConsumable }}</td>
-        <td>{{ consumable.type_consumable.get_voltage_ouput_typeConsumable_display }}</td>
+        <td scope="row"><a href="{% url 'consumables_app:detail_consumable' consumable.id %}">{{ consumable.type_model_consumable.brand_typeConsumable }} {{ consumable.type_model_consumable.model_typeConsumable }}</a></td>
+        <td scope="row"><a target="blank" href="{% url 'consumables_app:detail_consumable' consumable.id %}"><img style="height:30px" src="{{ consumable.type_model_consumable.imagen_typeConsumable.image_imageConsumable.url }}"></a></td>
+        <td scope="row"></td>
+        <td>{{ consumable.type_model_consumable.brand_typeConsumable }}</td>
+        <td>{{ consumable.type_model_consumable.model_typeConsumable }}</td>
+        <td>{{ consumable.type_model_consumable.get_voltage_ouput_typeConsumable_display }}</td>
 
         <td>{{ consumable.serial_num_consumable }}</td>
       <td><button class="btn btn-sm" style="text-align:center;background-color:{{ consumable.status_consumable.color_html_background }}">{{ consumable.status_consumable.name}}</button></td>

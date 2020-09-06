@@ -3,6 +3,8 @@ from django.utils import timezone
 from .models import Consumable
 from .models import ImageConsumable
 from .models import TypeConsumable
+from .models import TypeModelConsumable
+from .models import StatusConsumable
 from django.views.generic import (
     ListView,
     CreateView,
@@ -22,7 +24,7 @@ class ConsumableListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         name = self.request.GET.get('kword', '')
         if name:
-            object_list = self.model.objects.filter(Q(parent_device_consumable__installation_device__station_installation__name_station__icontains = name)|Q(serial_num_consumable__icontains = name)|Q(type_consumable__brand_typeConsumable__icontains = name)|Q(type_consumable__model_typeConsumable__icontains = name))
+            object_list = self.model.objects.filter(Q(parent_device_consumable__installation_device__station_installation__name_station__icontains = name)|Q(serial_num_consumable__icontains = name)|Q(type_model_consumable__brand_typeConsumable__icontains = name)|Q(type_model_consumable__model_typeConsumable__icontains = name)|Q(status_consumable__name__icontains = name))
         else:
             object_list = self.model.objects.all()
         return object_list

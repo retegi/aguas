@@ -14,14 +14,7 @@ class Simulator3DStation(models.Model):
     def __str__(self):
         return str(self.id) + '-' + str(self.name) + '-' + str(self.url)
 
-"""class TypeStation(models.Model):
-    name = models.CharField('Tipo estación', max_length=50)
-    acronym = models.CharField('Acrónimo', max_length=50,null=True, blank=True)
-    class Meta:
-        verbose_name = 'Tipo estación'
-        verbose_name_plural = 'Tipos de estación'
-    def __str__(self):
-        return str(self.id) + '-' + str(self.name) + '-' + str(self.acronym)"""
+
 
 class AreaStation(models.Model):
     name = models.CharField('Area estación', max_length=50)
@@ -56,32 +49,31 @@ class StatusStation(models.Model):
     def __str__(self):
         return str(self.name)
 
-class Station(models.Model):
+class TypeStation(models.Model):
+    name = models.CharField('Tipo estación', max_length=100)
+    acronym = models.CharField('Acrónimo', max_length=50,null=True, blank=True)
 
-    TYPE_STATION_CHOICES = [
-        ('0','EBAR'),
-        ('1','EBAP'),
-        ('2','RDAP'),
-        ('3','ESAP'),
-        ('4','DRAP'),
-        ('5','ECS'),
-        ('6','EDAR'),
-        ('7','DDAP'),
-        ('8','PLVM'),
-        ('9','CC'),
-        ('10','REP'),
-        ('11','OTROS'),
-    ]
-    type_station = models.CharField(max_length=2,choices=TYPE_STATION_CHOICES,default=0,null=True,blank=True)
-    COMMUNICATION_TECHNOLOGY_CHOICES = [
-        ('0','RADIOFRECUENCIA'),
-        ('1','SMS'),
-        ('2','GSM'),
-        ('3','FIBRA ÓPTICA'),
-        ('4','OTROS'),
-    ]
-    communication_technology_station = models.CharField(max_length=2,choices=COMMUNICATION_TECHNOLOGY_CHOICES,default=0,null=True,blank=True)
-    #timestamp_station = models.DateTimeField ('Fecha edición',null=True, blank=True)
+    class Meta:
+        verbose_name = 'Tipo estación'
+        verbose_name_plural = 'Tipos de estaciones'
+    def __str__(self):
+        return str(self.name)
+
+class CommunicationTechnologyStation(models.Model):
+    name = models.CharField('Acrónimo',max_length=100)
+    acronym = models.CharField('Significado',max_length=40)
+    url = models.CharField('URL',max_length=150,null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Tecnología de comunicación'
+        verbose_name_plural = 'Tecnologías de comunicación'
+        ordering = ['name']
+
+    def __str__(self):
+        return str(self.name)
+
+class Station(models.Model):
+    communication_technology_station = models.ForeignKey(CommunicationTechnologyStation, on_delete=models.CASCADE,null=True, blank=True)
     code_station = models.CharField('Código',max_length=50,null=True, blank=True)
     name_station = models.CharField('Nombre',max_length=50,null=True, blank=True)
     latitude_station = models.CharField('Latitud',max_length=50,null=True, blank=True)
@@ -90,12 +82,12 @@ class Station(models.Model):
     communication_windows_station = models.TextField('ventana de comunicación',null=True, blank=True)
     area_station = models.ForeignKey(AreaStation, on_delete=models.CASCADE,null=True, blank=True)
     origin_watertank = models.ForeignKey ('self', null=True, on_delete=models.CASCADE, blank=True, related_name="origins_wt")
-    #type_station = models.ForeignKey(TypeStation, on_delete=models.CASCADE,null=True, blank=True)
+    type_station = models.ForeignKey(TypeStation, on_delete=models.CASCADE,null=True, blank=True)
     comunication_point =  models.ForeignKey ('self', null=True, on_delete=models.CASCADE, blank=True, related_name="comunications_p")
     image_station = models.ManyToManyField(ImageStation, blank=True)
     status_station =  models.ForeignKey(StatusStation, on_delete=models.CASCADE,null=True, blank=True)
     simulator3D_station =  models.ForeignKey(Simulator3DStation, on_delete=models.CASCADE,null=True, blank=True)
-    
+
     objects = StationManager()
 
     class Meta:
