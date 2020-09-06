@@ -2,7 +2,7 @@ from django.db import models
 from applications.device.models import Device
 from applications.consumable.models import Consumable
 from applications.incidence.models import Incidence
-from simple_history.models import HistoricalRecords
+#from simple_history.models import HistoricalRecords
 
 
 class TypeRepair(models.Model):

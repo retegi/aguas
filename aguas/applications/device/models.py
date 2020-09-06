@@ -1,7 +1,7 @@
 from django.db import models
 from applications.station.models import Station
 from applications.installation.models import Installation
-from simple_history.models import HistoricalRecords
+#from simple_history.models import HistoricalRecords
 
 
 class ImageDevice(models.Model):
