@@ -19,12 +19,12 @@
     <link href="{% static 'css/signin.css' %}" rel="stylesheet">
   </head>
 
-  <body class="text-center" style=" background-image: url('{% static "img/water-bg-image.jpg" %}'); background-size:cover;">
+  <body class="text-center" style=" background-image: url('{% static "img/sliders-siemens.jpg" %}'); background-size:cover;">
     
       
 
       <form style="background-color:rgba(255, 255, 255, 0.8);" class="form-signin" method="POST">{% csrf_token %}
-        <!--<img class="mb-4" src="{% static 'img/retegi.jpg' %}" alt="" width="72" height="72">-->
+        <img class="mb-4" src="{% static 'img/logo_ayunta.png' %}" alt="" width="" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Inicio de sesión</h1>
         {{ form.as_p}}
   

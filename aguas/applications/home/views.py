@@ -27,3 +27,12 @@ class HomePage(LoginRequiredMixin, TemplateView):
 
 class TemplatePruebaMixin(FechaMixin, TemplateView):
     template_name = "home/mixin.html"
+
+
+class HomeListView(LoginRequiredMixin,ListView):
+    model = Home
+    template_name = 'base.html'
+    def get_queryset(self):
+        object_list = self.model.objects.all()
+        return object_list
+    login_url = reverse_lazy('users_app:user-login')
