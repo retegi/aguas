@@ -44,7 +44,7 @@ class UserRegisterView(FormView):
 class LoginUser(FormView):
     template_name = 'users/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('stations_app:list_station')
+    success_url = reverse_lazy('maps_app:home_map')
 
     def form_valid(self, form):
         user = authenticate(
