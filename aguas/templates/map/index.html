@@ -233,7 +233,7 @@ var violetIcon = new L.Icon({
     {% endif %}
 
         //CC
-    {% if station.type_station.acronym == "CCYM" %}
+    {% if station.type_station.acronym == "ECYM" %}
       L.marker([{{ station.latitude_station }}, {{ station.longitude_station }}],{icon: controlIcon}).bindPopup('<a href="{% url 'stations_app:detail_station' station.id %}" >{{ station.get_type_station_display }} {{ station.name_station }}</a><br><a href="{% url 'installations_app:list_installations_by_station' station.id %}">Instalaciones</a><br><a href="{% url 'devices_app:list_devices_by_station' station.id %}">Dispositivos</a><br><a href="{% url 'consumables_app:list_consumables_by_station' station.id %}">Consumibles</a>').addTo(cc1),
         {% if forloop.last %}
       L.marker([{{ station.latitude_station }}, {{ station.longitude_station }}],{icon: controlIcon}).bindPopup('<a href="{% url 'stations_app:detail_station' station.id %}" >{{ station.get_type_station_display }} {{ station.name_station }}</a><br><a href="{% url 'installations_app:list_installations_by_station' station.id %}">Instalaciones</a><br><a href="{% url 'devices_app:list_devices_by_station' station.id %}">Dispositivos</a><br><a href="{% url 'consumables_app:list_consumables_by_station' station.id %}">Consumibles</a>').addTo(cc1);
@@ -249,7 +249,7 @@ var violetIcon = new L.Icon({
     {% endif %}
 
         //OTROS
-    {% if station.type_station.acronym == "OTROS" %}
+    {% if station.type_station.acronym == "DRAR" %}
       L.marker([{{ station.latitude_station }}, {{ station.longitude_station }}],{icon: greyIcon}).bindPopup('<a href="{% url 'stations_app:detail_station' station.id %}" >{{ station.get_type_station_display }} {{ station.name_station }}</a><br><a href="{% url 'installations_app:list_installations_by_station' station.id %}">Instalaciones</a><br><a href="{% url 'devices_app:list_devices_by_station' station.id %}">Dispositivos</a><br><a href="{% url 'consumables_app:list_consumables_by_station' station.id %}">Consumibles</a>').addTo(otros1),
         {% if forloop.last %}
       L.marker([{{ station.latitude_station }}, {{ station.longitude_station }}],{icon: greyIcon}).bindPopup('<a href="{% url 'stations_app:detail_station' station.id %}" >{{ station.get_type_station_display }} {{ station.name_station }}</a><br><a href="{% url 'installations_app:list_installations_by_station' station.id %}">Instalaciones</a><br><a href="{% url 'devices_app:list_devices_by_station' station.id %}">Dispositivos</a><br><a href="{% url 'consumables_app:list_consumables_by_station' station.id %}">Consumibles</a>').addTo(otros1);
