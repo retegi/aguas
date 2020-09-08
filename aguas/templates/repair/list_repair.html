@@ -16,7 +16,7 @@
 <div class="row">
   <div class="col-sm-11">
     <nav class="navbar navbar-expand navbar-light bg-light">
-      <a class="navbar-brand" href="#">Actuaciones</a>
+      <a class="navbar-brand" href="#">Reparaciones</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -40,14 +40,14 @@
 <table class="table table-sm table-hover">
     <thead>
       <tr>
-        <th scope="col">Nº Actuación</th>
+        <th scope="col">Nº Reparación</th>
         <th scope="col">Nº Incidencia</th>
         <th scope="col">Fecha Incidencia</th>
         <th scope="col">Estación</th>
-        <th scope="col">Fecha actuación</th>
-        <th scope="col">Dispositivo afectado</th>
+        <th scope="col">Fecha Reparación</th>
+        <!--<th scope="col">Dispositivo afectado</th>-->
         <th scope="col">Fallo</th>
-        <th scope="col">Reparaciones</th>
+        <th scope="col">Actuación</th>
         <th scope="col">Resumen</th>
         <th scope="col">¿Solucionado?</th>
         <th scope="col">Opciones</th>
@@ -56,15 +56,15 @@
     <tbody>
     {% for repair in object_list %}
       <tr>
-        <td scope="row">{{ repair.id }}<a href=""></a></td>
-        <td scope="row">{{ repair.incidence_repair.id }}<a href=""></a></td>
+        <td scope="row"><a href="{% url 'repairs_app:detail_repair' repair.id %}">{{ repair.id }}</a></td>
+        <td scope="row"><a href="{% url 'incidences_app:detail_incidence' repair.incidence_repair.id %}">{{ repair.incidence_repair.id }}</a></td>
         <td scope="row">{{ repair.incidence_repair.datetime_incidence|date:"d/m/Y" }}<a href=""></a></td>
         <td scope="row"><a href="#">{{ repair.incidence_repair.station_incidence }}</a></td>
         <td>{{ repair.datetime_repair|date:"d/m/Y" }}</td>
-        <td><a href="">{{ repair.affectedDevice_repair.brand_device }} {{ repair.affectedDevice_repair.model_device }} Nº {{ repair.affectedDevice_repair.serial_device }}</a></td>
+        <!--<td><a href="">{{ repair.affectedDevice_repair.product_model_device.brand_device }} {{ repair.affectedDevice_repair.product_model_device.model_device }}{{ repair.affectedDevice_repair.model_device }} Nº {{ repair.affectedDevice_repair.serial_device }}</a></td>-->
         <td>{{ repair.typeFailure_repair }}</td>
         <td>{{ repair.typeRepair_repair }}</td>
-        <td>{{ repair.summary_repair }}</td>
+        <td>{{ repair.summary_repair }} <a href="{% url 'repairs_app:detail_repair' repair.id %}">(...)</a></td>
         <td name="solucionado"><button class="btn" style="background-color:{{ repair.statusAfterRepair_repair.color_html_background }}">{{ repair.statusAfterRepair_repair }}</button></td>
         <td><a href="{% url 'repairs_app:detail_repair' repair.id %}"><svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z" clip-rule="evenodd"/>

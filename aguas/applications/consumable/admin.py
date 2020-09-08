@@ -5,6 +5,9 @@ from .models import ImageConsumable
 from .models import TypeModelConsumable
 from .models import TypeConsumable
 from .models import StatusConsumable
+from .models import VoltageOutputConsumable
+
+
 
 class ImageConsumableAdmin(admin.ModelAdmin):
     list_display = (
@@ -12,6 +15,12 @@ class ImageConsumableAdmin(admin.ModelAdmin):
         'image_imageConsumable',
     )
 admin.site.register(ImageConsumable,ImageConsumableAdmin)
+
+class VoltageOutputConsumableAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+    )
+admin.site.register(VoltageOutputConsumable,VoltageOutputConsumableAdmin)
 
 class TypeModelConsumableAdmin(admin.ModelAdmin):
     list_display = (

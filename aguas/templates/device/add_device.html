@@ -8,12 +8,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="alert alert-success m-3" role="alert">
+<div class="alert alert-success m-3 mb-5" role="alert">
 
 <h3>Nuevo Dispositivo</h3>
 <form method="POST" enctype="multipart/form-data">{% csrf_token %}
     {{ form.as_p}}
-    <button type="submit">Guardar</button>
+    <button class="form-control btn-primary mb-5" type="submit">Guardar</button>
 </form>
 
 

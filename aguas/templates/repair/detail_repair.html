@@ -35,7 +35,7 @@
                   </tr>
                   <tr>
                     <th scope="row">Dispositivo afectado</th>
-                    <td>{{ repair.affectedDevice_repair }}</td>
+                    <td><a href="{% url 'devices_app:detail_device' repair.affectedDevice_repair.id %}">{{ repair.affectedDevice_repair }}</a></td>
                   </tr>
                   <tr>
                     <th scope="row">Tipo incidencia</th>
@@ -50,22 +50,24 @@
                     <td><button class="btn btn-sm" style="background-color:">{{ repair.statusAfterRepair_repair.name }}</button></td>
                   </tr>
 
-                  <tr>
+                  <tr id="removedDevice_tag">
                     <th scope="row">Dispositivo retirado</th>
-                    <td>{{ repair.removedDevice_repair }}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Dispositivo colocado</th>
-                    <td>{{ repair.placedDevice_repair }}</td>
+                    <td id="removedDevice">{{ repair.removedDevice_repair }}</td>
                   </tr>
 
-                  <tr>
-                    <th scope="row">Consumible retirado</th>
-                    <td>{{ repair.removedConsumable_repair.type_consumable.get_type_typeConsumable_display }} {{ repair.removedConsumable_repair.type_consumable.brand_typeConsumable }} {{ repair.removedConsumable_repair.type_consumable.model_typeConsumable }} <b>Serial Nº:{{ repair.removedConsumable_repair.serial_num_consumable }}</b></td>
+                  <tr id="placedDevice_tag">
+                    <th scope="row">Dispositivo colocado</th>
+                    <td id="placedDevice">{{ repair.placedDevice_repair }}</td>
                   </tr>
-                  <tr>
+
+                  <tr id="removedConsumable_tag">
+                    <th scope="row">Consumible retirado</th>
+                    <td id="removedConsumable">{{ repair.removedConsumable_repair }}</td>
+                  </tr>
+
+                  <tr id="placedConsumable_tag">
                     <th scope="row">Consumible colocado</th>
-                    <td>{{ repair.placedConsumable_repair.type_consumable.get_type_typeConsumable_display }} {{ repair.placedConsumable_repair.type_consumable.brand_typeConsumable }} {{ repair.placedConsumable_repair.type_consumable.model_typeConsumable }} <b>Serial Nº:{{ repair.placedConsumable_repair.serial_num_consumable }}</b></td>
+                    <td id="placedConsumable">{{ repair.placedConsumable_repair }}</td>
                   </tr>
                  
                   
@@ -90,4 +92,31 @@
     </div>
   </div>
 </div>
+
+<script>
+  //DELETE IF EMPTY 
+  var myElement = document.getElementById("removedDevice").innerText;
+  if(myElement == "None"){
+    var myobj = document.getElementById("removedDevice_tag");
+    myobj.remove();
+  }
+  //DELETE IF EMPTY 
+  var myElement = document.getElementById("placedDevice").innerText;
+  if(myElement == "None"){
+    var myobj = document.getElementById("placedDevice_tag");
+    myobj.remove();
+  }
+  //DELETE IF EMPTY 
+  var myElement = document.getElementById("removedConsumable").innerText;
+  if(myElement == "None"){
+    var myobj = document.getElementById("removedConsumable_tag");
+    myobj.remove();
+  }
+  //DELETE IF EMPTY 
+  var myElement = document.getElementById("placedConsumable").innerText;
+  if(myElement == "None"){
+    var myobj = document.getElementById("placedConsumable_tag");
+    myobj.remove();
+  }
+</script>
 {% endblock %}

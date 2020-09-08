@@ -77,7 +77,7 @@ class ProductModelDevice(models.Model):
         ordering = ['brand_device']
 
     def __str__(self):
-        return self.brand_device
+        return str(self.brand_device) + ' ' + str(self.model_device)
 
 
 
@@ -103,4 +103,4 @@ class Device(models.Model):
         ordering = ['installation_device']
 
     def __str__(self):
-        return str(self.serial_device) + ' - ' + str(self.installation_device.type_installation.name) + ' - ' + str(self.installation_device.station_installation.name_station)
+        return str(self.product_model_device.type_device) + ' - ' + str(self.product_model_device.brand_device) + ' - ' + str(self.product_model_device.model_device) + ' - Nº: ' + str(self.serial_device) + ' - ' + str(self.installation_device.type_installation.name) + ' - ' + str(self.installation_device.station_installation.name_station)

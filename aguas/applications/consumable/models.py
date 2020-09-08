@@ -27,14 +27,12 @@ class ImageConsumable(models.Model):
     def __str__(self):
         return self.name_imageConsumable
 
-
-
 class VoltageOutputConsumable(models.Model):
     name = models.CharField('Nombre',max_length=50)
 
     class Meta:
-        verbose_name = 'Imagen consumible'
-        verbose_name_plural = 'Imagen de consumibles'
+        verbose_name = 'Voltage output'
+        verbose_name_plural = 'Voltages output'
         ordering = ['name']
 
     def __str__(self):

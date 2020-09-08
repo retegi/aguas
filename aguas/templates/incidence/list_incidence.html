@@ -24,12 +24,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'incidences_app:add_incidence' %}">Crear</a>
           </li>
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link" href="">Sin solucionar</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">Pdf</a>
-          </li>
+          </li>-->
         </ul>
   </div>
   <div class="col-sm-1">
@@ -53,6 +53,7 @@
             <th scope="col">Area</th>
             <th scope="col">Fecha Incidencia</th>
             <th scope="col">Incidencia</th>
+            <th scope="col">Nivel urgencia</th>
             <th scope="col">Estado actual</th>
             <th scope="col">Ver reparaciones</th>
             <th scope="col">Opciones</th>
@@ -61,11 +62,12 @@
         <tbody>
         {% for incidence in object_list %}
           <tr>
-            <td><a href="">{{ incidence.id }}</a></td>
+            <td><a href="{% url 'incidences_app:detail_incidence' incidence.id %}">{{ incidence.id }}</a></td>
             <td>{{ incidence.station_incidence }}</td>
             <td><a href=""><button style="background-color:{{ incidence.station_incidence.area_station.color_html_background }}" class="btn btn-sm">{{ incidence.station_incidence.area_station.name }}</button></a></td>
             <td>{{ incidence.datetime_incidence|date:'d/m/Y' }}</td>
             <td><button class="btn btn-sm" style="background-color:{{ incidence.typeIncidence_incidence.color_html_background }}">{{ incidence.typeIncidence_incidence.name }}</button></td>
+            <td><button title="{{ incidence.urgencyLevel_incidence.meaning }}" class="btn rounded" style="background-color:{{ incidence.urgencyLevel_incidence.color_html_background }}">{{ incidence.urgencyLevel_incidence.name }}</button></td>
             <td><button class="btn btn-sm" style="background-color:{{ incidence.statusIncidence_incidence.color_html_background }}">{{ incidence.statusIncidence_incidence.name }}</button></td>
             
             

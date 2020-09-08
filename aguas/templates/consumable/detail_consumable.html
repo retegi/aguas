@@ -12,11 +12,11 @@
   <div class="row">
     <div class="col-lg-4 text-center">
       
-        <img style="width:75%;margin:5%" src="{{ consumable.type_consumable.imagen_typeConsumable.image_imageConsumable.url }}">
+        <img style="width:75%;margin:5%" src="{{ consumable.type_model_consumable.imagen_typeConsumable.image_imageConsumable.url }}">
     </div>
     <div class="col-lg-8">
         <h3 class="text-secondary">Detalle Consumible</h3>
-        <h1>{{ consumable.type_consumable.brand_typeConsumable }} - {{ consumable.type_consumable.model_typeConsumable }}</h1>
+        <h1>{{ consumable.type_model_consumable.type_consumable_typeConsumable.name }} - {{ consumable.type_model_consumable.brand_typeConsumable }} <b class="text-success">{{ consumable.serial_num_consumable }}</b></h1>
             <table class="table table-sm table-hover">
                 <thead>
                   <h3>Datos genéricos del tipo de consumible</h3>
@@ -28,19 +28,19 @@
                 <tbody>
                   <tr>
                     <th scope="row">Tipo de consumible</th>
-                    <td>{{ consumable.type_consumable.get_type_typeConsumable_display }}</td>
+                    <td>{{ consumable.type_model_consumable.type_consumable_typeConsumable.name }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Marca</th>
-                    <td>{{ consumable.type_consumable.brand_typeConsumable }}</td>
+                    <td>{{ consumable.type_model_consumable.brand_typeConsumable }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Modelo</th>
-                    <td>{{ consumable.type_consumable.model_typeConsumable }}</td>
+                    <td>{{ consumable.type_model_consumable.model_typeConsumable }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Salida voltaje</th>
-                    <td>{{ consumable.type_consumable.get_voltage_ouput_typeConsumable_display }}</td>
+                    <td>{{ consumable.type_model_consumable.VoltageOutput_typeConsumable.name }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Observaciones genéricas</th>
@@ -56,11 +56,11 @@
                   </tr>
                   <tr>
                     <th scope="row">Dispositivo padre</th>
-                    <td>{{ consumable.parent_device_consumable.type_device.name }} {{ consumable.parent_device_consumable.brand_device }} {{ consumable.parent_device_consumable.model_device }} Serial: {{ consumable.parent_device_consumable.serial_device }}</td>
+                    <td>{{ consumable.parent_device_consumable }}</td>
                   </tr>
                   <tr>
                     <th scope="row">Situación</th>
-                    <td></td>
+                    <td><button class="btn btn-sm" style="text-align:center;background-color:{{ consumable.status_consumable.color_html_background }}">{{ consumable.status_consumable.name }}</button></td>
                   </tr>
                   <tr>
                     <th scope="row">Instalación</th>
