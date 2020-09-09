@@ -29,7 +29,7 @@ class DeviceListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         name = self.request.GET.get('kword', '')
         if name:
-            object_list = self.model.objects.filter(Q(installation_device__station_installation__name_station__icontains = name) | Q(serial_device__icontains = name) | Q(brand_device__icontains = name) | Q(model_device__icontains = name) | Q(type_device__name__icontains = name))
+            object_list = self.model.objects.filter(Q(installation_device__station_installation__name_station__icontains = name) | Q(serial_device__icontains = name) | Q(product_model_device__brand_device__name__icontains = name) | Q(product_model_device__model_device__icontains = name) | Q(product_model_device__type_device__name__icontains = name))
         else:
             object_list = self.model.objects.all()
         return object_list

@@ -56,10 +56,10 @@
     <tbody>
     {% for repair in object_list %}
       <tr>
-        <td scope="row"><a href="{% url 'repairs_app:detail_repair' repair.id %}">{{ repair.id }}</a></td>
-        <td scope="row"><a href="{% url 'incidences_app:detail_incidence' repair.incidence_repair.id %}">{{ repair.incidence_repair.id }}</a></td>
+        <td scope="row"><a href="{% url 'repairs_app:detail_repair' repair.id %}"><button class="btn btn-success btn-sm w-50">{{ repair.id }}</button></a></td>
+        <td scope="row"><a href="{% url 'incidences_app:detail_incidence' repair.incidence_repair.id %}"><button class="btn btn-primary btn-sm w-50">{{ repair.incidence_repair.id }}</button></a></td>
         <td scope="row">{{ repair.incidence_repair.datetime_incidence|date:"d/m/Y" }}<a href=""></a></td>
-        <td scope="row"><a href="#">{{ repair.incidence_repair.station_incidence }}</a></td>
+        <td scope="row"><a href="{% url 'stations_app:detail_station' repair.incidence_repair.station_incidence.id %}">{{ repair.incidence_repair.station_incidence }}</a></td>
         <td>{{ repair.datetime_repair|date:"d/m/Y" }}</td>
         <!--<td><a href="">{{ repair.affectedDevice_repair.product_model_device.brand_device }} {{ repair.affectedDevice_repair.product_model_device.model_device }}{{ repair.affectedDevice_repair.model_device }} Nº {{ repair.affectedDevice_repair.serial_device }}</a></td>-->
         <td>{{ repair.typeFailure_repair }}</td>

@@ -12,6 +12,7 @@ from django.views.generic import (
     DeleteView,
 )
 from .forms import AddStationForm
+from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse
@@ -24,7 +25,7 @@ class StationListView(LoginRequiredMixin,ListView):
     def get_queryset(self):
         name = self.request.GET.get('kword', '')
         if name:
-            object_list = self.model.objects.filter(name_station__icontains = name)
+            object_list = self.model.objects.filter(Q(name_station__icontains = name)|Q(type_station__acronym__icontains = name))
         else:
             object_list = self.model.objects.all()
         return object_list
