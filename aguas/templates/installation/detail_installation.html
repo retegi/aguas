@@ -35,7 +35,7 @@
                   </tr>
                   <tr>
                     <th scope="row">Estación</th>
-                    <td>{{ installation.station_installation.type_station.acronym }} {{ installation.station_installation.name_station }}</td>
+                    <td><a href="{% url 'stations_app:detail_station' installation.station_installation.id %}">{{ installation.station_installation.type_station.acronym }} {{ installation.station_installation.name_station }}</a></td>
                   </tr>
                   <tr>
                     <th scope="row">Area</th>

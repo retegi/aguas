@@ -16,7 +16,7 @@
     </div>
     <div class="col-lg-8">
         <h3 class="text-secondary">Detalle Dispositivo</h3>
-        <h1>{{ device.product_model_device.brand_device }} - {{ device.product_model_device.model_device }} ( {{ device.installation_device.type_installation.name }} de {{ device.installation_device.station_installation.get_type_station_display }} {{ device.installation_device.station_installation.name_station }} )</h1>
+        <h1>{{ device.product_model_device.brand_device }} - {{ device.product_model_device.model_device }}</h1><h3 class="secondary"> ( {{ device.installation_device.type_installation.name }} de {{ device.installation_device.station_installation.type_station.acronym }} {{ device.installation_device.station_installation.name_station }} )</h3>
             <table class="table table-sm table-hover">
                 <thead>
                   <tr>
@@ -72,11 +72,11 @@
                   
                   <tr>
                     <th scope="row">Instalación</th>
-                    <td>{{ device.installation_device.type_installation.name }}</td>
+                    <td><a href="{% url 'installations_app:detail_installation' device.installation_device.id %}">{{ device.installation_device.type_installation.name }}</a></td>
                   </tr>
                   <tr>
                     <th scope="row">Estación</th>
-                    <td>{{ device.installation_device.station_installation.get_type_station_display }} {{ device.installation_device.station_installation.name_station }}</td>
+                    <td><a href="{% url 'stations_app:detail_station' device.installation_device.station_installation.id %}">{{ device.installation_device.station_installation.type_station.acronym }} {{ device.installation_device.station_installation.name_station }}</a></td>
                   </tr>
                   <tr>
                     <th scope="row">Área</th>
