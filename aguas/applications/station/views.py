@@ -32,6 +32,17 @@ class StationListView(LoginRequiredMixin,ListView):
     login_url = reverse_lazy('users_app:user-login')
 
 
+class StationGalleryDetailView(LoginRequiredMixin,DetailView):
+    model = Station
+    template_name = "station/gallery_station.html"
+    login_url = reverse_lazy('users_app:user-login')
+
+class StationDocDetailView(LoginRequiredMixin,DetailView):
+    model = Station
+    template_name = "station/doc_station.html"
+    login_url = reverse_lazy('users_app:user-login')
+    
+
 class StationAddView(LoginRequiredMixin,PermissionRequiredMixin,CreateView):
     permission_required = 'station.add_station'
     template_name = 'station/add_station.html'

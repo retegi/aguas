@@ -29,6 +29,17 @@ urlpatterns = [
         views.StationDeleteView.as_view(),
         name='delete_station'
     ),
+    path(
+        'gallery_station/<pk>/',
+        views.StationGalleryDetailView.as_view(),
+        name='gallery_station'
+    ),
+        path(
+        'doc_station/<pk>/',
+        views.StationDocDetailView.as_view(),
+        name='doc_station'
+    ),
+
 ]
 
 

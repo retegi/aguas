@@ -14,6 +14,16 @@ class Simulator3DStation(models.Model):
     def __str__(self):
         return str(self.id) + '-' + str(self.name) + '-' + str(self.url)
 
+class VideoStation(models.Model):
+    name = models.CharField('Descripción de url', max_length=50)
+    url = models.TextField('Url', max_length=500,null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Video'
+        verbose_name_plural = 'Videos'
+    def __str__(self):
+        return str(self.id) + '-' + str(self.name) + '-' + str(self.url)
+
 
 
 class AreaStation(models.Model):
@@ -36,6 +46,18 @@ class ImageStation(models.Model):
 
     def __str__(self):
         return str(self.image_imageStation)
+
+class DocStation(models.Model):
+    name_docStation = models.CharField('Nombre',max_length=50)
+    url_docStation = models.CharField('Url',max_length=200,null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Doc estación'
+        verbose_name_plural = 'Doc de estaciones'
+        ordering = ['name_docStation']
+
+    def __str__(self):
+        return str(self.name_docStation)
 
 class StatusStation(models.Model):
     name = models.CharField('Nombre',max_length=50)
@@ -87,6 +109,8 @@ class Station(models.Model):
     image_station = models.ManyToManyField(ImageStation, blank=True)
     status_station =  models.ForeignKey(StatusStation, on_delete=models.CASCADE,null=True, blank=True)
     simulator3D_station =  models.ForeignKey(Simulator3DStation, on_delete=models.CASCADE,null=True, blank=True)
+    video_station =  models.ManyToManyField(VideoStation, blank=True)
+    doc_station =  models.ManyToManyField(DocStation, blank=True)
 
     objects = StationManager()
 
