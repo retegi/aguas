@@ -107,7 +107,7 @@
 
         <td><b class="text-success">{{ consumable.serial_num_consumable }}</b></td>
       <td><button class="btn btn-sm" style="text-align:center;background-color:{{ consumable.status_consumable.color_html_background }}">{{ consumable.status_consumable.name }}</button></td>
-        <td><a href="{% url 'devices_app:detail_device'  consumable.parent_device_consumable.id %}">{{ consumable.parent_device_consumable.product_model_device.brand_device }} {{ consumable.parent_device_consumable.product_model_device.model_device }}</a></td>
+        <td><a href="{% url 'devices_app:detail_device' consumable.parent_dirdevice_consumable.id %}">{{ consumable.parent_device_consumable.product_model_device.brand_device }} {{ consumable.parent_device_consumable.product_model_device.model_device }}</a></td>
         <td><a href="{% url 'installations_app:detail_installation' consumable.parent_device_consumable.installation_device.id %}">{{ consumable.parent_device_consumable.installation_device.type_installation.name }}</a></td>
         <td><a href="{% url 'stations_app:detail_station' consumable.parent_device_consumable.installation_device.station_installation.id %}">{{ consumable.parent_device_consumable.installation_device.station_installation.type_station.acronym }} {{ consumable.parent_device_consumable.installation_device.station_installation.name_station }}</a></td>
         <td><button style="background-color:{{ consumable.parent_device_consumable.installation_device.station_installation.area_station.color_html_background }};" class="btn btn-sm" name="area">{{ consumable.parent_device_consumable.installation_device.station_installation.area_station.name }}</button></td>
