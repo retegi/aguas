@@ -68,7 +68,7 @@ class DeviceUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     template_name = "device/update_device.html"
     model = Device
     fields = [
-            'type_device',
+            'product_model_device',
             'serial_device',
             'ip_device',
             'pin_device',

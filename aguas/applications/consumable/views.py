@@ -69,7 +69,7 @@ class ConsumableUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView
     template_name = "consumable/update_consumable.html"
     model = Consumable
     fields = ['datetime_placemente_consumable',
-            'type_consumable',
+            'type_model_consumable',
             'serial_num_consumable',
             'parent_device_consumable',
             'status_consumable',

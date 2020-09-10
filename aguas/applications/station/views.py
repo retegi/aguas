@@ -57,16 +57,22 @@ class StationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     template_name = "station/update_station.html"
     model = Station
     fields = [
+            'communication_technology_station',
             'code_station',
             'name_station',
-            'area_station',
-            'type_station',
             'latitude_station',
             'longitude_station',
+            'observations_station',
+            'communication_windows_station',
+            'area_station',
             'origin_watertank',
-            'comunication_point',
             'type_station',
-            'status_station'
+            'comunication_point',
+            'image_station',
+            'status_station',
+            'simulator3D_station',
+            'video_station',
+            'doc_station',
             ]
     success_url = '/station/'
     login_url = reverse_lazy('users_app:user-login')
