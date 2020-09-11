@@ -103,8 +103,15 @@
         <a class="nav-link" href="{% url 'repairs_app:list_repair' %}">Reparaciones</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'repairs_app:list_repair' %}">Mantenimiento-Preventivo</a>
+        <a class="nav-link" onclick="enDesarrollo()" href="">Mantenimiento-Preventivo</a>
       </li>
+
+      <script>
+        function enDesarrollo(){
+          alert("Esta opción está en desarrollo");
+        }
+      </script>
+      
     </ul>
     <ul class="navbar-nav text-right">
       <li class="nav-link">
