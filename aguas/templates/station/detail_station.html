@@ -16,7 +16,7 @@
     <!--DETAIL INFORMATION-->
     <div class="col-lg-8">
       <h3 class="text-secondary">Detalle Estación</h3>
-      <h1>{{ station.get_type_station_display }} {{ station.name_station }}</h1>
+      <h1>{{ station.type_station.acronym }} {{ station.name_station }}</h1>
             <table class="table table-sm table-hover">
                 <thead>
                   <tr>
@@ -31,7 +31,7 @@
                   </tr>
                   <tr>
                     <th scope="row">Nombre</th>
-                    <td>{{ station.type_station.acronym }} {{ station.name_station }}</td>
+                    <td>{{ station.type_station.acronym }} {{ station.name_station }} ( {{ station.type_station.name }} )</td>
                   </tr>
                   <tr>
                     <th scope="row">Area</th>
