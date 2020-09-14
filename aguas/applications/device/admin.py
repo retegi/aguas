@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import ImageDevice
 from .models import CommunicationDevice
-from .models import FileDevice
+from .models import DocDevice
 from .models import TypeDevice
 from .models import ProductModelDevice
 from .models import Device
@@ -33,12 +33,12 @@ admin.site.register(CommunicationDevice,CommunicationDeviceAdmin)
 
 
 
-class FileDeviceAdmin(admin.ModelAdmin):
+class DocDeviceAdmin(admin.ModelAdmin):
     list_display = (
-        'name',
-        'url_file',
+        'name_docDevice',
+        'url_docDevice',
     )
-admin.site.register(FileDevice,FileDeviceAdmin)
+admin.site.register(DocDevice,DocDeviceAdmin)
 
 
 

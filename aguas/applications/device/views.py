@@ -4,7 +4,7 @@ from applications.station.models import Station
 from .models import Device
 from .models import ImageDevice
 from .models import TypeDevice
-from .models import FileDevice
+from .models import DocDevice
 from .models import CommunicationDevice
 from .models import ProductModelDevice
 from django.views.generic import (
@@ -93,4 +93,9 @@ class DeviceDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     model = Device
     template_name = "device/delete_device.html"
     success_url = '/device/'
+    login_url = reverse_lazy('users_app:user-login')
+
+class DeviceDocDetailView(LoginRequiredMixin,DetailView):
+    model = Device
+    template_name = "device/doc_device.html"
     login_url = reverse_lazy('users_app:user-login')

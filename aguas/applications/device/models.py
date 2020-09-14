@@ -27,18 +27,18 @@ class CommunicationDevice(models.Model):
     def __str__(self):
         return self.name
 
-class FileDevice(models.Model):
-    name = models.CharField('Nombre',max_length=50)
-    url_file = models.CharField('Url',max_length=50)
+class DocDevice(models.Model):
+    name_docDevice = models.CharField('Nombre',max_length=50)
+    url_docDevice = models.CharField('Url',max_length=200,null=True, blank=True)
 
 
     class Meta:
         verbose_name = 'Archivo dispositivo'
         verbose_name_plural = 'Archivos de dispositivo'
-        ordering = ['name']
+        ordering = ['name_docDevice']
 
     def __str__(self):
-        return self.name
+        return self.name_docDevice
 
 class TypeDevice(models.Model):
     name = models.CharField('Nombre',max_length=50)
@@ -69,7 +69,7 @@ class ProductModelDevice(models.Model):
     model_device = models.CharField('Modelo',max_length=50,null=True, blank=True)
     communication_device = models.ForeignKey(CommunicationDevice, max_length=1,on_delete=models.CASCADE,null=True, blank=True)
     image_device = models.ForeignKey(ImageDevice, on_delete=models.CASCADE,null=True, blank=True)
-    file_device = models.ForeignKey(FileDevice, on_delete=models.CASCADE,null=True, blank=True)
+    doc_device = models.ManyToManyField(DocDevice, blank=True)
 
     class Meta:
         verbose_name = 'Producto'

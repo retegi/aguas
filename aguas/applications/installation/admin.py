@@ -2,7 +2,15 @@ from django.contrib import admin
 from .models import Installation
 from .models import TypeInstallation
 from .models import ImageInstallation
+from .models import DocInstallation
 
+
+class DocInstallationAdmin(admin.ModelAdmin):
+    list_display = (
+        'name_docInstallation',
+        'url_docInstallation',
+    )
+admin.site.register(DocInstallation,DocInstallationAdmin)
 
 class InstallationAdmin(admin.ModelAdmin):
     list_display = (

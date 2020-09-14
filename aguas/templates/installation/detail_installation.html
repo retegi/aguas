@@ -58,6 +58,11 @@
                   </tr>
 
                   <tr>
+                    <th scope="row">Manuales y archivos</th>
+                    <td><a href="{% url 'installations_app:doc_installation' installation.id %}"><button class="btn btn-primary btn-sm">Ver manuales y archivos</button></a></td>
+                  </tr>
+
+                  <tr>
                     <th scope="row">Ver</th>
                     <td>
                       <a title="Ver instalaciones" target="blank" href="{% url 'devices_app:list_devices_by_installation' installation.id %}">

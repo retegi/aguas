@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+          <div class="col-lg-2 text-center">
+          </div>
+          <!--DETAIL INFORMATION-->
+          <div class="col-lg-8">
+            <h1>{{ installation }}</h1>
+            <h3 class="text-secondary">Manuales y archivos</h3>
+            <h1></h1>
+                  <table class="table table-sm table-hover">
+  
+                     
+          
+                      {% for doc in installation.doc_installation.all %}
+                      <!--Modal: Name-->
+                      <a target="_blank" href="{{ doc.url_docInstallation }}"><button class="btn btn-primary m-1">{{ doc.name_docInstallation }}</button></a></br>
+                      {% endfor %}
+         
+
+          </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

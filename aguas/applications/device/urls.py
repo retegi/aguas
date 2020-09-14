@@ -38,5 +38,10 @@ urlpatterns = [
         'list_devices_by_installation/<pk>/',
         views.DeviceListByInstallationView.as_view(),
         name='list_devices_by_installation'
-    )
+    ),
+    path(
+        'doc_device/<pk>/',
+        views.DeviceDocDetailView.as_view(),
+        name='doc_device'
+    ),
 ]

@@ -25,11 +25,25 @@ class ImageInstallation(models.Model):
     def __str__(self):
         return str(self.image_imageInstallation)
 
+class DocInstallation(models.Model):
+    name_docInstallation = models.CharField('Nombre',max_length=50)
+    url_docInstallation = models.CharField('Url',max_length=200,null=True, blank=True)
+
+
+    class Meta:
+        verbose_name = 'Archivo instalación'
+        verbose_name_plural = 'Archivos de instalación'
+        ordering = ['name_docInstallation']
+
+    def __str__(self):
+        return self.name_docInstallation
+
 class Installation(models.Model):
     type_installation = models.ForeignKey(TypeInstallation, on_delete=models.CASCADE,null=True)
     station_installation = models.ForeignKey(Station, on_delete=models.CASCADE,null=True, blank=True)
     observations_installation = models.TextField('Observaciones',null=True, blank=True)
     image_installation = models.ManyToManyField(ImageInstallation, blank=True)
+    doc_installation = models.ManyToManyField(DocInstallation, blank=True)
 
     class Meta:
         verbose_name = 'Instalación'

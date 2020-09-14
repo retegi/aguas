@@ -55,6 +55,11 @@ class InstallationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateVi
     success_url = '/installation/'
     login_url = reverse_lazy('users_app:user-login')
 
+class InstallationDocDetailView(LoginRequiredMixin,DetailView):
+    model = Installation
+    template_name = "installation/doc_installation.html"
+    login_url = reverse_lazy('users_app:user-login')
+
 class InstallationDetailView(LoginRequiredMixin,DetailView):
     model = Installation
     template_name = "installation/detail_installation.html"

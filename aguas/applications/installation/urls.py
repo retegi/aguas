@@ -32,4 +32,9 @@ urlpatterns = [
         views.InstallationListByStationView.as_view(),
         name='list_installations_by_station'
     ),
+    path(
+        'doc_installation/<pk>/',
+        views.InstallationDocDetailView.as_view(),
+        name='doc_installation'
+    ),
 ]

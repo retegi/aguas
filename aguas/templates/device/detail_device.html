@@ -93,6 +93,10 @@
                     <td>{{ device.observations }}</td>
                   </tr>
                   <tr>
+                    <th scope="row">Manuales y archivos</th>
+                    <td><a href="{% url 'devices_app:doc_device' device.id %}"><button class="btn btn-primary btn-sm">Ver manuales y archivos</button></a></td>
+                  </tr>
+                  <tr>
                     <th scope="row">Ver</th>
                     <td>
 
