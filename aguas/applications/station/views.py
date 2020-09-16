@@ -12,6 +12,8 @@ from django.views.generic import (
     DeleteView,
 )
 from .forms import AddStationForm
+from .forms import UpdateStationForm
+
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -56,6 +58,15 @@ class StationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     permission_required = 'station.update_station'
     template_name = "station/update_station.html"
     model = Station
+    form_class = UpdateStationForm
+    success_url = '/station/'
+    login_url = reverse_lazy('users_app:user-login')
+
+
+"""class StationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'station.update_station'
+    template_name = "station/update_station.html"
+    model = Station
     fields = [
             'communication_technology_station',
             'code_station',
@@ -75,7 +86,7 @@ class StationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
             'doc_station',
             ]
     success_url = '/station/'
-    login_url = reverse_lazy('users_app:user-login')
+    login_url = reverse_lazy('users_app:user-login')"""
 
 class StationDetailView(LoginRequiredMixin,DetailView):
     model = Station

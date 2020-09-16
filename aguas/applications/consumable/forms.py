@@ -16,5 +16,18 @@ class AddConsumableForm(forms.ModelForm):
         self.fields['parent_device_consumable'].widget.attrs.update({'class': 'form-control'})
         self.fields['status_consumable'].widget.attrs.update({'class': 'form-control'})
         self.fields['observations_consumable'].widget.attrs.update({'class': 'form-control'})
+
+class UpdateConsumableForm(forms.ModelForm):
+    class Meta:
+        model = Consumable
+        fields = ('__all__')
+    def __init__(self, *args, **kwargs):
+        super(UpdateConsumableForm, self).__init__(*args, **kwargs)
+        self.fields['datetime_placemente_consumable'].widget.attrs.update({'class': 'form-control'})
+        self.fields['type_model_consumable'].widget.attrs.update({'class': 'form-control'})
+        self.fields['serial_num_consumable'].widget.attrs.update({'class': 'form-control'})
+        self.fields['parent_device_consumable'].widget.attrs.update({'class': 'form-control'})
+        self.fields['status_consumable'].widget.attrs.update({'class': 'form-control'})
+        self.fields['observations_consumable'].widget.attrs.update({'class': 'form-control'})
         
      

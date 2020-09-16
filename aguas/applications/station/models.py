@@ -95,7 +95,7 @@ class CommunicationTechnologyStation(models.Model):
         return str(self.name)
 
 class Station(models.Model):
-    communication_technology_station = models.ForeignKey(CommunicationTechnologyStation, on_delete=models.CASCADE,null=True, blank=True)
+    communication_technology_station = models.ForeignKey(CommunicationTechnologyStation, on_delete=models.CASCADE,null=True, blank=True,db_column='Tecnología de comunicación')
     code_station = models.CharField('Código',max_length=50,null=True, blank=True)
     name_station = models.CharField('Nombre',max_length=50,null=True, blank=True)
     latitude_station = models.CharField('Latitud',max_length=50,null=True, blank=True)

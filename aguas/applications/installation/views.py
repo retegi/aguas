@@ -10,6 +10,7 @@ from django.views.generic import (
     DeleteView,
 )
 from .forms import AddInstallationForm
+from .forms import UpdateInstallationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse
@@ -46,6 +47,15 @@ class InstallationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateVi
     permission_required = 'installation.update_installation'
     template_name = "installation/update_installation.html"
     model = Installation
+    form_class = UpdateInstallationForm
+    success_url = '/installation/'
+    login_url = reverse_lazy('users_app:user-login')
+
+
+"""class InstallationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'installation.update_installation'
+    template_name = "installation/update_installation.html"
+    model = Installation
     fields = [
             'type_installation',
             'station_installation',
@@ -53,7 +63,7 @@ class InstallationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateVi
             'observations_installation',
             ]
     success_url = '/installation/'
-    login_url = reverse_lazy('users_app:user-login')
+    login_url = reverse_lazy('users_app:user-login')"""
 
 class InstallationDocDetailView(LoginRequiredMixin,DetailView):
     model = Installation

@@ -16,6 +16,7 @@ from django.views.generic import (
 )
 
 from .forms import AddDeviceForm
+from .forms import UpdateDeviceForm
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -67,19 +68,7 @@ class DeviceUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     permission_required = 'device.update_device'
     template_name = "device/update_device.html"
     model = Device
-    fields = [
-            'product_model_device',
-            'serial_device',
-            'ip_device',
-            'pin_device',
-            'puk_device',
-            'slave_num_device',
-            'tel_long_device',
-            'tel_short_device',
-            'parent_device',
-            'installation_device',
-            'observations_device',
-            ]
+    form_class = UpdateDeviceForm
     success_url = '/device/'
     login_url = reverse_lazy('users_app:user-login')
 

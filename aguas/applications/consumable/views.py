@@ -13,6 +13,7 @@ from django.views.generic import (
     DeleteView,
 )
 from .forms import AddConsumableForm
+from .forms import UpdateConsumableForm
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -68,13 +69,7 @@ class ConsumableUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView
     permission_required = 'consumable.update_consumable'
     template_name = "consumable/update_consumable.html"
     model = Consumable
-    fields = ['datetime_placemente_consumable',
-            'type_model_consumable',
-            'serial_num_consumable',
-            'parent_device_consumable',
-            'status_consumable',
-            'observations_consumable',
-            ]
+    form_class = UpdateConsumableForm
     success_url = '/consumable/'
     login_url = reverse_lazy('users_app:user-login')
 
