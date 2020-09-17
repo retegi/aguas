@@ -8,8 +8,13 @@
 {% endblock %}
 
 {% block content %}
-    <div class="alert alert-danger m-3" role="alert">
-        <h3 class="text-primary">Eliminar</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+
+            <div class="alert alert-danger m-3" role="alert">
+                <h3 class="text-primary">Eliminar</h3>
 
         <form class="" method="POST">{% csrf_token %}
 
@@ -19,4 +24,9 @@
 
         </form>
     </div>
+
+</div>
+<div class="col-lg-2"></div>
+</div>
+</div>
 {% endblock %}

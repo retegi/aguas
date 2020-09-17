@@ -96,14 +96,21 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'consumables_app:list_consumable' %}">Consumibles</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-toggle="dropdown" aria-expanded="false">Mant.Correctivo</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown07XL">
+          <a class="dropdown-item" href="{% url 'incidences_app:list_incidence' %}">Incidencias</a>
+          <a class="dropdown-item" href="{% url 'repairs_app:list_repair' %}">Reparaciones</a>
+        </div>
+      </li>
+      <!--<li class="nav-item">
         <a class="nav-link" href="{% url 'incidences_app:list_incidence' %}">Incidencias</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'repairs_app:list_repair' %}">Reparaciones</a>
-      </li>
+      </li>-->
       <li class="nav-item">
-        <a class="nav-link" onclick="enDesarrollo()" href="">Mantenimiento-Preventivo</a>
+        <a class="nav-link" onclick="enDesarrollo()" href="">Mant.Preventivo</a>
       </li>
 
       <script>
