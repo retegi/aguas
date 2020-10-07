@@ -108,18 +108,4 @@ def some_view(pdf):
     return FileResponse(buffer, as_attachment=True, filename='incidencias.pdf')
 
 
-"""class ListaIncidenciasListView(ListView):
-    model = Incidencia
-    template_name = "incidencia/pdf_incidencia_list.html"
-    context_object_name = 'incidencias'
-
-class ListIncidenciasPdf(View):
-    def get(self, request, *args, **kwargs):
-        incidencias = Incidencia.objects.filter(Q(solucionado='0') | Q(solucionado='2') | Q(solucionado='3'))
-        data = {
-            'incidencias': incidencias
-        }
-        pdf = render_to_pdf('incidencia/pdf_incidencia_list.html', data)
-        return HttpResponse(pdf, content_type='application/pdf')"""
-
 

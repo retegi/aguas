@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-white m-3" role="alert">
+  <div class="row">
+    <div class="col-lg-2 text-center">
+    </div>  
+    <div class="col-lg-8">
+        <h3 class="text-secondary">Detalle/resultado revisión Preventivo</h3>
+        <h1 class="mb-3">{{ preventive.id }} : {{ preventive.station_preventive.type_station.acronym }} {{ preventive.station_preventive }}</h1>
+            <table class="table table-sm table-hover mb-5">
+                <thead style="background-color:#eee;">
+                  <tr>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Detalle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Código/id</th>
+                    <td>{{ preventive.id }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Fecha comienzo|fin</th>
+                    <td>{{ preventive.startDatetime_preventive|date:"j/m/Y H:m" }} | {{ preventive.endDatetime_preventive|date:"j/m/Y H:m" }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Estación</th>
+                    <td><a href="{% url 'stations_app:detail_station' preventive.station_preventive.id %}">{{ preventive.station_preventive.type_station.acronym }} {{ preventive.station_preventive }}</a></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Estado revisión</th>
+                    <td>{{ preventive.status_preventive }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tiempo dedicado</th>
+                    <td>{{ preventive.totalEstimatedTime_preventive }} min</td>
+                  </tr>
+                  
+                  <tr>
+                    <th scope="row">Porcentaje revisado</th>
+                    <td><a href="">
+                      {% if preventive.revisionPorcentage_preventive == "100" %}
+                      <div class="progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: {{ preventive.revisionPorcentage_preventive }}%;" aria-valuenow="{{ preventive.revisionPorcentage_preventive }}" aria-valuemin="0" aria-valuemax="100">{{ preventive.revisionPorcentage_preventive }}%</div>
+                      </div>
+                      {% else %}
+                      <div class="progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: {{ preventive.revisionPorcentage_preventive }}%;" aria-valuenow="{{ preventive.revisionPorcentage_preventive }}" aria-valuemin="0" aria-valuemax="100">{{ preventive.revisionPorcentage_preventive }}%</div>
+                      </div>
+                      {% endif %}
+                      </a></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Observaciones</th>
+                    <td>{{ preventive.observations_preventive }}<br><br><br>
+                  </tr>
+
+                  <tr style="background-color:#63acff80"><th><label>AUTÓMATA/PLC</label></th></tr>
+                  <tr>
+                    <th scope="row">Revisión de LEDs de alarmas</th>
+                    <td>{{ preventive.get_autVisualInspectionOfAlarmLedStatus_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.autVisualInspectionOfAlarmLedStatusNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Baterías de LÍTIO</th>
+                    <td>{{ preventive.get_autLithiumBatteryStatus_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.autLithiumBatteryStatusNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Diagnóstico Hardware</th>
+                    <td>{{ preventive.get_autHardwareDiagnosis_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.autHardwareDiagnosisNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Estado DI AI en CC</th>
+                    <td>{{ preventive.get_autDIandAIinCCStatus_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.autDIandAIinCCStatusNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Revisión de Rx y Tx</th>
+                    <td>{{ preventive.get_autcheckRxTxOnCommunicationCards_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.autcheckRxTxOnCommunicationCardsNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+                  
+                  <tr style="background-color:#63acff80"><th><label>GENERAL</label></th></tr>
+                  <tr>
+                  <tr>
+                    <th scope="row">Ventilación y termostato</th>
+                    <td>{{ preventive.get_genventilationSystemAndThermostat_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.genventilationSystemAndThermostatNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Filtros de ventilación</th>
+                    <td>{{ preventive.get_gencleaningVentilationFilters_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.gencleaningVentilationFiltersNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Libre de corrosión</th>
+                    <td>{{ preventive.get_genfreeOfCorrosion_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.genfreeOfCorrosionNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Limpieza general</th>
+                    <td>{{ preventive.get_genelementCleaning_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.genelementCleaningNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Lista actualizada de señales</th>
+                    <td>{{ preventive.get_genupdatedSignalList_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.genupdatedSignalListNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+                  <tr style="background-color:#63acff80"><th><label>S.A.I.</label></th></tr>
+                  <tr>
+
+                  <tr>
+                    <th scope="row">Conectores y LEDs</th>
+                    <td>{{ preventive.get_saistatusOfConnectorsAndLEDs_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.saistatusOfConnectorsAndLEDsNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Entrada voltage consumo</th>
+                    <td>{{ preventive.saiinputVoltageMeasurement_preventive }}</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Entrada voltage consumo</th>
+                    <td>{{ preventive.saioutputVoltageToConsumption_preventive }}</td>
+                  </tr>
+                  
+                  <tr>
+                    <th scope="row">Baterías</th>
+                    <td>{{ preventive.get_saibatteryStatus_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.saibatteryStatusNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Estado LIMPIEZA S.A.I.</th>
+                    <td>{{ preventive.get_saicleaning_preventive_display }}</td>
+                  </tr>
+                  <tr>
+                    <td class="text-secondary pl-5" scope="row">Detalles</td>
+                    <td class="pl-5">{{ preventive.saicleaningNoOkDetail_preventive }}<br><br></td>
+                  </tr>
+
+          
+                  
+
+
+                </tbody>
+              </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,465 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js" integrity="sha512-jzL0FvPiDtXef2o2XZJWgaEpVAihqquZT/tT89qCVaxVuHwJ/1DFcJ+8TBMXplSJXE8gLbVAUv+Lj20qHpGx+A==" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+/*DETAILED PDF CREATOR*/
+  document.addEventListener("DOMContentLoaded", () => {
+  let divImagenes = document.getElementById("testDivDetailed");
+
+  /*for (let index = 0; index < 20; index++) {
+    let aleatory = Math.floor(Math.random() * 101);
+    let img = document.createElement("img");
+    img.src = `https://picsum.photos/id/${aleatory}/1200/1200`;
+    img.style.display = "block";
+    img.style.marginTop = "5px";
+    img.style.marginBottom = "5px";
+    img.style.width = "100%";
+    divImagenes.appendChild(img);
+  }*/
+});
+function genPDFdetailed() {
+  const { jsPDF } = window.jspdf;
+  html2canvas(document.getElementById("testDivDetailed"), {
+    useCORS: true,
+    onrendered: (canvas) => {
+      let doc = new jsPDF("p", "mm", "a4");
+
+      //Obtengo la dimensión en pixeles en base a la documentación
+      // https://github.com/MrRio/jsPDF/blob/ddbfc0f0250ca908f8061a72fa057116b7613e78/jspdf.js#L59
+      let a4Size = {
+        w: convertPointsToUnit(595.28, "px"),
+        h: convertPointsToUnit(841.89, "px")
+      };
+
+      let canvastoPrint = document.createElement("canvas");
+      let ctx = canvastoPrint.getContext("2d");
+            
+
+      canvastoPrint.width = a4Size.w;
+      canvastoPrint.height = a4Size.h;
+
+      // Como mi ancho es mas grande y lo redimencionare, tomo cuanto corresponde esos 595 de el total de mi imagen
+      let aspectRatioA4 = a4Size.w / a4Size.h;
+      let rezised = canvas.width / aspectRatioA4;
+
+      let printed = 0,
+        page = 0;
+      while (printed < canvas.height) {
+        //Tomo la imagen en proporcion a el ancho y alto.
+        ctx.drawImage(
+          canvas,
+          0,
+          printed,
+          canvas.width,
+          rezised,
+          0,
+          0,
+          a4Size.w,
+          a4Size.h
+        );
+        var imgtoPdf = canvastoPrint.toDataURL("image/png");
+        let width = doc.internal.pageSize.getWidth();
+        let height = doc.internal.pageSize.getHeight();
+        if (page == 0) {
+          // si es la primera pagina, va directo a doc
+          doc.addImage(imgtoPdf, "JPEG", 0, 0, width, height);
+        } else {
+          // Si no ya tengo que agregar nueva hoja.
+          let page = doc.addPage();
+          page.addImage(imgtoPdf, "JPEG", 0, 0, width, height);
+        }
+        ctx.clearRect(0, 0, canvastoPrint.width, canvastoPrint.height); // Borro el canvas
+        printed += rezised; //actualizo lo que ya imprimi
+        page++; // actualizo mi pagina
+      }
+
+      doc.save("Informe_mantenimiento_preventivo_resumido.pdf");
+    }
+  });
+
+  function convertPointsToUnit(points, unit) {
+    // Unit table from https://github.com/MrRio/jsPDF/blob/ddbfc0f0250ca908f8061a72fa057116b7613e78/jspdf.js#L791
+    var multiplier;
+    switch (unit) {
+      case "pt":
+        multiplier = 1;
+        break;
+      case "mm":
+        multiplier = 72 / 25.4;
+        break;
+      case "cm":
+        multiplier = 72 / 2.54;
+        break;
+      case "in":
+        multiplier = 72;
+        break;
+      case "px":
+        multiplier = 96 / 72;
+        break;
+      case "pc":
+        multiplier = 12;
+        break;
+      case "em":
+        multiplier = 12;
+        break;
+      case "ex":
+        multiplier = 6;
+      default:
+        throw "Invalid unit: " + unit;
+    }
+    return points * multiplier;
+  }
+}
+
+
+
+
+
+</script>
+
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js" integrity="sha512-jzL0FvPiDtXef2o2XZJWgaEpVAihqquZT/tT89qCVaxVuHwJ/1DFcJ+8TBMXplSJXE8gLbVAUv+Lj20qHpGx+A==" crossorigin="anonymous"></script>
+    <!--FILTER FORM-->
+    <div class="row">
+        <div class="col-lg-12 col-md-8">
+            <div class="text-right">
+                <button class="btn btn-sm btn-dark" onclick="genPDFdetailed();">Descargar en PDF resumido</button>
+            </div>
+        </div>
+    </div>
+
+<div class="container p-5" id="testDivDetailed">
+
+    <!--LOGO-->
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+          
+          <div style="background-color:#0136a8" class="alert alert-primary text-white" role="alert">
+              <img style="height:50px;" src="{% static 'img/logo_ayunta_blanco.png' %}">
+
+          </div>
+      </div>    
+  </div>
+    <!--TITLE-->
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            
+            <div style="" class="text-center" role="alert">
+                <h2 class="text-dark">Estadística Mantenimiento Preventivo</h2>
+                <h4 class="text-secondary">Compañia contratada: {{ name_contractedCompanyPrevent }}</h4>
+
+            </div>
+        </div>    
+    </div>
+    
+    <!--TABLE AND doughnut CHART-->
+    <div class="row pt-5">
+        <div class="col-lg-6 col-md-6 p-4">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Dato</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Objetivo preventivos/año</th>
+                        <td class="">
+                            {% for contractNumPreventives in contractNumPreventives %}
+                                <b>{{ contractNumPreventives }}</b>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total preventivos realizados 2020:</th>
+                        <td class="">
+                            {% for total in total %}
+                                {{ total }} 
+                            {% endfor %}<b>/ </b>
+                            
+                            {% for contractNumPreventives in contractNumPreventives %}
+                                <b>{{ contractNumPreventives }}</b>
+                            {% endfor %}
+                                    
+                                        <br>
+                            
+                        </td>
+                    </tr>
+                
+                  </tr>
+                </tbody>
+              </table>
+
+        </div>
+    
+       
+            
+
+
+        <div class="col-lg-6 col-md-6">
+            <canvas id="myChart2" width="400" height="200"></canvas>
+
+
+                    <script>
+                    var ctx = document.getElementById('myChart2').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Preventivo Realizado', 'Preventivo Pendiente'],
+                            datasets: [{
+                                label: 'Preventivos',
+                                data: [
+                                    {% for total in total %}
+                                        {{ total }} 
+                                    {% endfor %},
+                                    
+                                    {{ differenceUntilComplete }}
+                                    ],
+                                steppedLine: true,
+                                backgroundColor: [
+                                    
+                                    'rgba(54, 162, 235, 0.5)',
+                                    'rgba(255, 99, 132, 0.5)',
+                                    
+                                ],
+                                borderColor: [
+                                    
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                    </script>
+        </div>
+
+    </div>
+
+        
+
+
+    
+    <!-- ANNUAL BAR CHART -->
+
+    <div class="row pt-5">
+        <div class="col-lg-12">
+            <canvas id="myChart" width="400" height="100"></canvas>
+
+
+                                    <script>
+                                    var ctx = document.getElementById('myChart').getContext('2d');
+                                    var myChart = new Chart(ctx, {
+                                        type: 'bar',
+                                        data: {
+                                            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                                            datasets: [{
+                                                label: 'Despliegue mensual de preventivos realizados',
+                                                data: [
+                                                    {% for january in january %}
+                                                    {{ january }}
+                                                    {% endfor %},
+
+                                                    {% for february in february %}
+                                                    {{ february }}
+                                                    {% endfor %},
+
+                                                    {% for march in march %}
+                                                    {{ march }}
+                                                    {% endfor %},
+
+                                                    {% for april in april %}
+                                                    {{ april }}
+                                                    {% endfor %},
+
+                                                    {% for may in may %}
+                                                    {{ may }}
+                                                    {% endfor %},
+
+                                                    {% for june in june %}
+                                                    {{ june }}
+                                                    {% endfor %},
+
+                                                    {% for july in july %}
+                                                    {{ july }}
+                                                    {% endfor %},
+
+                                                    {% for august in august %}
+                                                    {{ august }}
+                                                    {% endfor %},
+
+                                                    {% for september in september %}
+                                                    {{ september }}
+                                                    {% endfor %},
+
+                                                    {% for october in october %}
+                                                    {{ october }}
+                                                    {% endfor %},
+
+                                                    {% for november in november %}
+                                                    {{ november }}
+                                                    {% endfor %},
+
+                                                    {% for december in december %}
+                                                    {{ december }}
+                                                    {% endfor %},
+                                                    
+                                                    
+                                                    ],
+                                                steppedLine: true,
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.5)',
+                                                    'rgba(54, 162, 235, 0.5)',
+                                                    'rgba(255, 206, 86, 0.5)',
+                                                    'rgba(75, 192, 192, 0.5)',
+                                                    'rgba(153, 102, 255, 0.5)',
+                                                    'rgba(255, 159, 64, 0.5)',
+                                                    'rgba(255, 99, 132, 0.5)',
+                                                    'rgba(54, 162, 235, 0.5)',
+                                                    'rgba(54, 162, 235, 0.5)',
+                                                    'rgba(75, 192, 192, 0.5)',
+                                                    'rgba(153, 102, 255, 0.5)',
+                                                    'rgba(255, 159, 64, 0.5)',
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(255, 206, 86, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)',
+                                                    'rgba(255, 159, 64, 1)',
+                                                    'rgba(255, 99, 132, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)',
+                                                    'rgba(255, 159, 64, 1)',
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: true,
+                                                    }
+                                                }]
+                                            }
+                                        }
+                                    });
+                                    </script>
+        </div>
+    </div>
+
+
+    <!-- TABLE WITH FINISHED STATIONS-->
+    <div class="row mt-5 mb-5">
+
+        <div class="col-lg-12 col-md-12 mb-5">
+            
+            <div style="background-color:rgba(54, 162, 235, 0.5)" class="alert alert-primary text-white" role="alert">
+                <h2 class="text-dark">Estaciones con mantenimiento preventivo REALIZADO</h2>
+
+            </div>
+        </div> 
+
+        <div class="col-lg-12 col-md-12">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Estación</th>
+                    <th scope="col">Fecha comienzo</th>
+                    <th scope="col">Fecha finalización</th>
+                    <th scope="col">Tiempo dedicado</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for preventives in preventives %}
+                <tr>    
+                        <td><a target=_blank href="{% url 'preventive_app:detail_preventive' preventives.id %}"><button class="btn btn-sm btn-primary">{{ preventives.id }}</button></a></td>
+                        <td>{{ preventives.station_preventive.id }} {{ preventives.station_preventive.type_station.acronym }} {{ preventives.station_preventive.name_station }}</td>
+                        <td>{{ preventives.startDatetime_preventive|date:"d/m/Y" }}</td>
+                        <td>{{ preventives.endDatetime_preventive|date:"d/m/Y" }}</td>
+                        <td>{{ preventives.totalEstimatedTime_preventive }} min</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+
+
+        </div>
+
+    </div>
+
+
+    <!-- TABLE WITH NOT FINISHED STATIONS-->
+    <div class="row mt-5 mb-5">
+
+        <div class="col-lg-12 col-md-12 mb-5">
+            
+            <div style="background-color:'rgba(255, 99, 132, 0.5)';" class="alert alert-primary text-white" role="alert">
+                <h2 class="text-dark">Estaciones con mantenimiento preventivo PENDIENTE</h2>
+
+            </div>
+        </div> 
+
+        <div class="col-lg-12 col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Estación</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for notReviewedStations in notReviewedStations %}
+                    <tr>    
+                            <td>{{ notReviewedStations.type_station.acronym }} {{ notReviewedStations.name_station }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    
+
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style type="text/css">
+    body {
+        font-size: 11px;
+    }
+    .header {
+        font-size: 20px;
+        font-weight: 100;
+        text-align: center;
+        color: #007cae;
+    }
+    .title {
+        font-size: 22px;
+        font-weight: 100;
+       /* text-align: right;*/
+       padding: 10px 20px 0px 20px;  
+    }
+    .title span {
+        color: #007cae;
+    }
+    .details {
+        padding: 10px 20px 0px 20px;
+        text-align: left !important;
+        /*margin-left: 40%;*/
+    }
+    .hrItem {
+        border: none;
+        height: 1px;
+        /* Set the hr color */
+        color: #333; /* old IE */
+        background-color: #fff; /* Modern Browsers */
+    }
+</style>
+</head>
+<body>
+    <img src="{% static 'img/logo_ayunta.png' %}">
+    <img style="width:200px" src="data:image/png;base64,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">
+<h1 style="text-align: center;">LISTA INCIDENCIAS</h1>
+
+    <table style="border: 1px solid black" id="canvas">
+        <thead>
+          <tr style="background-color:#cccccc">
+            <th style="text-align:center; padding:1px;width:5%">Nº</th>
+            <th style="text-align:center; padding:1px;">Estación</th>
+            <th style="text-align:center; padding:1px;">Area</th>
+            <th style="text-align:center; padding:1px;">Fecha Incidencia</th>
+            <th style="text-align:center; padding:1px;">Tipo Incidencia</th>
+            <th style="text-align:center; padding:1px;">¿Solucionado?</th>
+            <th style="text-align:center; padding:1px;">Observaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for incidencia in incidencias %}
+          <tr>
+            <td style="text-align:left; padding:1px;">{{ incidencia.id }}</td>
+            <td style="text-align:left; padding:1px;">{{ incidencia.estacion }}</td>
+            <td style="text-align:left; padding:1px;">{{ incidencia.estacion.get_area_display }}</td>
+            <td style="text-align:left; padding:1px;">{{ incidencia.fecha_incidencia }}</td>
+            <td style="text-align:left; padding:1px;">{{ incidencia.get_tipo_incidencia_display }}</td>
+            <td style="text-align:left; padding:1px;" name="solucionado">{{ incidencia.get_solucionado_display }}</td>
+            <td style="text-align:left; padding:1px;"><p>{{ incidencia.observaciones }}</p></td>
+            
+          </tr>
+          {% endfor %} 
+        </tbody>
+      </table>
+
+    </body>
+    </html>
+
+
+
+
+

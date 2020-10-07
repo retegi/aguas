@@ -36,6 +36,7 @@ DJANGO_APPS = (
 )
 
 LOCAL_APPS = (
+    'bootstrap_datepicker_plus',
     'applications.home',
     'applications.users',
     'applications.station',
@@ -45,7 +46,12 @@ LOCAL_APPS = (
     'applications.incidence',
     'applications.repair',
     'applications.map',
+    'applications.preventive',
 )
+
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 
 THIRD_PARTY_APPS = ()
 

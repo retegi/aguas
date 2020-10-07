@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="offset-lg-0 col-2"></div>
+  
+        <div class="col-lg-12 col-md-8">
+  
+            <div style="background-color:#c7f4cb;" class="alert alert-success m-3" role="alert">
+                <h3 class="text-dark">Crear Mantenimiento Preventivo</h3>
+<form method="POST">{% csrf_token %}
+    {{ form.as_p}}
+    <button class="form-control btn-primary mb-5" type="submit">Guardar</button>
+</form>
+</div>
+
+</div>
+
+<div class="offser-lg-0 col-2"></div>
+
+
+</div>
+</div>
+
+
+<script>
+
+    //autVisualInspectionOfAlarmLedStatus_preventive
+    Func_autVisualInspectionOfAlarmLedStatus_preventive();
+    function Func_autVisualInspectionOfAlarmLedStatus_preventive(){
+        var elem = document.getElementById("autVisualInspectionOfAlarmLedStatus_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("autVisualInspectionOfAlarmLedStatusNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='autVisualInspectionOfAlarmLedStatusNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("autVisualInspectionOfAlarmLedStatusNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='autVisualInspectionOfAlarmLedStatusNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+//autLithiumBatteryStatus_preventive
+Func_autLithiumBatteryStatus_preventive();
+    function Func_autLithiumBatteryStatus_preventive(){
+        var elem = document.getElementById("autLithiumBatteryStatus_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("autLithiumBatteryStatusNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='autLithiumBatteryStatusNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("autLithiumBatteryStatusNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='autLithiumBatteryStatusNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+//autHardwareDiagnosis_preventive
+Func_autHardwareDiagnosis_preventive();
+    function Func_autHardwareDiagnosis_preventive(){
+        var elem = document.getElementById("autHardwareDiagnosis_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("autHardwareDiagnosisNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='autHardwareDiagnosisNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("autHardwareDiagnosisNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='autHardwareDiagnosisNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+    //autDIandAIinCCStatus_preventive
+    Func_autDIandAIinCCStatus_preventive();
+    function Func_autDIandAIinCCStatus_preventive(){
+        var elem = document.getElementById("autDIandAIinCCStatus_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("autDIandAIinCCStatusNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='autDIandAIinCCStatusNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("autDIandAIinCCStatusNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='autDIandAIinCCStatusNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+
+    //autcheckRxTxOnCommunicationCards_preventive
+    Func_autcheckRxTxOnCommunicationCards_preventive();
+    function Func_autcheckRxTxOnCommunicationCards_preventive(){
+        var elem = document.getElementById("autcheckRxTxOnCommunicationCards_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("autcheckRxTxOnCommunicationCardsNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='autcheckRxTxOnCommunicationCardsNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("autcheckRxTxOnCommunicationCardsNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='autcheckRxTxOnCommunicationCardsNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+
+    //genventilationSystemAndThermostat_preventive
+    Func_genventilationSystemAndThermostat_preventive();
+    function Func_genventilationSystemAndThermostat_preventive(){
+        var elem = document.getElementById("genventilationSystemAndThermostat_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("genventilationSystemAndThermostatNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='genventilationSystemAndThermostatNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("genventilationSystemAndThermostatNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='genventilationSystemAndThermostatNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+
+    //genventilationSystemAndThermostat_preventive
+    Func_gencleaningVentilationFilters_preventive();
+    function Func_gencleaningVentilationFilters_preventive(){
+        var elem = document.getElementById("gencleaningVentilationFilters_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("gencleaningVentilationFiltersNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='gencleaningVentilationFiltersNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("gencleaningVentilationFiltersNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='gencleaningVentilationFiltersNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+    //genfreeOfCorrosion_preventive
+    Func_genfreeOfCorrosion_preventive();
+    function Func_genfreeOfCorrosion_preventive(){
+        var elem = document.getElementById("genfreeOfCorrosion_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("genfreeOfCorrosionNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='genfreeOfCorrosionNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("genfreeOfCorrosionNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='genfreeOfCorrosionNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+
+    //genelementCleaning_preventive
+    Func_genelementCleaning_preventive();
+    function Func_genelementCleaning_preventive(){
+        var elem = document.getElementById("genelementCleaning_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("genelementCleaningNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='genelementCleaningNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("genelementCleaningNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='genelementCleaningNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+    //genupdatedSignalList_preventive
+    Func_genupdatedSignalList_preventive();
+    function Func_genupdatedSignalList_preventive(){
+        var elem = document.getElementById("genupdatedSignalList_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("genupdatedSignalListNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='genupdatedSignalListNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("genupdatedSignalListNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='genupdatedSignalListNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+    //saistatusOfConnectorsAndLEDs_preventive
+    Func_saistatusOfConnectorsAndLEDs_preventive();
+    function Func_saistatusOfConnectorsAndLEDs_preventive(){
+        var elem = document.getElementById("saistatusOfConnectorsAndLEDs_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("saistatusOfConnectorsAndLEDsNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='saistatusOfConnectorsAndLEDsNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("saistatusOfConnectorsAndLEDsNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='saistatusOfConnectorsAndLEDsNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+
+    //saibatteryStatus_preventive
+    Func_saibatteryStatus_preventive();
+    function Func_saibatteryStatus_preventive(){
+        var elem = document.getElementById("saibatteryStatus_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("saibatteryStatusNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='saibatteryStatusNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("saibatteryStatusNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='saibatteryStatusNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+
+    //saibatteryStatus_preventive
+    Func_saicleaning_preventive();
+    function Func_saicleaning_preventive(){
+        var elem = document.getElementById("saicleaning_preventive");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="No OK"){
+            document.getElementById("saicleaningNoOkDetail_preventive").style.display = "block";
+            document.querySelector("label[for='saicleaningNoOkDetail_preventive']").style.display = "block";
+        }
+        else{
+            document.getElementById("saicleaningNoOkDetail_preventive").style.display = "none";
+            document.querySelector("label[for='saicleaningNoOkDetail_preventive']").style.display = "none";
+        }  
+    }
+
+
+
+
+
+
+</script>
+{% endblock %}

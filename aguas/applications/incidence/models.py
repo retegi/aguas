@@ -35,7 +35,7 @@ class UrgencyLevelIncidence(models.Model):
     class Meta:
         verbose_name = 'Nivel de urgencia'
         verbose_name_plural = 'Niveles de urgencia'
-        ordering = ['name']
+        ordering = ['-id']
 
     def __str__(self):
         return str(self.name)

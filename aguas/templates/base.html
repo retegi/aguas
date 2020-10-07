@@ -101,6 +101,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown07XL">
           <a class="dropdown-item" href="{% url 'incidences_app:list_incidence' %}">Incidencias</a>
           <a class="dropdown-item" href="{% url 'repairs_app:list_repair' %}">Reparaciones</a>
+          <a class="dropdown-item" href="">Estadística detallada</a>
         </div>
       </li>
       <!--<li class="nav-item">
@@ -108,9 +109,20 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'repairs_app:list_repair' %}">Reparaciones</a>
-      </li>-->
+      </li>
       <li class="nav-item">
-        <a class="nav-link" onclick="enDesarrollo()" href="">Mant.Preventivo</a>
+        <a class="nav-link" onclick="" href="{% url 'preventive_app:list_preventive' %}">Mant.Preventivo</a>
+      </li>-->
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="{% url 'preventive_app:list_preventive' %}" id="dropdown07XL" data-toggle="dropdown" aria-expanded="false">Mant.Preventivo</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown07XL">
+          <a class="dropdown-item" href="{% url 'preventive_app:list_preventive' %}">Lista Mant.Preventivo</a>
+          <a class="dropdown-item" href="{% url 'preventive_app:map_preventive' %}">Mapa preventivos</a>
+          <a class="dropdown-item" href="{% url 'preventive_app:statistics_preventive_simplified' %}">Informe estadística preventivo RESUMIDO</a>
+          <a class="dropdown-item" href="{% url 'preventive_app:statistics_preventive_detailed' %}">Informe estadística preventivo DETALLADO</a>
+          
+        </div>
       </li>
 
       <script>

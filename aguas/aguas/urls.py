@@ -14,4 +14,5 @@ urlpatterns = [
     re_path('incidence/', include('applications.incidence.urls')),
     re_path('repair/', include('applications.repair.urls')),
     re_path('map/', include('applications.map.urls')),
+    re_path('preventive/', include('applications.preventive.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

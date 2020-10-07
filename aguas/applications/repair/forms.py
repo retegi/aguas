@@ -8,7 +8,7 @@ class AddRepairForm(forms.ModelForm):
         fields = ('__all__')
     def __init__(self, *args, **kwargs):
         super(AddRepairForm, self).__init__(*args, **kwargs)
-        self.fields['datetime_repair'].widget.attrs.update({'class': 'form-control'})
+        self.fields['datetime_repair'].widget.attrs.update({'class': 'form-control', 'type':'date'})
         self.fields['affectedDevice_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['typeFailure_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['typeRepair_repair'].widget.attrs.update({'class': 'form-control'})
