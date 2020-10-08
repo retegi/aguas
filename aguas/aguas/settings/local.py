@@ -7,7 +7,7 @@ DEBUG = True
 """DEBUG = False"""
 
 #Local
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 #Docker
 """ALLOWED_HOSTS = ['retegi.eus']"""
 
