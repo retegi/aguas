@@ -21,7 +21,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse
 
-class PreventiveList(ListView):
+class PreventiveList(LoginRequiredMixin,ListView):
     model = Preventive
     template_name = 'preventive/list_preventive.html'
     def get_queryset(self):
@@ -61,7 +61,7 @@ class PreventiveDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView
     login_url = reverse_lazy('users_app:user-login')
 
 class PreventiveDetailedStatisticsListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
-    permission_required = 'preventive.statistics_preventive'
+    permission_required = 'preventive.list_preventive'
     model = Preventive
     template_name = "preventive/statistics_preventive_detailed.html"
     login_url = reverse_lazy('users_app:user-login')
@@ -100,7 +100,7 @@ class PreventiveDetailedStatisticsListView(LoginRequiredMixin,PermissionRequired
         return context
 
 class PreventiveSimplifiedStatisticsListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
-    permission_required = 'preventive.statistics_preventive'
+    permission_required = 'preventive.list_preventive'
     model = Preventive
     template_name = "preventive/statistics_preventive_simplified.html"
     login_url = reverse_lazy('users_app:user-login')
@@ -140,7 +140,7 @@ class PreventiveSimplifiedStatisticsListView(LoginRequiredMixin,PermissionRequir
 
 
 class PreventiveMapListView(LoginRequiredMixin,PermissionRequiredMixin,ListView):
-    permission_required = 'preventive.statistics_preventive'
+    permission_required = 'preventive.list_preventive'
     model = Preventive
     template_name = "preventive/map_preventive.html"
     login_url = reverse_lazy('users_app:user-login')
