@@ -15,4 +15,5 @@ urlpatterns = [
     re_path('repair/', include('applications.repair.urls')),
     re_path('map/', include('applications.map.urls')),
     re_path('preventive/', include('applications.preventive.urls')),
+    re_path('requirement/', include('applications.administrativeRequirement.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.utils import timezone
 from .models import Incidence
+from applications.station.models import Station
+from applications.map.models import Map
 from django.views.generic import (
     ListView,
     CreateView,
@@ -11,6 +13,9 @@ from django.views.generic import (
     View
 )
 from .forms import AddIncidenceForm
+from .forms import UpdateIncidenceForm
+
+from django.urls import reverse_lazy, reverse
 
 #PARA IMPRIMIR EN PDF:
 from django.conf import settings
@@ -56,16 +61,11 @@ class IncidenceDetailView(LoginRequiredMixin,DetailView):
 
 class IncidenceUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     permission_required = 'incidence.update_incidence'
-    model = Incidence
-    fields = [
-            'typeIncidence_incidence',
-            'station_incidence',
-            'datetime_incidence',
-            'observations_incidence',
-            'statusIncidence_incidence',
-            ]
-    success_url = '/incidence/'
     template_name = "incidence/update_incidence.html"
+    model = Incidence
+    form_class = UpdateIncidenceForm
+    success_url = '/incidence/'
+    login_url = reverse_lazy('users_app:user-login')
 
 class IncidenceDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView):
     permission_required = 'incidence.delete_incidence'
@@ -107,5 +107,40 @@ def some_view(pdf):
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='incidencias.pdf')
 
+class IncidenceMapListView(LoginRequiredMixin,ListView):
+    permission_required = 'preventive.list_preventive'
+    model = Incidence
+    template_name = "incidence/map_incidence.html"
+    login_url = reverse_lazy('users_app:user-login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['incidences'] = self.model.objects.exclude(statusIncidence_incidence__name='Reparado')
+        #context['incidences'] = self.model.objects.all()
+        context['totalCalc'] = int(self.model.objects.all().count())
+        context['total'] = str(self.model.objects.all().count())
+        context['january'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='1').count())
+        context['february'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='2').count())
+        context['march'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='3').count())
+        context['april'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='4').count())
+        context['may'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='5').count())
+        context['june'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='6').count())
+        context['july'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='7').count())
+        context['august'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='8').count())
+        context['september'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='9').count())
+        context['october'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='10').count())
+        context['november'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='11').count())
+        context['december'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='12').count())
+        #context['contractNumRepairs'] = str(ContractRepair.objects.first())
+        #context['name_contractedCompanyRepair'] = ContractedCompanyRepair.objects.first().name_contractedCompanyRepair
+        #context['contractNumRepairsCalc'] = ContractRepair.objects.first().annualRepairContract_ContractRepair
+        #context['differenceUntilComplete'] = context['contractNumRepairsCalc']-context['totalCalc']
+        #reviewedStationsIds = self.model.objects.all().values_list('incidence_repair__station_incidence',flat=True).distinct()
+        #context['reviewedStationsIds'] = self.model.objects.all().values_list('station_repair',flat=True).distinct()
+        #repairedStationsIds = self.model.objects.all().distinct().values_list('station_repair',flat=True)
+        #context['notRepairedStations'] = Station.objects.exclude(id__in=reviewedStationsIds)
+        #context['incidences'] = Incidence.objects.all()
+        context['map'] = Map.objects.all()
+        return context
 
 

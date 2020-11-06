@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Repair
-from .models import Incidence
+from .models import ContractedCompanyRepair
+from applications.incidence.models import Incidence
+from applications.station.models import Station
+from applications.map.models import Map
 from django.views.generic import (
     ListView,
     CreateView,
@@ -10,9 +13,12 @@ from django.views.generic import (
     DeleteView,
 )
 from .forms import AddRepairForm
+from .forms import UpdateRepairForm
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 
 class RepairListView(ListView):
     model = Repair
@@ -52,18 +58,13 @@ class RepairDetailView(DetailView):
     model = Repair
     template_name = "repair/detail_repair.html"
 
-class RepairUpdateView(UpdateView):
-    model = Repair
-    fields = [
-            'incidence_repair',
-            'affectedDevice_repair',
-            'datetime_repair',
-            'statusAfterRepair_repair',
-            'summary_repair',
-            'detail_repair',
-            ]
-    success_url = '/repair/'
+class RepairUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
+    permission_required = 'repair.update_repair'
     template_name = "repair/update_repair.html"
+    model = Repair
+    form_class = UpdateRepairForm
+    success_url = '/repair/'
+    login_url = reverse_lazy('users_app:user-login')
 
 class RepairDeleteView(DeleteView):
     model = Repair

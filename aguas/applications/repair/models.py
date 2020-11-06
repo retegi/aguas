@@ -2,7 +2,6 @@ from django.db import models
 from applications.device.models import Device
 from applications.consumable.models import Consumable
 from applications.incidence.models import Incidence
-#from simple_history.models import HistoricalRecords
 
 
 class TypeRepair(models.Model):
@@ -39,9 +38,22 @@ class StatusAfterRepair(models.Model):
     def __str__(self):
         return self.name
 
+"""class RepairForecast(models.Model):
+    date_RF = models.DateTimeField('Fecha prevista reparación',null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Fecha prevista reparación'
+        verbose_name_plural = 'Fecha prevista reparaciones'
+        ordering = ['date_RF']
+    
+    def __str__(self):
+        return self.date_RF"""
+
+
 # Create your models here.
 class Repair(models.Model):
-    datetime_repair = models.DateTimeField ('Fecha actuación',null=True, blank=True)
+    startDatetime_repair = models.DateTimeField ('Fecha comienzo reparación',null=True, blank=True)
+    endDatetime_repair = models.DateTimeField ('Fecha finalización reparación',null=True, blank=True)
     incidence_repair = models.ForeignKey(Incidence, related_name="incidencia_repair",on_delete=models.CASCADE,null=True, blank=True)
     affectedDevice_repair = models.ForeignKey(Device, related_name="affectedDevice_repair",on_delete=models.CASCADE,null=True, blank=True)
     typeFailure_repair = models.ForeignKey(TypeFailure, related_name="typeFailure_repair",on_delete=models.CASCADE,null=True, blank=True)
@@ -54,7 +66,6 @@ class Repair(models.Model):
     summary_repair = models.TextField('Resumen',null=True, blank=True)
     detail_repair = models.TextField('Detalles',null=True, blank=True)
 
-
     class meta:
         verbose_name = 'Reparación'
         verbose_name_plural = 'Reparaciones'
@@ -63,5 +74,14 @@ class Repair(models.Model):
         return self.summary_repair
 
 
+class ContractedCompanyRepair(models.Model):
+    name_contractedCompanyRepair = models.CharField('Nombre empresa contratada Mant Correctivo', max_length=40, null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'Empresa contratada mantenimiento correctivo'
+        verbose_name_plural = 'Empresas contratadas mantenimiento correctivo'
+        ordering = ['name_contractedCompanyRepair']
+
+    def __str__(self):
+        return str(self.name_contractedCompanyRepair)
 

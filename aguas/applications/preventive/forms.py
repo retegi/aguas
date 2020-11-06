@@ -12,6 +12,8 @@ class AddPreventiveForm(forms.ModelForm):
         #self.fields['code_preventive'].widget.attrs.update({'class': 'form-control'})
         self.fields['startDatetime_preventive'].widget.attrs.update({'class': 'form-control'})
         self.fields['station_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['employee_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         
         #PLC - IF "No OK show textarea"
         #autVisualInspectionOfAlarmLedStatus_preventive
@@ -94,31 +96,58 @@ class UpdatePreventiveForm(forms.ModelForm):
         #self.fields['code_preventive'].widget.attrs.update({'class': 'form-control'})
         self.fields['startDatetime_preventive'].widget.attrs.update({'class': 'form-control'})
         self.fields['station_preventive'].widget.attrs.update({'class': 'form-control'})
-        
+        self.fields['employee_preventive'].widget.attrs.update({'class': 'form-control'})
         #Preventive Questions
         #AUTOMATAS
         self.fields['autVisualInspectionOfAlarmLedStatus_preventive'].widget.attrs.update({'class': 'form-control','id':'autVisualInspectionOfAlarmLedStatus_preventive'})
+        self.fields['autVisualInspectionOfAlarmLedStatusNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control','id':'autVisualInspectionOfAlarmLedStatus_preventive'})
+        
         self.fields['autLithiumBatteryStatus_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['autLithiumBatteryStatusNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+
         self.fields['autHardwareDiagnosis_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['autHardwareDiagnosisNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['autDIandAIinCCStatus_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['autDIandAIinCCStatusNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['autcheckRxTxOnCommunicationCards_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['autcheckRxTxOnCommunicationCardsNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
         #GENERAL
         self.fields['genventilationSystemAndThermostat_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['genventilationSystemAndThermostatNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['gencleaningVentilationFilters_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['gencleaningVentilationFiltersNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['genfreeOfCorrosion_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['genfreeOfCorrosionNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['genelementCleaning_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['genelementCleaningNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['genupdatedSignalList_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['genupdatedSignalListNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
         #SAI
         self.fields['saistatusOfConnectorsAndLEDs_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['saistatusOfConnectorsAndLEDsNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['saiinputVoltageMeasurement_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['saioutputVoltageToConsumption_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['saibatteryStatus_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['saibatteryStatusNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         self.fields['saicleaning_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['saicleaningNoOkDetail_preventive'].widget.attrs.update({'class': 'form-control'})
+        
         #/Preventive Questions
 
         #VARIOUS2
         self.fields['status_preventive'].widget.attrs.update({'class': 'form-control'})
         self.fields['endDatetime_preventive'].widget.attrs.update({'class': 'form-control'})
         self.fields['revisionPorcentage_preventive'].widget.attrs.update({'class': 'form-control'})
+        self.fields['totalEstimatedTime_preventive'].widget.attrs.update({'class': 'form-control'})
         self.fields['observations_preventive'].widget.attrs.update({'class': 'form-control'})
         

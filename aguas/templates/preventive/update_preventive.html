@@ -8,15 +8,26 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="offset-lg-0 col-2"></div>
+  
+        <div class="col-lg-12 col-md-8">
+            <div style="background-color:#c7f4cb;" class="alert alert-success m-3" role="alert">
+                <h3 class="text-primary">Editar Preventivo</h3>
+                <h1 class="mb-3">{{ preventive.id }} : {{ preventive.station_preventive.type_station.acronym }} {{ preventive.station_preventive }}</h1>
+                <form class="" method="POST">{% csrf_token %}
 
-        <h3 class="text-primary mb-5">Editar Preventivo</h3>
+                    {{ form.as_p}}
 
-        <form class="" method="POST">{% csrf_token %}
+                    <button class="form-control btn-primary mb-5" type="submit">Actualizar</button>
 
-            {{ form.as_p}}
+                </form>
+            </div>
+        </div>
 
-            <button class="form-control btn-primary mb-5" type="submit">Actualizar</button>
-
-        </form>
+        <div class="offser-lg-0 col-2"></div>
+    </div>
+</div>
 
 {% endblock %}

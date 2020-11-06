@@ -54,6 +54,7 @@
             <th scope="col">Fecha Incidencia</th>
             <th scope="col">Incidencia</th>
             <th scope="col">Nivel urgencia</th>
+            <th scope="col">Previsión reparación</th>
             <th scope="col">Estado actual</th>
             <th scope="col">Ver reparaciones</th>
             <th scope="col">Opciones</th>
@@ -61,6 +62,7 @@
         </thead>
         <tbody>
         {% for incidence in object_list %}
+        <h1>{{incidence.station_incidence.date_RP}}</h1>
           <tr>
             <td><a href="{% url 'incidences_app:detail_incidence' incidence.id %}"><button class="btn btn-primary btn-sm w-50">{{ incidence.id }}</button></a></td>
             <td><a href="{% url 'stations_app:detail_station' incidence.station_incidence.id %}">{{ incidence.station_incidence }}</a></td>
@@ -68,6 +70,7 @@
             <td>{{ incidence.datetime_incidence|date:'d/m/Y' }}</td>
             <td><button class="btn btn-sm" style="background-color:{{ incidence.typeIncidence_incidence.color_html_background }}">{{ incidence.typeIncidence_incidence.name }}</button></td>
             <td><button title="{{ incidence.urgencyLevel_incidence.meaning }}" class="btn rounded btn-sm" style="background-color:{{ incidence.urgencyLevel_incidence.color_html_background }}">{{ incidence.urgencyLevel_incidence.name }}</button></td>
+            <td>{{ incidence.repairForecast_incidence|date:'d/m/Y' }} ({{ incidence.companyRepair_incidence }})</td>
             <td><button class="btn btn-sm" style="background-color:{{ incidence.statusIncidence_incidence.color_html_background }}">{{ incidence.statusIncidence_incidence.name }}</button></td>
             
             

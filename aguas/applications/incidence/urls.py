@@ -28,5 +28,10 @@ urlpatterns = [
         'delete_incidence/<pk>/',
         views.IncidenceDeleteView.as_view(),
         name='delete_incidence'
-    )
+    ),
+    path(
+        'map_incidence',
+        views.IncidenceMapListView.as_view(),
+        name='map_incidence'
+    ),
 ]

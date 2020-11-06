@@ -1,6 +1,8 @@
 from django.db import models
 from applications.station.models import Station
 from applications.station.models import StatusStation
+from applications.employee.models import Employee
+from applications.company.models import Company
 
 class RevisionPorcentage(models.Model):
     num_revisionPorcentage = models.CharField('Porcentage', max_length=30)
@@ -27,14 +29,8 @@ class StatusPreventive(models.Model):
 class Preventive(models.Model):
     #code_preventive = models.CharField('Código preventive', max_length=10)
     startDatetime_preventive = models.DateTimeField ('FechaComienzo Preventivo',null=True, blank=True)
-    
     station_preventive = models.ForeignKey(Station, on_delete=models.CASCADE,null=True, blank=True)
-    
-
-
-    #Preventive Questions
-    #PLC
-    #autVisualInspectionOfAlarmLedStatus_preventive
+    employee_preventive = models.ManyToManyField(Employee, related_name="preventives")
     AlarmLedStatus_CHOICES = ( 
         ("1","OK"), 
         ("2","No OK"),
@@ -78,11 +74,6 @@ class Preventive(models.Model):
     )
     autcheckRxTxOnCommunicationCards_preventive = models.CharField('Comprobar Rx yTx en tarjetas de comunicaciones', max_length=40, choices = CheckRxTxOnCommunicationCardsStatus_CHOICES, default = '1', null=True, blank=True)
     autcheckRxTxOnCommunicationCardsNoOkDetail_preventive = models.TextField('Observaciones comprobar Rx yTx en tarjetas de comunicaciones', max_length=300, null=True, blank=True)
-
-
-
-
-
 
 
     #GENERAL
@@ -210,7 +201,7 @@ class ContractPreventive(models.Model):
 
 
 class ContractedCompanyPreventive(models.Model):
-    name_contractedCompanyPrevent = models.CharField('Nombre empresa contratada Mant Preventivo', max_length=40, null=True, blank=True)
+    name_contractedCompanyPrevent = models.ForeignKey(Company, on_delete=models.CASCADE,null=True, blank=True)
     
     class Meta:
         verbose_name = 'Empresa contratada mantenimiento preventivo'

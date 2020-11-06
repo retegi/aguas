@@ -34,5 +34,4 @@ urlpatterns = [
         views.RepairListByIncidenceView.as_view(),
         name='list_repairs_by_incidence'
     ),
-
 ]

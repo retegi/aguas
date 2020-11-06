@@ -61,7 +61,6 @@ class PreventiveDeleteView(LoginRequiredMixin,PermissionRequiredMixin,DeleteView
     login_url = reverse_lazy('users_app:user-login')
 
 class PreventiveDetailedStatisticsListView(LoginRequiredMixin,ListView):
-    #permission_required = 'preventive.list_preventive'
     model = Preventive
     template_name = "preventive/statistics_preventive_detailed.html"
     login_url = reverse_lazy('users_app:user-login')
@@ -100,7 +99,6 @@ class PreventiveDetailedStatisticsListView(LoginRequiredMixin,ListView):
         return context
 
 class PreventiveSimplifiedStatisticsListView(LoginRequiredMixin,ListView):
-    #permission_required = 'preventive.list_preventive'
     model = Preventive
     template_name = "preventive/statistics_preventive_simplified.html"
     login_url = reverse_lazy('users_app:user-login')
@@ -140,7 +138,7 @@ class PreventiveSimplifiedStatisticsListView(LoginRequiredMixin,ListView):
 
 
 class PreventiveMapListView(LoginRequiredMixin,ListView):
-    #permission_required = 'preventive.list_preventive'
+    permission_required = 'preventive.list_preventive'
     model = Preventive
     template_name = "preventive/map_preventive.html"
     login_url = reverse_lazy('users_app:user-login')

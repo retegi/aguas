@@ -47,6 +47,10 @@ LOCAL_APPS = (
     'applications.repair',
     'applications.map',
     'applications.preventive',
+    'applications.company',
+    'applications.employee',
+    'applications.administrativeRequirement',
+    'applications.streetMap',
 )
 
 BOOTSTRAP4 = {

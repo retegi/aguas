@@ -80,48 +80,44 @@
       <!--<li class="nav-item">
         <a class="nav-link" href="">Gráficos</a>
       </li>-->
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'maps_app:home_map' %}">Mapa</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="{% url 'stations_app:list_station' %}" id="dropdown07XL" data-toggle="dropdown" aria-expanded="false">Estaciones</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown07XL">
+          <a class="dropdown-item" href="{% url 'maps_app:home_map' %}">Mapa</a>
+          <a class="dropdown-item" href="{% url 'stations_app:list_station' %}">Estaciones</a>
+          
+          <a class="dropdown-item" href="{% url 'installations_app:list_installation' %}">Instalaciones</a>
+          <a class="dropdown-item" href="{% url 'devices_app:list_device' %}">Dispositivos</a>
+          <a class="dropdown-item" href="{% url 'consumables_app:list_consumable' %}">Consumibles</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'stations_app:list_station' %}">Estaciones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'installations_app:list_installation' %}">Instalaciones</a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'devices_app:list_device' %}">Dispositivos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'consumables_app:list_consumable' %}">Consumibles</a>
-      </li>
+     
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="{% url 'incidences_app:list_incidence' %}" id="dropdown07XL" data-toggle="dropdown" aria-expanded="false">Mant.Correctivo</a>
         <div class="dropdown-menu" aria-labelledby="dropdown07XL">
-          <a class="dropdown-item" href="{% url 'incidences_app:list_incidence' %}">Incidencias</a>
-          <a class="dropdown-item" href="{% url 'repairs_app:list_repair' %}">Reparaciones</a>
-          <a class="dropdown-item" href="">Estadística detallada</a>
+          <a class="dropdown-item" href="{% url 'incidences_app:map_incidence' %}">Mapa</a>
+          <a class="dropdown-item" href="{% url 'incidences_app:list_incidence' %}">Lista Incidencias</a>
+          <a class="dropdown-item" href="{% url 'repairs_app:list_repair' %}">Lista Reparaciones</a>
         </div>
       </li>
-      <!--<li class="nav-item">
-        <a class="nav-link" href="{% url 'incidences_app:list_incidence' %}">Incidencias</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'repairs_app:list_repair' %}">Reparaciones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" onclick="" href="{% url 'preventive_app:list_preventive' %}">Mant.Preventivo</a>
-      </li>-->
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="{% url 'preventive_app:list_preventive' %}" id="dropdown07XL" data-toggle="dropdown" aria-expanded="false">Mant.Preventivo</a>
         <div class="dropdown-menu" aria-labelledby="dropdown07XL">
-          <a class="dropdown-item" href="{% url 'preventive_app:list_preventive' %}">Lista Mant.Preventivo</a>
-          <a class="dropdown-item" href="{% url 'preventive_app:map_preventive' %}">Mapa preventivos</a>
+          <a class="dropdown-item" href="{% url 'preventive_app:map_preventive' %}">Mapa</a>
+          <a class="dropdown-item" href="{% url 'preventive_app:list_preventive' %}">Lista Mantenimiento Preventivo</a>
           <a class="dropdown-item" href="{% url 'preventive_app:statistics_preventive_simplified' %}">Informe estadística preventivo RESUMIDO</a>
           <a class="dropdown-item" href="{% url 'preventive_app:statistics_preventive_detailed' %}">Informe estadística preventivo DETALLADO</a>
           
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="" id="dropdown07XL" data-toggle="dropdown" aria-expanded="false">Requerimientos</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown07XL">
+          <a class="dropdown-item" href="">Mapa</a>
+          <a class="dropdown-item" href="{% url 'requirement_app:list_requirement' %}">Requerimientos</a>
         </div>
       </li>
 

@@ -59,6 +59,14 @@
                       </a></td>
                   </tr>
                   <tr>
+                    <th scope="row">Operarios</th>
+                    <td><br>
+                    {% for employee in preventive.employee_preventive.all %}
+                    {{ employee.name_employee }} {{ employee.lastName1_employee }}<br>
+                    {% endfor %}
+                    <br><br>
+                  </tr>
+                  <tr>
                     <th scope="row">Observaciones</th>
                     <td>{{ preventive.observations_preventive }}<br><br><br>
                   </tr>

@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Aguas - Index</title>
+{% endblock %}
+{% block head %}
+<title>Aguas</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+crossorigin=""></script>
+
+
+<style>
+html, body {
+  width: 100%;
+}
+#map {
+  width: 100%;
+  height: 850px;
+}
+</style>
+
+
+
+{% endblock %}
+
+{% block content %}
+
+<div id='map' class="">
+
+</div>
+
+<script>
+
+//MARC COLOR ICONS
+var waterTankIcon = new L.Icon({
+  iconUrl: '{% static 'img/water-tank.png' %}',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var controlIcon = new L.Icon({
+  iconUrl: '{% static 'img/control-station.webp' %}',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var antenaIcon = new L.Icon({
+  iconUrl: '{% static 'img/antena.png' %}',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [35, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var greenIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [30, 43],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var orangeIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var yellowIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var blueIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var redIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var blackIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var goldIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var greyIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+var violetIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+  var cities = L.layerGroup();
+  var ebar1 = L.layerGroup();
+  var ebap1 = L.layerGroup();
+  var rdap1 = L.layerGroup();
+  var esap1 = L.layerGroup();
+  var drap1 = L.layerGroup();
+  var ecs1 = L.layerGroup();
+  var edar1 = L.layerGroup();
+  var ddap1 = L.layerGroup();
+  var plvm1 = L.layerGroup();
+  var cc1 = L.layerGroup();
+  var rep1 = L.layerGroup();  
+  var otros1 = L.layerGroup();
+
+
+
+
+/*sanitationStations Marks*/
+
+
+/*{% for repair in repairs %}
+      L.marker([{{ repair.incidence_repair.station_incidence.latitude_station }}, {{ repair.incidence_repair.station_incidence.longitude_station }}],{icon: greenIcon}).bindPopup('').addTo(ebar1);        
+{% endfor %}*/
+
+{% for incidence in incidences %}
+      L.marker([{{ incidence.station_incidence.latitude_station }}, {{ incidence.station_incidence.longitude_station }}],{icon: redIcon}).bindPopup('<a href="{% url 'stations_app:detail_station' incidence.station_incidence.id %}">{{ incidence.station_incidence.type_station.acronym }} {{ incidence.station_incidence.name_station }}</a><br><a href="#" class="text-secondary">Nº Incidencia: {{ incidence.id }}</a><br><a href="#" class="text-secondary">Fecha: {{ incidence.datetime_incidence|date:"d/m/Y" }}</a><br><a href="{% url 'repairs_app:list_repairs_by_incidence' incidence.id %}"><button class="btn btn-sm btn-success">VER REPARACIONES</button></a><br><p class="text-center" style="text-transform:uppercase"><b>{{ incidence.statusIncidence_incidence }}</b></p>').addTo(ebar1);  
+{% endfor %}
+
+
+var ret = '<a target="_public" href="https://www.retegi.eus">retegi.eus</a> '
+	var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+
+	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: ret+mbAttr}),
+		streets  = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: ret+mbAttr});
+
+  {% for map in map %}
+	var map = L.map('map', {
+		center: [{{ map.longitude_conf_map }}, {{ map.latitude_conf_map }}],
+		zoom: {{ map.zoom_conf_map }},
+		layers: [grayscale,ebar1,ebap1,rdap1,esap1,drap1,ecs1,edar1,ddap1,plvm1,cc1,rep1,otros1]
+  });
+  {% endfor %}
+
+
+
+	var baseLayers = {
+		"Mapa gris-claro": grayscale,
+		"Mapa color": streets
+	};
+
+	/*var overlays = {
+    "EBAR": ebar1,
+    "EBAP": ebap1,
+    "RDAP": rdap1,
+    "ESAP": esap1,
+    "DRAP": drap1,
+    "ECS": ecs1,
+    "EDAR": edar1,
+    "DDAP": ddap1,
+    "PLVM": plvm1,
+    "CC": cc1,
+    "REP": rep1,
+    "OTROS": otros1
+
+	};*/
+
+	L.control.layers(baseLayers).addTo(map);
+</script>
+
+<script>
+  function revisionPendiente(){
+    alert("Esta estación tiene la revisión preventiva pendiente de realizarse. En cuanto esté hecha, el símbolo se pondrá en color verde y se podrán ver todos los detalles de la revisión.");
+  }
+</script>
+{% endblock %}
