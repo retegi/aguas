@@ -33,7 +33,7 @@ class Status(models.Model):
 class AdministrativeRequirement(models.Model):
     number_AR = models.CharField('Número', max_length=50,null=True, blank=True)
     datetime_AR = models.DateTimeField ('FechaRoa',null=True, blank=True)
-    file_AR = models.FileField(upload_to='administrativeRequirement/')
+    file_AR = models.FileField(upload_to='administrativeRequirement/', null=True, blank=True)
     address_AR = models.ManyToManyField(Address)
     #contact_AR = models.ForeignKey(Contact, on_delete=models.CASCADE,null=True, blank=True)
     anomaly_AR = models.ManyToManyField(Anomaly)

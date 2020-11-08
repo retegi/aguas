@@ -8,5 +8,10 @@ urlpatterns = [
         '',
         views.AdministrativeRequirementListView.as_view(),
         name='list_requirement'
+    ),
+    path(
+        'add_requirement',
+        views.AdministrativeRequirementCreateView.as_view(),
+        name='add_requirement'
     )
 ]

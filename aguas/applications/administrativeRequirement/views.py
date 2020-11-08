@@ -9,6 +9,7 @@ from django.views.generic import (
     DetailView,
     DeleteView,
 )
+from .forms import AddAdministrativeRequirementForm
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -25,3 +26,14 @@ class AdministrativeRequirementListView(LoginRequiredMixin,ListView):
             object_list = self.model.objects.all()
         return object_list
     login_url = reverse_lazy('users_app:user-login')
+
+
+class AdministrativeRequirementCreateView(LoginRequiredMixin,CreateView):
+    #permission_required = 'station.add_station'
+    template_name = 'administrativeRequirement/add_administrativeRequirement.html'
+    model = AdministrativeRequirement
+    form_class = AddAdministrativeRequirementForm
+    success_url = '/administrativeRequirement/'
+    login_url = reverse_lazy('users_app:user-login')
+
+
