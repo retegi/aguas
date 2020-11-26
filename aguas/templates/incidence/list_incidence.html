@@ -65,7 +65,7 @@
         <h1>{{incidence.station_incidence.date_RP}}</h1>
           <tr>
             <td><a href="{% url 'incidences_app:detail_incidence' incidence.id %}"><button class="btn btn-primary btn-sm w-50">{{ incidence.id }}</button></a></td>
-            <td><a href="{% url 'stations_app:detail_station' incidence.station_incidence.id %}">{{ incidence.station_incidence }}</a></td>
+            <td><a href="{% url 'stations_app:detail_station' 1 %}">{{ incidence.station_incidence.id }}</a></td>
             <td><a href=""><button style="background-color:{{ incidence.station_incidence.area_station.color_html_background }}" class="btn btn-sm">{{ incidence.station_incidence.area_station.name }}</button></a></td>
             <td>{{ incidence.datetime_incidence|date:'d/m/Y' }}</td>
             <td><button class="btn btn-sm" style="background-color:{{ incidence.typeIncidence_incidence.color_html_background }}">{{ incidence.typeIncidence_incidence.name }}</button></td>
