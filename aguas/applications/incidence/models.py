@@ -66,8 +66,8 @@ class Incidence(models.Model):
     class Meta:
         verbose_name = 'Incidencia'
         verbose_name_plural = 'Incidencias'
-        ordering = ['datetime_incidence']
+        ordering = ['id']
 
     def __str__(self):
-        return str(self.id) + ' - ' + str(self.station_incidence) + ' - ' + str(self.datetime_incidence)
+        return str(self.id) + ' - ' + str(self.station_incidence)
 
