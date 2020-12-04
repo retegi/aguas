@@ -13,7 +13,6 @@ from django.views.generic import (
 )
 from .forms import AddStationForm
 from .forms import UpdateStationForm
-
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin

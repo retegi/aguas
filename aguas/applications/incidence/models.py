@@ -53,6 +53,18 @@ class UrgencyLevelIncidence(models.Model):
     def __str__(self):
         return str(self.date_RF)"""
 
+class Billing(models.Model):
+    billing_status = models.CharField('Estado facturación', max_length=50, null=True, blank=True)
+    html_color = models.CharField('HTML color', max_length=15, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Estado de facturación'
+        verbose_name_plural = 'Estados de facturación'
+        ordering = ['id']
+
+    def __str__(self):
+        return str(self.id) + ' - ' + str(self.billing_status)
+
 class Incidence(models.Model):
     station_incidence = models.ForeignKey(Station, on_delete=models.CASCADE,null=True, blank=True)
     datetime_incidence = models.DateTimeField ('FechaIncidencia',null=True, blank=True)
@@ -62,6 +74,7 @@ class Incidence(models.Model):
     repairForecast_incidence = models.DateTimeField('Fecha previsión reparación', null=True, blank=True)
     companyRepair_incidence = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
     urgencyLevel_incidence = models.ForeignKey(UrgencyLevelIncidence, on_delete=models.CASCADE,null=True, blank=True)
+    billing_incidence = models.ForeignKey(Billing, on_delete=models.CASCADE,null=True, blank=True)
 
     class Meta:
         verbose_name = 'Incidencia'
@@ -69,5 +82,5 @@ class Incidence(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return str(self.id) + ' - ' + str(self.station_incidence)
+        return str(self.station_incidence) + ' ' + ' - Incidencia: ' +  str(self.id)
 

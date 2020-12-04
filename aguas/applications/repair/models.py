@@ -69,6 +69,7 @@ class Repair(models.Model):
     class meta:
         verbose_name = 'Reparación'
         verbose_name_plural = 'Reparaciones'
+        ordering = ['id']
 
     def __str__(self):
         return self.summary_repair

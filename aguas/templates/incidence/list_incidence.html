@@ -54,9 +54,9 @@
             <th scope="col">Fecha Incidencia</th>
             <th scope="col">Incidencia</th>
             <th scope="col">Nivel urgencia</th>
-            <th scope="col">Previsión reparación</th>
             <th scope="col">Estado actual</th>
             <th scope="col">Ver reparaciones</th>
+            <th scope="col">Facturación</th>
             <th scope="col">Opciones</th>
           </tr>
         </thead>
@@ -65,12 +65,12 @@
         <h1>{{incidence.station_incidence.date_RP}}</h1>
           <tr>
             <td><a href="{% url 'incidences_app:detail_incidence' incidence.id %}"><button class="btn btn-primary btn-sm w-50">{{ incidence.id }}</button></a></td>
-            <td><a href="{% url 'stations_app:detail_station' 1 %}">{{ incidence.station_incidence.id }}</a></td>
+            <td><a href="{% url 'stations_app:detail_station' 1 %}">{{ incidence.station_incidence }}</a></td>
             <td><a href=""><button style="background-color:{{ incidence.station_incidence.area_station.color_html_background }}" class="btn btn-sm">{{ incidence.station_incidence.area_station.name }}</button></a></td>
             <td>{{ incidence.datetime_incidence|date:'d/m/Y' }}</td>
             <td><button class="btn btn-sm" style="background-color:{{ incidence.typeIncidence_incidence.color_html_background }}">{{ incidence.typeIncidence_incidence.name }}</button></td>
             <td><button title="{{ incidence.urgencyLevel_incidence.meaning }}" class="btn rounded btn-sm" style="background-color:{{ incidence.urgencyLevel_incidence.color_html_background }}">{{ incidence.urgencyLevel_incidence.name }}</button></td>
-            <td>{{ incidence.repairForecast_incidence|date:'d/m/Y' }} ({{ incidence.companyRepair_incidence }})</td>
+    
             <td><button class="btn btn-sm" style="background-color:{{ incidence.statusIncidence_incidence.color_html_background }}">{{ incidence.statusIncidence_incidence.name }}</button></td>
             
             
@@ -107,6 +107,11 @@
               </a>
             </td>
 
+            <td>
+              <button class="btn btn-sm w-50" style="background-color:{{ incidence.billing_incidence.html_color }}">
+                {{ incidence.billing_incidence.billing_status }}
+              </button>
+            </td>
 
             <td><a target="blank" href="{% url 'incidences_app:detail_incidence' incidence.id %}"><svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 001.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0014.828 8a13.133 13.133 0 00-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 001.172 8z" clip-rule="evenodd"/>

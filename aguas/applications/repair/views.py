@@ -26,9 +26,9 @@ class RepairListView(ListView):
     def get_queryset(self):
         name = self.request.GET.get('kword', '')
         if name:
-            object_list = self.model.objects.filter(Q(id__icontains = name))
+            object_list = self.model.objects.filter(Q(incidence_repair__id__icontains = name)|Q(incidence_repair__station_incidence__name_station__icontains = name)).order_by('id')
         else:
-            object_list = self.model.objects.all()
+            object_list = self.model.objects.all().order_by('id')
         return object_list
 
 """class RepairListByIncidenceView(LoginRequiredMixin,ListView):
@@ -43,8 +43,8 @@ class RepairListByIncidenceView(LoginRequiredMixin,ListView):
     template_name = 'repair/list_repair.html'
     def get_queryset(self):
         identifier = self.kwargs['pk']
-        object_list = Repair.objects.filter(incidence_repair_id = identifier)
-        ordering = ['datetime_repair']
+        object_list = Repair.objects.filter(incidence_repair_id = identifier).order_by('id')
+        #ordering = ['datetime_repair']
         return object_list
     login_url = reverse_lazy('users_app:user-login')
 
