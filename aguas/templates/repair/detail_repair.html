@@ -75,13 +75,36 @@
                       <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
                     </svg></a></td>
                   </tr>
+
+                  <tr>
+                    <th scope="row">Empresa</th>
+                    <td>{{ repair.company_repair }}</td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">Operario(s)</th>
+                    <td>
+                      {% for employee in repair.employee_repair.all %}
+                        {{ employee.name_employee }} {{ employee.lastName1_employee }}<br>
+                      {% endfor %}
+
+                    </td>
+                  </tr>
+
                   <tr>
                     <th scope="row">Resumen</th>
                     <td>{{ repair.summary_repair }}</td>
                   </tr>
+
+    
+
                   <tr>
                     <th scope="row">Detalles</th>
                     <td>{{ repair.detail_repair }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Material a facturar</th>
+                    <td>{{ repair.productsToInvoice_repair }}</td>
                   </tr>
 
 

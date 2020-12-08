@@ -2,6 +2,8 @@ from django.db import models
 from applications.device.models import Device
 from applications.consumable.models import Consumable
 from applications.incidence.models import Incidence
+from applications.company.models import Company
+from applications.employee.models import Employee
 
 
 class TypeRepair(models.Model):
@@ -65,6 +67,10 @@ class Repair(models.Model):
     statusAfterRepair_repair = models.ForeignKey(StatusAfterRepair, on_delete=models.CASCADE,null=True, blank=True)
     summary_repair = models.TextField('Resumen',null=True, blank=True)
     detail_repair = models.TextField('Detalles',null=True, blank=True)
+    productsToInvoice_repair = models.TextField('Material a facturar',null=True, blank=True)
+    company_repair = models.ForeignKey(Company, on_delete=models.CASCADE,null=True, blank=True)
+    employee_preventive = models.ManyToManyField(Employee, related_name="correctives")
+    
 
     class meta:
         verbose_name = 'Reparación'

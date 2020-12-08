@@ -15,4 +15,4 @@ class Employee(models.Model):
         ordering = ['name_employee']
 
     def __str__(self):
-        return self.name_employee + ' ' + self.lastName1_employee
+        return str(self.name_employee) + ' ' + str(self.lastName1_employee)

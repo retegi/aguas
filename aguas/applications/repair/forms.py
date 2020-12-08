@@ -19,8 +19,11 @@ class AddRepairForm(forms.ModelForm):
         self.fields['removedConsumable_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['placedConsumable_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['statusAfterRepair_repair'].widget.attrs.update({'class': 'form-control'})
+        self.fields['company_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['summary_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['detail_repair'].widget.attrs.update({'class': 'form-control'})
+        
+        self.fields['productsToInvoice_repair'].widget.attrs.update({'class': 'form-control'})
 
 class UpdateRepairForm(forms.ModelForm):
     class Meta:
@@ -39,7 +42,9 @@ class UpdateRepairForm(forms.ModelForm):
         self.fields['removedConsumable_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['placedConsumable_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['statusAfterRepair_repair'].widget.attrs.update({'class': 'form-control'})
+        self.fields['company_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['summary_repair'].widget.attrs.update({'class': 'form-control'})
         self.fields['detail_repair'].widget.attrs.update({'class': 'form-control'})
+        self.fields['productsToInvoice_repair'].widget.attrs.update({'class': 'form-control'})
 
         
