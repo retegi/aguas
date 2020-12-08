@@ -90,9 +90,6 @@ class PreventiveDetailedStatisticsListView(LoginRequiredMixin,ListView):
         reviewedStationsIds = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
         context['reviewedStationsIds'] = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
 
-        """reviewedStationsIds = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
-        context['notReviewedStations'] = Station.objects.exclude(id__in=reviewedStationsIds)"""
-
         reviewedStationsIds = self.model.objects.all().distinct().values_list('station_preventive',flat=True)
         context['notReviewedStations'] = Station.objects.exclude(id__in=reviewedStationsIds)
 
@@ -121,19 +118,22 @@ class PreventiveSimplifiedStatisticsListView(LoginRequiredMixin,ListView):
         context['november'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='11').count())
         context['december'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='12').count())
         context['contractNumPreventives'] = str(ContractPreventive.objects.first())
-        context['name_contractedCompanyPrevent'] = ContractedCompanyPreventive.objects.first().name_contractedCompanyPrevent
-        context['contractNumPreventivesCalc'] = ContractPreventive.objects.first().annualPreventiveContract_ContractPreventive
-        context['differenceUntilComplete'] = context['contractNumPreventivesCalc']-context['totalCalc']
+        if ContractedCompanyPreventive.objects.first():
+            context['name_contractedCompanyPrevent'] = ContractedCompanyPreventive.objects.first().name_contractedCompanyPrevent
+        else:
+            context['name_contractedCompanyPrevent'] = "Not defined"
 
+        if ContractPreventive.objects.first():
+            context['contractNumPreventivesCalc'] = ContractPreventive.objects.first().annualPreventiveContract_ContractPreventive
+        else:
+            context['contractNumPreventivesCalc'] = 0
+
+        if ContractPreventive.objects.first():    
+            context['differenceUntilComplete'] = context['contractNumPreventivesCalc']-context['totalCalc']
         reviewedStationsIds = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
         context['reviewedStationsIds'] = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
-
-        """reviewedStationsIds = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
-        context['notReviewedStations'] = Station.objects.exclude(id__in=reviewedStationsIds)"""
-
         reviewedStationsIds = self.model.objects.all().distinct().values_list('station_preventive',flat=True)
         context['notReviewedStations'] = Station.objects.exclude(id__in=reviewedStationsIds)
-
         return context        
 
 

@@ -160,7 +160,13 @@ function genPDFdetailed() {
             
             <div style="" class="text-center" role="alert">
                 <h2 class="text-dark">Estadística Mantenimiento Preventivo</h2>
-                <h4 class="text-secondary">Compañia contratada: {{ name_contractedCompanyPrevent }}</h4>
+                <h4 class="text-secondary">Compañia contratada: 
+                  
+                    {% if name_contractedCompanyPrevent %}
+                        {{ name_contractedCompanyPrevent }}
+                    {% endif %}
+               
+                </h4>
 
             </div>
         </div>    
@@ -181,9 +187,11 @@ function genPDFdetailed() {
                     <tr>
                         <th scope="row">Objetivo preventivos/año</th>
                         <td class="">
-                            {% for contractNumPreventives in contractNumPreventives %}
-                                <b>{{ contractNumPreventives }}</b>
-                            {% endfor %}
+                            {% if contractNumPreventives %}
+                                
+                                    <b>{{ contractNumPreventives }}</b>
+                               
+                            {% endif %}
                         </td>
                     </tr>
                     <tr>

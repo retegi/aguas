@@ -11,7 +11,7 @@ class Company(models.Model):
         ordering = ['name_company']
 
     def __str__(self):
-        return self.name_company
+        return str(self.name_company)
 
 class Email(models.Model):
     address_email = models.CharField('Email',max_length=60,null=True, blank=True)
@@ -23,4 +23,4 @@ class Email(models.Model):
         ordering = ['address_email']
 
     def __str__(self):
-        return self.address_email
+        return str(self.address_email)
