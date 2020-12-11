@@ -4,7 +4,7 @@ from .models import Email
 # Register your models here.
 class CompanyAdmin(admin.ModelAdmin):
     list_display=(
-        'name_company',
+        'name',
         'vat_company',
     )
 admin.site.register(Company,CompanyAdmin)

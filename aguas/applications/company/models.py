@@ -2,16 +2,16 @@ from django.db import models
 
 # Create your models here.
 class Company(models.Model):
-    name_company = models.CharField('Nombre',max_length=50,null=True, blank=True)
+    name = models.CharField('Nombre',max_length=50,null=True, blank=True)
     vat_company = models.CharField('Numero de indentificación fiscal',max_length=50,null=True, blank=True)
     
     class Meta:
         verbose_name = 'Compañía'
         verbose_name_plural = 'Compañías'
-        ordering = ['name_company']
+        ordering = ['name']
 
     def __str__(self):
-        return str(self.name_company)
+        return str(self.name)
 
 class Email(models.Model):
     address_email = models.CharField('Email',max_length=60,null=True, blank=True)
