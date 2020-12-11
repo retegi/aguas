@@ -32,7 +32,12 @@
           </li>-->
         </ul>
   </div>
+  <a href="{% url 'incidences_app:list_incidence' %}"><button class="btn btn-sm btn-primary mr-1">Todas las incidencias</button></a>
+  <a href="{% url 'incidences_app:not_invoiced_list_incidence' %}"><button class="btn btn-sm btn-success mr-1">Pendiente facturar</button></a>
+  <a href="{% url 'incidences_app:do_not_envoice_list_incidence' %}"><button class="btn btn-sm btn-danger mr-1">No facturar</button></a>
+  <a href="{% url 'incidences_app:invoiced_list_incidence' %}"><button class="btn btn-sm btn-secondary mr-1">Facturados</button></a>
   <div class="col-sm-1">
+        
         <form class="form-inline my-2 my-md-0"action="{% url 'incidences_app:list_incidence' %}" method="get">{% csrf_token %}
           <input class="form-control" type="text" id="kword" name="kword" placeholder="Buscar">
         </form>

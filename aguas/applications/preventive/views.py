@@ -67,25 +67,34 @@ class PreventiveDetailedStatisticsListView(LoginRequiredMixin,ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['preventives'] = self.model.objects.all()
-        context['totalCalc'] = int(self.model.objects.all().count())
-        context['total'] = str(self.model.objects.all().count())
-        context['january'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='1').count())
-        context['february'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='2').count())
-        context['march'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='3').count())
-        context['april'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='4').count())
-        context['may'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='5').count())
-        context['june'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='6').count())
-        context['july'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='7').count())
-        context['august'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='8').count())
-        context['september'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='9').count())
-        context['october'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='10').count())
-        context['november'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='11').count())
-        context['december'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='12').count())
-        context['contractNumPreventives'] = str(ContractPreventive.objects.first())
-        context['name_contractedCompanyPrevent'] = ContractedCompanyPreventive.objects.first().name_contractedCompanyPrevent
-        context['contractNumPreventivesCalc'] = ContractPreventive.objects.first().annualPreventiveContract_ContractPreventive
-        context['differenceUntilComplete'] = context['contractNumPreventivesCalc']-context['totalCalc']
+        if self.model.objects.all():
+            context['preventives'] = self.model.objects.all()
+            context['totalCalc'] = int(self.model.objects.all().count())
+            context['total'] = str(self.model.objects.all().count())
+            context['january'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='1').count())
+            context['february'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='2').count())
+            context['march'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='3').count())
+            context['april'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='4').count())
+            context['may'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='5').count())
+            context['june'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='6').count())
+            context['july'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='7').count())
+            context['august'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='8').count())
+            context['september'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='9').count())
+            context['october'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='10').count())
+            context['november'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='11').count())
+            context['december'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='12').count())
+            
+        if str(ContractPreventive.objects.first()):
+            context['contractNumPreventives'] = str(ContractPreventive.objects.first())
+
+        if ContractedCompanyPreventive.objects.first():
+            context['name_contractedCompanyPrevent'] = ContractedCompanyPreventive.objects.first().name_contractedCompanyPrevent
+        
+        if ContractPreventive.objects.first():
+            context['contractNumPreventivesCalc'] = ContractPreventive.objects.first().annualPreventiveContract_ContractPreventive
+        
+        if ContractPreventive.objects.first():
+            context['differenceUntilComplete'] = context['contractNumPreventivesCalc']-context['totalCalc']
 
         reviewedStationsIds = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
         context['reviewedStationsIds'] = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
@@ -117,7 +126,12 @@ class PreventiveSimplifiedStatisticsListView(LoginRequiredMixin,ListView):
         context['october'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='10').count())
         context['november'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='11').count())
         context['december'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='12').count())
-        context['contractNumPreventives'] = str(ContractPreventive.objects.first())
+
+        if str(ContractPreventive.objects.first()):
+            context['contractNumPreventives'] = str(ContractPreventive.objects.first())
+        else:
+            context['contractNumPreventives'] = "Not defined"
+            
         if ContractedCompanyPreventive.objects.first():
             context['name_contractedCompanyPrevent'] = ContractedCompanyPreventive.objects.first().name_contractedCompanyPrevent
         else:
@@ -130,6 +144,9 @@ class PreventiveSimplifiedStatisticsListView(LoginRequiredMixin,ListView):
 
         if ContractPreventive.objects.first():    
             context['differenceUntilComplete'] = context['contractNumPreventivesCalc']-context['totalCalc']
+        else:
+            context['differenceUntilComplete'] = 0
+
         reviewedStationsIds = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
         context['reviewedStationsIds'] = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
         reviewedStationsIds = self.model.objects.all().distinct().values_list('station_preventive',flat=True)
@@ -145,36 +162,52 @@ class PreventiveMapListView(LoginRequiredMixin,ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['preventives'] = self.model.objects.all()
-        context['totalCalc'] = int(self.model.objects.all().count())
-        context['total'] = str(self.model.objects.all().count())
-        context['january'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='1').count())
-        context['february'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='2').count())
-        context['march'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='3').count())
-        context['april'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='4').count())
-        context['may'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='5').count())
-        context['june'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='6').count())
-        context['july'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='7').count())
-        context['august'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='8').count())
-        context['september'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='9').count())
-        context['october'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='10').count())
-        context['november'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='11').count())
-        context['december'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='12').count())
-        context['contractNumPreventives'] = str(ContractPreventive.objects.first())
-        context['name_contractedCompanyPrevent'] = ContractedCompanyPreventive.objects.first().name_contractedCompanyPrevent
-        context['contractNumPreventivesCalc'] = ContractPreventive.objects.first().annualPreventiveContract_ContractPreventive
-        context['differenceUntilComplete'] = context['contractNumPreventivesCalc']-context['totalCalc']
+        if self.model.objects.all():
+            context['preventives'] = self.model.objects.all()
+            context['totalCalc'] = int(self.model.objects.all().count())
+            context['total'] = str(self.model.objects.all().count())
+            context['january'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='1').count())
+            context['february'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='2').count())
+            context['march'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='3').count())
+            context['april'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='4').count())
+            context['may'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='5').count())
+            context['june'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='6').count())
+            context['july'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='7').count())
+            context['august'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='8').count())
+            context['september'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='9').count())
+            context['october'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='10').count())
+            context['november'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='11').count())
+            context['december'] = str(self.model.objects.filter(startDatetime_preventive__year='2020', startDatetime_preventive__month='12').count())
+            
+        if ContractPreventive.objects.first():
+            context['contractNumPreventives'] = str(ContractPreventive.objects.first())
+        else:
+            context['contractNumPreventives'] = "Not defined"
+        
+        if ContractedCompanyPreventive.objects.first():
+            context['name_contractedCompanyPrevent'] = ContractedCompanyPreventive.objects.first().name_contractedCompanyPrevent
+        else:
+            context['name_contractedCompanyPrevent'] = "Not defined"
+
+        if ContractPreventive.objects.first():
+            context['contractNumPreventivesCalc'] = ContractPreventive.objects.first().annualPreventiveContract_ContractPreventive
+        else:
+            context['contractNumPreventivesCalc'] = 0
+
+        if ContractPreventive.objects.first():
+            context['differenceUntilComplete'] = context['contractNumPreventivesCalc']-context['totalCalc']
+        else:
+            context['differenceUntilComplete'] = 0
 
         reviewedStationsIds = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
         context['reviewedStationsIds'] = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
 
-        """reviewedStationsIds = self.model.objects.all().values_list('station_preventive',flat=True).distinct()
-        context['notReviewedStations'] = Station.objects.exclude(id__in=reviewedStationsIds)"""
 
         reviewedStationsIds = self.model.objects.all().distinct().values_list('station_preventive',flat=True)
         context['notReviewedStations'] = Station.objects.exclude(id__in=reviewedStationsIds)
 
-        context['map'] = Map.objects.all()
+        if Map.objects.all():
+            context['map'] = Map.objects.all()
 
         return context
 

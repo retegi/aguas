@@ -184,13 +184,41 @@ var ret = '<a target="_public" href="https://www.retegi.eus">retegi.eus</a> '
 	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: ret+mbAttr}),
 		streets  = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: ret+mbAttr});
 
-  {% for map in map %}
-	var map = L.map('map', {
-		center: [{{ map.longitude_conf_map }}, {{ map.latitude_conf_map }}],
-		zoom: {{ map.zoom_conf_map }},
-		layers: [grayscale,ebar1,ebap1,rdap1,esap1,drap1,ecs1,edar1,ddap1,plvm1,cc1,rep1,otros1]
-  });
-  {% endfor %}
+    var longitudExample=43.310789;
+  var latitudeExample=-1.970963;
+  var zoomExample=13.5;
+
+ 
+      var map = L.map('map', {
+        
+        center: [
+          {% if map %}
+            {% for map in map %}
+              {{ map.longitude_conf_map }}
+            {% endfor %}
+          {% else %}
+            longitudExample
+          {% endif %},
+          
+          {% if map %}
+            {% for map in map %}
+              {{ map.latitude_conf_map }}
+            {% endfor %}
+          {% else %}
+            latitudeExample
+          {% endif %}],
+
+        zoom:
+          {% if map %}
+            {% for map in map %}
+              {{ map.zoom_conf_map }}
+            {% endfor %}
+          {% else %}
+            zoomExample
+          {% endif %},
+
+        layers: [grayscale,ebar1,ebap1,rdap1,esap1,drap1,ecs1,edar1,ddap1,plvm1,cc1,rep1,otros1]
+      });
 
 
 

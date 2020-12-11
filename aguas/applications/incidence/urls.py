@@ -10,6 +10,21 @@ urlpatterns = [
         name='list_incidence'
     ),
     path(
+        'invoiced_list_incidence',
+        views.InvoicedIncidenceList.as_view(),
+        name='invoiced_list_incidence'
+    ),
+    path(
+        'not_invoiced_list_incidence',
+        views.NotInvoicedIncidenceList.as_view(),
+        name='not_invoiced_list_incidence'
+    ),
+    path(
+        'do_not_envoice_list_incidence',
+        views.DoNotInvoiceIncidenceList.as_view(),
+        name='do_not_envoice_list_incidence'
+    ),
+    path(
         'add_incidence',
         views.IncidenceAdd.as_view(),
         name='add_incidence'

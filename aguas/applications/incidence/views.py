@@ -47,6 +47,43 @@ class IncidenceList(LoginRequiredMixin,ListView):
             object_list = self.model.objects.all()
         return object_list
 
+#Filtra incidencias por facturados
+class InvoicedIncidenceList(LoginRequiredMixin,ListView):
+    model = Incidence
+    template_name = 'incidence/list_incidence.html'
+    def get_queryset(self):
+        name = self.request.GET.get('kword', '')
+        if name:
+            object_list = self.model.objects.filter(Q(station_incidence__name_station__icontains = name) | Q(id__icontains = name))
+        else:
+            object_list = self.model.objects.filter(billing_incidence__billing_conf='Envoiced')
+        return object_list
+
+#Filtra incidencias por facturados
+class NotInvoicedIncidenceList(LoginRequiredMixin,ListView):
+    model = Incidence
+    template_name = 'incidence/list_incidence.html'
+    def get_queryset(self):
+        name = self.request.GET.get('kword', '')
+        if name:
+            object_list = self.model.objects.filter(Q(station_incidence__name_station__icontains = name) | Q(id__icontains = name))
+        else:
+            object_list = self.model.objects.filter(billing_incidence__billing_conf='Not envoiced')
+        return object_list
+
+#Filtra incidencias por facturados
+class DoNotInvoiceIncidenceList(LoginRequiredMixin,ListView):
+    model = Incidence
+    template_name = 'incidence/list_incidence.html'
+    def get_queryset(self):
+        name = self.request.GET.get('kword', '')
+        if name:
+            object_list = self.model.objects.filter(Q(station_incidence__name_station__icontains = name) | Q(id__icontains = name))
+        else:
+            object_list = self.model.objects.filter(billing_incidence__billing_conf='Not to envoice')
+        return object_list
+
+
 def incidence_list(ListView):
     incidences = Incidence.objects.filter(Q(solucionado='0') | Q(solucionado='2') | Q(solucionado='3'))
     return render(ListView,'incidences/list_incidence.html',{'incidences': incidences})
@@ -116,7 +153,6 @@ class IncidenceMapListView(LoginRequiredMixin,ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['incidences'] = self.model.objects.exclude(statusIncidence_incidence__name='Reparado')
-        #context['incidences'] = self.model.objects.all()
         context['totalCalc'] = int(self.model.objects.all().count())
         context['total'] = str(self.model.objects.all().count())
         context['january'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='1').count())
@@ -131,15 +167,6 @@ class IncidenceMapListView(LoginRequiredMixin,ListView):
         context['october'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='10').count())
         context['november'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='11').count())
         context['december'] = str(self.model.objects.filter(datetime_incidence__year='2020', datetime_incidence__month='12').count())
-        #context['contractNumRepairs'] = str(ContractRepair.objects.first())
-        #context['name_contractedCompanyRepair'] = ContractedCompanyRepair.objects.first().name_contractedCompanyRepair
-        #context['contractNumRepairsCalc'] = ContractRepair.objects.first().annualRepairContract_ContractRepair
-        #context['differenceUntilComplete'] = context['contractNumRepairsCalc']-context['totalCalc']
-        #reviewedStationsIds = self.model.objects.all().values_list('incidence_repair__station_incidence',flat=True).distinct()
-        #context['reviewedStationsIds'] = self.model.objects.all().values_list('station_repair',flat=True).distinct()
-        #repairedStationsIds = self.model.objects.all().distinct().values_list('station_repair',flat=True)
-        #context['notRepairedStations'] = Station.objects.exclude(id__in=reviewedStationsIds)
-        #context['incidences'] = Incidence.objects.all()
         context['map'] = Map.objects.all()
         return context
 

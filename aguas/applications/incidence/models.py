@@ -54,8 +54,14 @@ class UrgencyLevelIncidence(models.Model):
         return str(self.date_RF)"""
 
 class Billing(models.Model):
+    STATUS_CONF = (
+        ('Envoiced', 'Envoiced'),
+        ('Not envoiced', 'Not envoiced'),
+        ('Not to envoice', 'Not to envoice'),
+    )
     billing_status = models.CharField('Estado facturación', max_length=50, null=True, blank=True)
     html_color = models.CharField('HTML color', max_length=15, null=True, blank=True)
+    billing_conf = models.CharField(max_length=20, choices=STATUS_CONF, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Estado de facturación'

@@ -69,7 +69,7 @@ class Repair(models.Model):
     detail_repair = models.TextField('Detalles',null=True, blank=True)
     productsToInvoice_repair = models.TextField('Material a facturar',null=True, blank=True)
     company_repair = models.ForeignKey(Company, on_delete=models.CASCADE,null=True, blank=True)
-    employee_preventive = models.ManyToManyField(Employee, related_name="correctives")
+    employee_repair = models.ManyToManyField(Employee, related_name="correctives")
     
 
     class meta:
