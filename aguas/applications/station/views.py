@@ -61,32 +61,6 @@ class StationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
     success_url = '/station/'
     login_url = reverse_lazy('users_app:user-login')
 
-
-"""class StationUpdateView(LoginRequiredMixin,PermissionRequiredMixin,UpdateView):
-    permission_required = 'station.update_station'
-    template_name = "station/update_station.html"
-    model = Station
-    fields = [
-            'communication_technology_station',
-            'code_station',
-            'name_station',
-            'latitude_station',
-            'longitude_station',
-            'observations_station',
-            'communication_windows_station',
-            'area_station',
-            'origin_watertank',
-            'type_station',
-            'comunication_point',
-            'image_station',
-            'status_station',
-            'simulator3D_station',
-            'video_station',
-            'doc_station',
-            ]
-    success_url = '/station/'
-    login_url = reverse_lazy('users_app:user-login')"""
-
 class StationDetailView(LoginRequiredMixin,DetailView):
     model = Station
     template_name = "station/detail_station.html"

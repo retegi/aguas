@@ -16,6 +16,14 @@ class TypeIncidence(models.Model):
 
 
 class StatusIncidence(models.Model):
+    INCIDENCE_STATUS_CONF = (
+        ('In observation', 'In observation'),
+        ('Partially repaired', 'Partially repaired'),
+        ('Repared', 'Repared'),
+        ('Without repair', 'Without repair'),
+        ('Another', 'Another'),
+    )
+    incidence_status_conf = models.CharField(max_length=20, choices=INCIDENCE_STATUS_CONF, null=True, blank=True)
     name = models.CharField('Tipo de incidencia', max_length=50)
     color_html_background = models.CharField('Color fondo html incluir #', max_length=20)
 
@@ -41,17 +49,6 @@ class UrgencyLevelIncidence(models.Model):
     def __str__(self):
         return str(self.name)
 
-"""class RepairForecast(models.Model):
-    date_RF = models.DateTimeField('Fecha prevista reparación',null=True, blank=True)
-    incidence_RF = models.ForeignKey(Incidence, on_delete=models.CASCADE, null=True, blank=True)
-
-    class Meta:
-        verbose_name = 'Fecha prevista reparación'
-        verbose_name_plural = 'Fecha prevista reparaciones'
-        ordering = ['date_RF']
-    
-    def __str__(self):
-        return str(self.date_RF)"""
 
 class Billing(models.Model):
     STATUS_CONF = (
