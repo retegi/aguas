@@ -25,8 +25,4 @@
 {"model": "station.communicationtechnologystation", "pk": 4, "fields": {"name": "GSM", "acronym": "Sistema global de comunicaciones m\u00f3viles", "url": null}},
 {"model": "station.communicationtechnologystation", "pk": 5, "fields": {"name": "GPRS", "acronym": "Servicio general de paquetes v\u00eda radio", "url": null}},
 {"model": "station.communicationtechnologystation", "pk": 6, "fields": {"name": "SMS", "acronym": "Servicio de mensajes cortos", "url": null}}
-
-{"model": "incidence.billing", "pk": 3, "fields": {"billing_status": "No facturar", "html_color": "#ff2d00", "billing_conf": "Not to envoice"}},
-{"model": "incidence.billing", "pk": 4, "fields": {"billing_status": "Pendiente facturar", "html_color": "#00ff00", "billing_conf": "Not envoiced"}},
-{"model": "incidence.billing", "pk": 5, "fields": {"billing_status": "Facturado", "html_color": "#555555", "billing_conf": "Envoiced"}}
 ]
