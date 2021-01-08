@@ -10,7 +10,7 @@
     {"model": "incidence.typeincidence", "pk": 10, "fields": {"name": "No llegan datos", "color_html_background": "#ff0000"}},
     {"model": "incidence.typeincidence", "pk": 11, "fields": {"name": "Llegan datos incorrectos", "color_html_background": "#ff0000"}},
     {"model": "incidence.typeincidence", "pk": 12, "fields": {"name": "Informe con datos incorrectos", "color_html_background": "#ff0000"}},
-    {"model": "incidence.typeincidence", "pk": 12, "fields": {"name": "Otro", "color_html_background": "#eee"}},
+    {"model": "incidence.typeincidence", "pk": 13, "fields": {"name": "Otro tipo", "color_html_background": "#eee"}},
     {"model": "incidence.statusincidence", "pk": 10, "fields": {"name": "Reparado", "color_html_background": "#c4ffc5"}},
     {"model": "incidence.statusincidence", "pk": 11, "fields": {"name": "Sin reparar", "color_html_background": "#ff9390"}},
     {"model": "incidence.statusincidence", "pk": 12, "fields": {"name": "Parcialmente reparado", "color_html_background": "#ffbfbd"}},

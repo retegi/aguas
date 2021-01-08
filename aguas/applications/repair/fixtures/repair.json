@@ -4,7 +4,7 @@
     {"model": "repair.typerepair", "pk": 4, "fields": {"name": "Sustituir cargador"}},
     {"model": "repair.typerepair", "pk": 5, "fields": {"name": "Sustituir visor caudal\u00edmetro"}},
     {"model": "repair.typerepair", "pk": 6, "fields": {"name": "Sustituir datalogger"}},
-    {"model": "repair.typerepair", "pk": 7, "fields": {"name": "Sustituir model"}},
+    {"model": "repair.typerepair", "pk": 7, "fields": {"name": "Sustituir modem"}},
     {"model": "repair.typerepair", "pk": 8, "fields": {"name": "Sustituir Plc"}},
     {"model": "repair.typerepair", "pk": 9, "fields": {"name": "Programar Plc"}},
     {"model": "repair.typerepair", "pk": 10, "fields": {"name": "Sustituir radio anal\u00f3gica"}},

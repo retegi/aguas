@@ -2,8 +2,7 @@
 {% load static %}
 
 {% block header %}
-<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
 
 {% endblock %}
 
@@ -40,13 +39,38 @@
 </div>
 </div>
 
+
+{% endblock %}
+
+{% block scripts %}
+
+
+
 <script>
-    $(function() {
-      $( ".datepicker" ).datepicker({
-        changeMonth: true,
-        changeYear: true,
-        yearRange: "1900:2012",
-      });
-    });
-   </script>
+    Func_viewanotherTypeIncidence_incidence();
+    function Func_viewanotherTypeIncidence_incidence(){
+        var elem = document.getElementById("typeIncidence_incidence");
+        var x = elem.options[elem.selectedIndex].text;
+        if(x=="Otro tipo"){
+            document.getElementById("anotherTypeIncidence_incidence").style.display = "block";
+            document.querySelector("label[for='anotherTypeIncidence_incidence']").style.display = "block";
+        }
+        else{
+            document.getElementById("anotherTypeIncidence_incidence").style.display = "none";
+            document.querySelector("label[for='anotherTypeIncidence_incidence']").style.display = "none";
+        }  
+    }
+</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  $( function() {
+    $( "#datepicker2" ).datepicker();
+  } );
+</script>
 {% endblock %}

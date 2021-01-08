@@ -73,6 +73,7 @@ class Incidence(models.Model):
     datetime_incidence = models.DateTimeField ('FechaIncidencia',null=True, blank=True)
     observations_incidence = models.TextField('Observaciones',null=True, blank=True)
     typeIncidence_incidence = models.ForeignKey(TypeIncidence, on_delete=models.CASCADE,null=True, blank=True)
+    anotherTypeIncidence_incidence = models.TextField('Otro tipo de incidencia', null=True, blank=True)
     statusIncidence_incidence = models.ForeignKey(StatusIncidence, on_delete=models.CASCADE,null=True, blank=True)
     repairForecast_incidence = models.DateTimeField('Fecha previsión reparación', null=True, blank=True)
     companyRepair_incidence = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)

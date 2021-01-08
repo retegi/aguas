@@ -48,6 +48,7 @@ class IncidenceAdmin(admin.ModelAdmin):
         'datetime_incidence',
         'observations_incidence',
         'typeIncidence_incidence',
+        'anotherTypeIncidence_incidence',
         'statusIncidence_incidence',
         'repairForecast_incidence',
         'companyRepair_incidence',

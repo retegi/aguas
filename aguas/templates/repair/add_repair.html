@@ -9,13 +9,14 @@
 
 {% block content %}
 <div class="alert alert-success m-3" role="alert">
-
-<h3>Nueva reparación</h3>
-<form method="POST">{% csrf_token %}
-    {{ form.as_p}}
-    <button class="form-control btn-primary mb-5" type="submit">Guardar</button>
-</form>
-
+    <h3>Nueva reparación</h3>
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p}}
+        <button class="form-control btn-primary mb-5" type="submit">Guardar</button>
+    </form>
 </div>
 
 {% endblock %}
+
+
+
